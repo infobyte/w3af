@@ -60,6 +60,7 @@ class Ubuntu1204(Platform):
             return None
         else:
             dpkg_output, _ = p.communicate()
+            dpkg_output = dpkg_output.decode('utf-8')
 
             if not_installed in dpkg_output:
                 return False
