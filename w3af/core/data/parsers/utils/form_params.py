@@ -193,7 +193,7 @@ class FormParameters(OrderedDict):
         return self._action
 
     def set_action(self, action):
-        if not isinstance(action, (URL, NoneType)):
+        if action is None or not isinstance(action, URL):
             msg = 'The action of a Form must be of URL type.'
             raise TypeError(msg)
         self._action = action
