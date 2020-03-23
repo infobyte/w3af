@@ -24,8 +24,7 @@ import operator
 import random
 import copy
 
-from ruamel.ordereddict import ordereddict as OrderedDict
-from types import NoneType
+from collections import OrderedDict
 
 import w3af.core.controllers.output_manager as om
 
