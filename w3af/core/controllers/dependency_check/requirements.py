@@ -28,13 +28,13 @@ GUI = 2
 CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('github', 'PyGithub', '1.21.0'),
                      PIPDependency('git.util', 'GitPython', '2.1.3'),
-                     PIPDependency('pybloomfilter', 'pybloomfiltermmap', '0.3.14'),
+                     PIPDependency('pybloomfilter', 'pybloomfiltermmap3', '0.5.2'),
                      PIPDependency('phply', 'phply', '0.9.1'),
                      PIPDependency('nltk', 'nltk', '3.0.1'),
                      PIPDependency('chardet', 'chardet', '3.0.4'),
                      PIPDependency('tblib', 'tblib', '0.2.0'),
-                     PIPDependency('pdfminer', 'pdfminer', '20140328'),
-                     PIPDependency('concurrent.futures', 'futures', '3.2.0'),
+                     PIPDependency('pdfminer', 'pdfminer', '20191125'),
+                     # PIPDependency('concurrent.futures', 'futures', '3.2.0'), # @TODO
                      PIPDependency('OpenSSL', 'pyOpenSSL', '18.0.0'),
                      PIPDependency('ndg', 'ndg-httpsclient', '0.4.0'),
 
@@ -43,11 +43,11 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
 
                      PIPDependency('lxml', 'lxml', '3.4.4'),
                      PIPDependency('scapy.config', 'scapy', '2.4.0'),
-                     PIPDependency('guess_language', 'guess-language', '0.2'),
+                     # PIPDependency('guess_language', 'guess_language-spirit', '0.5.3'), # @TODO
                      PIPDependency('cluster', 'cluster', '1.1.1b3'),
                      PIPDependency('msgpack', 'msgpack', '0.5.6'),
-                     PIPDependency('ntlm', 'python-ntlm', '1.0.1'),
-                     PIPDependency('Halberd', 'halberd', '0.2.4'),
+                     PIPDependency('ntlm', 'python-ntlm3', '1.0.2'),
+                     # PIPDependency('Halberd', 'halberd', '0.2.4'), # @TODO
                      PIPDependency('darts.lib.utils', 'darts.util.lru', '0.5'),
                      PIPDependency('jinja2', 'Jinja2', '2.10'),
                      PIPDependency('vulndb', 'vulndb', '0.1.1'),
@@ -67,9 +67,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('mitmproxy', 'mitmproxy', '0.13'),
 
                      # https://gist.github.com/andresriancho/cf2fa1ce239b30f37bd9
-                     PIPDependency('ruamel.ordereddict',
-                                   'ruamel.ordereddict',
-                                   '0.4.8'),
+                     # PIPDependency('ruamel.ordereddict', 'ruamel.ordereddict', '0.4.14'), # @TODO
 
                      # Only used by the REST API, but in the future the console
                      # and GUI will consume it so it's ok to put this here
@@ -86,7 +84,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      # we use esmre to extract the string literals from the re
                      # and acora to match those against the target string
                      PIPDependency('acora', 'acora', '2.1'),
-                     PIPDependency('esmre', 'esmre', '0.3.1'),
+                     # PIPDependency('esmre', 'esmre', '0.3.1'), # @TODO
 
                      # String diff by Google
                      PIPDependency('diff_match_patch', 'diff-match-patch', '20121119'),
@@ -98,7 +96,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('lz4', 'lz4', '1.1.0'),
 
                      # Vulners API plugin needs this lib
-                     PIPDependency('vulners', 'vulners', '1.3.0'),
+                     PIPDependency('vulners', 'vulners', '1.5.5'),
 
                      PIPDependency('ipaddresses', 'ipaddresses', '0.0.2'),
 
