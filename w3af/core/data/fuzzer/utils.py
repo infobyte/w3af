@@ -21,10 +21,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 import random
 
-from string import letters, digits
 
 
-LETTERS_DIGITS = letters + digits
+from string import ascii_letters, digits
+
+
+LETTERS_DIGITS = ascii_letters + digits
 
 
 def get_random_instance(seed):
@@ -45,7 +47,7 @@ def rand_alpha(length=0, seed=None):
     rnd = get_random_instance(seed)
     length = length or rnd.randint(10, 30)
 
-    return ''.join(rnd.choice(letters) for _ in range(length))
+    return ''.join(rnd.choice(ascii_letters) for _ in range(length))
 
 
 def rand_alnum(length=0, seed=None):
