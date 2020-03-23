@@ -240,7 +240,7 @@ class extrusionScanner(object):
         """
         ### TODO! Implement this!
         if '6' in self._exec('python -c print+3+3'):
-            # "python -c 'print 3+3'" fails with magic quotes on... but
+            # "python -c 'print(3+3)'" fails with magic quotes on... but
             # this trick of the print+3+3 works ( returns 6 ) and ALSO evades
             # magic quotes
             filename = os.path.join(ROOT_PATH, 'core', 'controllers',

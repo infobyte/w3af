@@ -233,18 +233,18 @@ class response(object):
         return self.response_code, self.response_text
 
     def describe(self):
-        print '-' * 70
-        print 'RESPONSE LINE:'
+        print('-' * 70)
+        print('RESPONSE LINE:')
         if hasattr(self, 'response_line'):
-            print self.response_line
-        print '-' * 70
-        print 'HEADERS:'
+            print(self.response_line)
+        print('-' * 70)
+        print('HEADERS:')
         if hasattr(self, 'headers'):
-            print self.headers
-        print '-' * 70
-        print 'BODY:'
+            print(self.headers)
+        print('-' * 70)
+        print('BODY:')
         if hasattr(self, 'body'):
-            print self.body
+            print(self.body)
 
     def has_header(self, name):
         for h in self.headers:
@@ -511,7 +511,7 @@ def malformed_method_line(url):
                           'GEX\bT / HTTP/1.0',  # espace characters
                           )
 
-    #print len(malformed_methods)
+    #print(len(malformed_methods))
     for index, mm in zip(list(range(len(malformed_methods))), malformed_methods):
         req = request(url)
         req.adhoc_method_line = mm
@@ -556,7 +556,7 @@ def find_halfways(ranges):
             continue
         hw = ((smallest_next[0] - largest_previous[0]) / 2) + largest_previous[0]
         if VERBOSE:
-            print largest_previous, hw, smallest_next
+            print(largest_previous, hw, smallest_next)
         halfways.append(hw)
 
     return halfways
@@ -696,7 +696,7 @@ def add_characteristic(category, name, value, data_type=None):
 
 def get_characteristics(test_name, res):
     if VERBOSE:
-        print 'processing', test_name
+        print('processing', test_name)
 
     response_code, response_text = res.return_code()
     claimed_servername = res.servername()
@@ -769,13 +769,13 @@ def get_characteristics(test_name, res):
 
 
 def winnow_ordered_list(ordered_list):
-    #print ordered_list
+    #print(ordered_list)
     if len(ordered_list) < 2:
-        #print 'ordered_list too small to look at'
+        #print('ordered_list too small to look at')
         return
 
     ordered_list.sort(lambda a, b: cmp(len(a), len(b)))
-    #print 'sorted order', ordered_list
+    #print('sorted order', ordered_list)
 
     index = 0
     result = []
@@ -783,13 +783,13 @@ def winnow_ordered_list(ordered_list):
         is_ok = 1
         for other in ordered_list[index + 1:]:
             if is_partial_ordered_sublist(elem, other):
-                #print elem,'is sublist of', other
+                #print(elem,'is sublist of', other)
                 is_ok = 0
                 break
         if is_ok:
             result.append(elem)
     result.append(ordered_list[-1])
-    #print result
+    #print(result)
     return result
 
 
@@ -804,7 +804,7 @@ def is_partial_ordered_sublist(small, large):
     except ValueError:
         return 0
     postsort = sorted(presort[:])
-    #print presort, postsort
+    #print(presort, postsort)
     if -1 in presort or presort != postsort:
         return 0
     return 1
@@ -887,8 +887,8 @@ def find_most_similar(known_servers, subject):
         subject_server_long_url = subject['SEMANTIC']['LONG_URL_RANGES']
         if known_server_long_url == subject_server_long_url:
             matches += 1
-            #print 'LONG_URL_RANGES match', server['LEXICAL']['SERVER_NAME']
-            #print known_server_long_url
+            #print('LONG_URL_RANGES match', server['LEXICAL']['SERVER_NAME'])
+            #print(known_server_long_url)
         else:
             mismatches += 1
 
@@ -898,8 +898,8 @@ def find_most_similar(known_servers, subject):
             'LONG_DEFAULT_RANGES']
         if known_server_long_default == subject_server_long_default:
             matches += 1
-            #print 'LONG_URL_DEFAULT_RANGES match', server['LEXICAL']['SERVER_NAME']
-            #print known_server_long_default
+            #print('LONG_URL_DEFAULT_RANGES match', server['LEXICAL']['SERVER_NAME'])
+            #print(known_server_long_default)
         else:
             mismatches += 1
 
@@ -917,7 +917,7 @@ def find_most_similar(known_servers, subject):
 
 def partial_same_order(list1, list2):
     common = {}
-    #print 'comparing lists: ',list1,list2
+    #print('comparing lists: ',list1,list2)
     for x in list1 + list2:
         if x not in common:
             common[x] = 0
@@ -936,7 +936,7 @@ def partial_same_order(list1, list2):
         if i in common_items:
             common2.append(i)
 
-    #print common1,common2
+    #print(common1,common2)
     if common1 == []:
         return 0
     elif common1 == common2:
@@ -946,7 +946,7 @@ def partial_same_order(list1, list2):
 
 
 def usage():
-    print """
+    print("""
 hmap is a web server fingerprinter.
 
 hmap [-hpgn] {url | filename}
@@ -961,7 +961,7 @@ e.g.
 -p         run with a prefetched file
 -g         gather only (don't do comparison)
 -c         show this many closest matches
-"""
+""")
     sys.exit()
 
 ######################################################################

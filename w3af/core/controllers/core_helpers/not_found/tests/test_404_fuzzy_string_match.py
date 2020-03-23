@@ -214,7 +214,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
 
             ok_resp = self._create_http_response(domain, ok, False)
             ok_with_noise = self._add_noise_to_str(ok, 10, 12)
-            #print ok_with_noise
+            #print(ok_with_noise)
             #break
             ok_noise_resp = self._create_http_response(domain, ok_with_noise,
                                                        True)

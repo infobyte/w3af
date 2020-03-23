@@ -36,7 +36,7 @@ headers = {
 request = urllib2.Request(url, data, headers)
 response = urllib2.urlopen(request)
 response_body = response.read()
-print response_body
+print(response_body)
 """
 
 EXPECTED_POST = """import urllib2
@@ -51,7 +51,7 @@ headers = {
 request = urllib2.Request(url, data, headers)
 response = urllib2.urlopen(request)
 response_body = response.read()
-print response_body
+print(response_body)
 """
 
 EXPECTED_POST_REPEATED = """import urllib2
@@ -67,7 +67,7 @@ headers = {
 request = urllib2.Request(url, data, headers)
 response = urllib2.urlopen(request)
 response_body = response.read()
-print response_body
+print(response_body)
 """
 
 

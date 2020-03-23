@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     # This is a "resume" feature
     last = len(s)
-    print 'c(%s)' % last,
+    print('c(%s)' % last)
 
     for i, line in enumerate(file(ALEXA_FILE)):
         if i <= last:

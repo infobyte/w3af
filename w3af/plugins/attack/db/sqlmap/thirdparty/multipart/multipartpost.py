@@ -67,7 +67,7 @@ class MultipartPostHandler(urllib.request.BaseHandler):
                 boundary, data = self.multipart_encode(v_vars, v_files)
                 contenttype = "multipart/form-data; boundary=%s" % boundary
                 #if (request.has_header("Content-Type") and request.get_header("Content-Type").find("multipart/form-data") != 0):
-                #    print "Replacing %s with %s" % (request.get_header("content-type"), "multipart/form-data")
+                #    print("Replacing %s with %s" % (request.get_header("content-type"), "multipart/form-data"))
                 request.add_unredirected_header("Content-Type", contenttype)
 
             request.add_data(data)

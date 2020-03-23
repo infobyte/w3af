@@ -320,7 +320,7 @@ event_types = [i for i in list(vars(gtk.gdk).values()) if type(i)
 def debugHandler(widget, event, *a):
     """Just connect it to the 'event' event."""
     if event.type in event_types:
-        print event.type.value_nick
+        print(event.type.value_nick)
 
 
 class Throbber(gtk.ToolButton):

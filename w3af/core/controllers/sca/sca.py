@@ -212,7 +212,7 @@ class PhpSCA(object):
 
         # Debug it?
         if self.debugmode and newobj:
-            print newobj
+            print(newobj)
 
         return stoponthis
 

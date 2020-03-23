@@ -28,7 +28,7 @@ response = urllib.request.urlopen(scan_db_url)
 db_content = response.read()
 
 if 'Source: https://cirt.net' not in db_content:
-    print 'db_tests download failed'
+    print('db_tests download failed')
     sys.exit(-1)
 
 target_fd = file(target_path, 'w')

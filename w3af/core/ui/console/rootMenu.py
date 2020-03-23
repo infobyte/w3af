@@ -86,7 +86,7 @@ class rootMenu(menu):
                    " printed to the console, we advise you to enable at least"
                    " one output plugin in order to be able to actually see the"
                    " the scan output.")
-            print msg
+            print(msg)
 
         # Note that I'm NOT starting this in a new multiprocess Process
         # please note the multiprocessing.dummy , this is required because

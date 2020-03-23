@@ -65,8 +65,8 @@ from w3af.core.ui.gui.tools.proxywin import ProxiedRequests
 
 # This is just general info, to help people know their system and report more
 # complete bugs
-print "Starting w3af, running on:"
-print get_versions()
+print("Starting w3af, running on:")
+print(get_versions())
 
 # pylint: disable=E1101
 # Threading initializer
@@ -223,8 +223,7 @@ class MainApp(object):
         try:
             self.generalconfig = shelve.open(genconfigfile)
         except Exception as e:
-            print ("WARNING: something bad happened when trying to open the"
-                   " general config! File: %s. Problem: %s" % (genconfigfile, e))
+            print("WARNING: something bad happened when trying to open the general config! File: %s. Problem: %s" % (genconfigfile, e))
             self.generalconfig = FakeShelve()
 
         window_size = self.generalconfig.get("mainwindow-size", (1024, 768))

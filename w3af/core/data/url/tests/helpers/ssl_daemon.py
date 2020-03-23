@@ -99,15 +99,15 @@ class SSLServer(threading.Thread):
             # SSL protocol v2 and that will "break" the handshake
             newsocket.close()
 
-        #print 'Connection from %s port %s, sending HTTP response' % fromaddr
+        #print('Connection from %s port %s, sending HTTP response' % fromaddr)
         try:
             newsocket.send(self.http_response)
         except Exception as e:
             self.errors.append(e)
-            #print 'Failed to send HTTP response to client: "%s"' % e
+            #print('Failed to send HTTP response to client: "%s"' % e)
         finally:
             newsocket.close()
-            #print 'Closed connection from %s port %s' % fromaddr
+            #print('Closed connection from %s port %s' % fromaddr)
 
     def run(self):
         self.should_stop = False

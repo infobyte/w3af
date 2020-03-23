@@ -227,7 +227,7 @@ def get_probabilistic_count(count):
     decimal_part = count - integer
     decimal_part *= 100
 
-    print random.randint(0, 100) , decimal_part
+    print(random.randint(0, 100) , decimal_part)
     if random.randint(0, 100) > decimal_part:
         return integer + 1
 

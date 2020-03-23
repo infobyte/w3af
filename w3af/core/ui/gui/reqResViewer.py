@@ -372,7 +372,7 @@ class RequestResponsePart(gtk.Notebook):
             view.initial = False
 
     def show_error(self, text):
-        print text
+        print(text)
 
     def show_object(self, obj):
         self._obj = obj
@@ -439,7 +439,7 @@ class ResponsePart(RequestResponsePart):
             rend = getRenderingView(w3af, self)
             self.add_view(rend)
         except Exception as ex:
-            print ex
+            print(ex)
 
     def get_both_texts(self):
         return self._obj.dump_response_head(), str(self._obj.get_body())
@@ -549,6 +549,6 @@ class ThreadedURLImpact(threading.Thread):
             #   ReqResViewer
             #
             #import traceback
-            #print traceback.format_exc()
+            #print(traceback.format_exc())
         finally:
             self.event.set()

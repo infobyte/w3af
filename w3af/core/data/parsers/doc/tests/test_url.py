@@ -170,7 +170,7 @@ class TestURLParser(unittest.TestCase):
     def test_decode_url_encode_plus(self):
         msg = ('There is a bug which is triggered here between URL.url_decode'
                ' and the parsing being done when creating a new URL. If you'
-               ' add a "print self.querystring" at the end of URL.__init__'
+               ' add a "print(self.querystring)" at the end of URL.__init__'
                ' it shows the problem: id=1%2B2 and then id=1%202')
         raise SkipTest(msg)
 

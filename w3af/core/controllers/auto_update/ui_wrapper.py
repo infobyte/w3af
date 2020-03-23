@@ -84,4 +84,4 @@ class UIUpdater(object):
         raise NotImplementedError("Must be implemented by subclass")
 
     def _log(self, msg):
-        print msg
+        print(msg)

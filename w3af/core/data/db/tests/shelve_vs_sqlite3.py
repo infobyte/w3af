@@ -28,7 +28,7 @@ def measure(what, func):
     func()
     end = time.time()
 
-    print '%s took %s seconds' % (what, end-start)
+    print('%s took %s seconds' % (what, end-start))
 
 if __name__ == '__main__':
     measure('sqlite3', _sqlite3_inserts) # sqlite3 took 9.87409496307 seconds

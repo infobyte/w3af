@@ -125,7 +125,7 @@ class Struct(object):
 
     Usage:
     s = Struct(a=10, b=20, d={"cat":"dog"} )
-    print s.a + s.b
+    print(s.a + s.b)
     """
     def __init__(self, **args):
         self.__dict__.update(args)
@@ -422,8 +422,8 @@ class FileDiff(object):
             for c, r in self.regexes:
                 txt = c.sub(killit, txt)
         except AssertionError:
-            print "Regular expression '%s' changed the number of lines in" \
-                  "the file. Comparison will be incorrect. " % r
+            print("Regular expression '%s' changed the number of lines in" \
+                  "the file. Comparison will be incorrect. " % r)
         return txt
 
     def after_text_insert_text(self, buffer, it, newtext, textlen):
@@ -535,7 +535,7 @@ class FileDiff(object):
                         raw=1)[i * 2][c[3]:c[4]]).encode("utf16")
                     textn = struct.unpack("%iH" % (len(textn) / 2), textn)[1:]
                     matcher = difflib.SequenceMatcher(None, text1, textn)
-                    #print "<<<\n%s\n---\n%s\n>>>" % (text1, textn)
+                    #print("<<<\n%s\n---\n%s\n>>>" % (text1, textn))
                     tags = [b.get_tag_table().lookup(
                         "inline line") for b in bufs]
                     back = (0, 0)
@@ -976,7 +976,7 @@ class FileDiff(object):
                     self.mouse_chunk = (
                         (src, dst), (rect_x, h, pix_width, pix_height), c)
                     break
-            #print self.mouse_chunk
+            #print(self.mouse_chunk)
             return 1
         elif event.button == 2:
             self.linkmap_drag_coord = event.x

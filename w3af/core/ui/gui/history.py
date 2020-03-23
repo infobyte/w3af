@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     QUANT = 5000
     LENGTH = 50
-    print "Testing History with %d elements" % QUANT
+    print("Testing History with %d elements" % QUANT)
 
     arch = "test_history.pickle"
     if os.access(arch, os.F_OK):
@@ -105,20 +105,20 @@ if __name__ == "__main__":
     texts = ["".join(random.choice(
         string.letters) for x in range(LENGTH)) for y in range(QUANT)]
 
-    print "Storing the elements:",
+    print("Storing the elements:",)
     tini = time.time()
     for txt in texts:
         his.insert(txt)
-    print "%.1f mseg/element" % ((time.time() - tini) * 1000 / QUANT)
+    print("%.1f mseg/element" % ((time.time() - tini) * 1000 / QUANT))
 
-    print "Saving to disk:",
+    print("Saving to disk:",)
     tini = time.time()
     his.save()
-    print "%.1f mseg" % ((time.time() - tini) * 1000)
+    print("%.1f mseg" % ((time.time() - tini) * 1000))
 
-    print "Loading from disk:",
+    print("Loading from disk:",)
     tini = time.time()
     HistorySuggestion(arch)
-    print "%.1f mseg" % ((time.time() - tini) * 1000)
+    print("%.1f mseg" % ((time.time() - tini) * 1000))
 
     os.remove(arch)

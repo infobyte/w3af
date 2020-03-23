@@ -267,7 +267,7 @@ class PromptView(gtk.TextView, MessageConsumer):
             self.textbuffer.place_cursor(iterl)
             self.cursorPosition = None
 
-#        print gtk.gdk.keyval_name(event.keyval)
+#        print(gtk.gdk.keyval_name(event.keyval))
         return False
 
 

@@ -290,10 +290,10 @@ if __name__ == '__main__':
     sys.path.append('../../../../')
 
     if len(sys.argv) != 3:
-        print
-        print 'w3afAgent usage:'
-        print 'python w3afAgentServer.py <bind-address> <bind-port>'
-        print
+        print()
+        print('w3afAgent usage:')
+        print('python w3afAgentServer.py <bind-address> <bind-port>')
+        print()
         sys.exit(-1)
 
     ip_address = sys.argv[1]
@@ -302,4 +302,4 @@ if __name__ == '__main__':
     try:
         agent.run()
     except KeyboardInterrupt:
-        print 'bye.'
+        print('bye.')

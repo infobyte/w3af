@@ -318,7 +318,7 @@ class FileReaderShell(ReadShell):
         Filter out ugly php errors and print a simple "Permission denied"
         or "File not found"
         """
-        #print filename
+        #print(filename)
         error = None
 
         if result.count('Permission denied'):

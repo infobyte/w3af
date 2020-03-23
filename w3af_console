@@ -74,7 +74,7 @@ def _configure_output_manager():
         om.manager.set_output_plugins(['console'])
     except Exception as e:
         print('Something went wrong, w3af failed to start the output manager.')
-        print('Exception: "%s"' % e)
+        print('Exception: "{}"'.format(e))
         sys.exit(-9)
 
 
@@ -98,14 +98,14 @@ def _generate_run_commands(script_file, profile, force_profile, target_url):
         if URL_RE.match(target_url):
             commands_to_run.extend(['target', 'set target {}'.format(target_url), 'back'])
         else:
-            print ('Target URL is invalid')
+            print('Target URL is invalid')
             sys.exit(2)
 
     if script_file is not None:
         try:
             fd = open(script_file)
         except IOError:
-            print('Failed to open script file: "%s"' % script_file)
+            print('Failed to open script file: "{}"'.format(script_file))
             sys.exit(2)
         else:
             for line in fd:   

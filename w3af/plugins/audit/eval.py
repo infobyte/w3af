@@ -47,7 +47,7 @@ class eval(AuditPlugin):
         # PHP http://php.net/eval
         "echo str_repeat('%%s',%s);" % PRINT_REPEATS,
         # Perl http://perldoc.perl.org/functions/eval.html
-        "print '%%s'x%s" % PRINT_REPEATS,
+        "print'%%s'x%s" % PRINT_REPEATS,
         # Python
         # http://docs.python.org/reference/simple_stmts.html#the-exec-statement
         "print('%%s'*%s)" % PRINT_REPEATS,

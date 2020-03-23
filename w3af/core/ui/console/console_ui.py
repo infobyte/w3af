@@ -123,7 +123,7 @@ class ConsoleUI(object):
         try:
             user_response = input(msg)
         except (KeyboardInterrupt, EOFError):
-            print ''
+            print()
             user_response = ''
 
         user_response = user_response.lower()

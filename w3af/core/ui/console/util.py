@@ -188,7 +188,7 @@ def formatParagraphLine(text, width):
 
 
 def groupBy(array, fun):
-    print str(array)
+    print(str(array))
     result = {}
     for a in array:
         tag = fun(a)

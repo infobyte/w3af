@@ -144,7 +144,7 @@ class HTTPResponse(http.client.HTTPResponse):
                 if not skip:
                     break
                 if self.debuglevel > 0:
-                    print "header:", skip
+                    print("header:", skip)
 
         self.status = status
         self.reason = reason.strip()
@@ -167,7 +167,7 @@ class HTTPResponse(http.client.HTTPResponse):
         self.msg = http.client.HTTPMessage(self.fp, 0)
         if self.debuglevel > 0:
             for hdr in self.msg.headers:
-                print "header:", hdr,
+                print("header:", hdr,)
 
         # don't let the msg keep an fp
         self.msg.fp = None

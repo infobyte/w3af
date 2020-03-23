@@ -69,6 +69,6 @@ request = urllib2.Request(url, data, headers)
 response = urllib2.urlopen(request)
 response_body = response.read()
 """
-    res += 'print response_body\n'
+    res += 'print(response_body)\n'
 
     return res

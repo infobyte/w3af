@@ -32,7 +32,7 @@ response = urllib.request.urlopen('https://wordpress.org/download/release-archiv
 extracted_links = re.findall(release_re, response.read())
 
 if len(extracted_links) < 500:
-    print 'Error, extracted less than 500 links from the release archive URL.'
+    print('Error, extracted less than 500 links from the release archive URL.')
 
 DEBUG = 0
 errors = 0
@@ -49,14 +49,14 @@ for i, version in enumerate(extracted_links):
     except:
         errors += 1
         if DEBUG:
-            print '%s is a 404' % version_md5_url
+            print('%s is a 404' % version_md5_url)
     else:
         if i % 15 == 0:
-            print '[%s/%s] %s %s' % (i, len(extracted_links), version_md5, version)
+            print('[%s/%s] %s %s' % (i, len(extracted_links), version_md5, version))
         release_db.write('%s,%s\n' % (version_md5, version))
 
     if errors > 10:
-        print 'Found too many errors. Potential scrapping error. Stopping.'
+        print('Found too many errors. Potential scrapping error. Stopping.')
         break
 else:
-    print 'Success.'
+    print('Success.')
