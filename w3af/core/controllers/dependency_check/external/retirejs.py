@@ -42,6 +42,7 @@ def retirejs_is_installed():
     except subprocess.CalledProcessError:
         return False
 
+    version = version.decode("utf-8")
     version = version.strip()
     version_split = version.split('.')
 
