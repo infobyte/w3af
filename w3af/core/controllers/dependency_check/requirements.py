@@ -27,7 +27,7 @@ GUI = 2
 
 CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('github', 'PyGithub', '1.21.0'),
-                     PIPDependency('git.util', 'GitPython', '2.1.3'),
+                     PIPDependency('git.util', 'GitPython', '3.1.0'),
                      PIPDependency('pybloomfilter', 'pybloomfiltermmap3', '0.5.2'),
                      PIPDependency('phply', 'phply', '0.9.1'),
                      PIPDependency('nltk', 'nltk', '3.0.1'),
