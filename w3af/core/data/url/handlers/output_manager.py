@@ -19,7 +19,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 import w3af.core.controllers.output_manager as om
 
@@ -27,7 +27,7 @@ from w3af.core.data.url.HTTPResponse import HTTPResponse
 from w3af.core.data.url.HTTPRequest import HTTPRequest
 
 
-class OutputManagerHandler(urllib2.BaseHandler):
+class OutputManagerHandler(urllib.request.BaseHandler):
     """
     Send the HTTP request and response to the output manager
     """

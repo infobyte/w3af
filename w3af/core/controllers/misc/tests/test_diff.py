@@ -134,6 +134,6 @@ class TestSplitBySep(unittest.TestCase):
                   '',
                   'hello world<bye bye!']
 
-        for _ in xrange(loops):
+        for _ in range(loops):
             for _input in inputs:
                 split_by_sep(_input)

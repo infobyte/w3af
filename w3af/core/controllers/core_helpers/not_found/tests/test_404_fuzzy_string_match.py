@@ -20,7 +20,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-from __future__ import division
+
 
 import unittest
 import random
@@ -31,7 +31,7 @@ import re
 import gzip
 
 from string import printable
-from cStringIO import StringIO
+from io import StringIO
 
 from nose.plugins.skip import SkipTest
 
@@ -98,7 +98,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         run_tests = 0
         start = time.time()
 
-        for domain_base, (base, _) in self.not_exists_data.iteritems():
+        for domain_base, (base, _) in self.not_exists_data.items():
             base = self._gunzip(base)
 
             if run_tests == MAX_TESTS:
@@ -109,7 +109,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
             base_resp = self._create_http_response(domain_base, base, False)
             clean_body_base = get_clean_body(base_resp)
 
-            for domain_test, (ok, _) in self.not_exists_data.iteritems():
+            for domain_test, (ok, _) in self.not_exists_data.items():
                 total += 1
                 ok = self._gunzip(ok)
 
@@ -147,7 +147,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         total = 0
         start = time.time()
 
-        for domain, (ok, not_exists) in self.not_exists_data.iteritems():
+        for domain, (ok, not_exists) in self.not_exists_data.items():
             total += 1
             ok = self._gunzip(ok)
             not_exists = self._gunzip(not_exists)
@@ -191,9 +191,9 @@ class Test404FuzzyStringMatch(unittest.TestCase):
 
         lchunk = int(len(orig_str) / noise_num)
         str_with_noise = ''
-        chunks = [orig_str[x:x+lchunk] for x in xrange(1, len(orig_str), lchunk)]
+        chunks = [orig_str[x:x+lchunk] for x in range(1, len(orig_str), lchunk)]
 
-        for i in xrange(len(chunks)):
+        for i in range(len(chunks)):
             noise = ''.join(random.choice(printable) for _ in range(each_noise_len))
             str_with_noise += '%s%s' % (chunks[i], noise)
 
@@ -207,7 +207,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         total = 0
         start = time.time()
 
-        for domain, (ok, _) in self.not_exists_data.iteritems():
+        for domain, (ok, _) in self.not_exists_data.items():
             total += 1
 
             ok = self._gunzip(ok)

@@ -114,7 +114,7 @@ class autocomplete(AuthPlugin):
                                                  cache=False,
                                                  follow_redirects=True,
                                                  debugging_id=self._debugging_id)
-        except Exception, e:
+        except Exception as e:
             msg = 'Failed to check if session is active because of exception: %s'
             self._log_debug(msg % e)
             return False
@@ -172,7 +172,7 @@ class autocomplete(AuthPlugin):
                                                          cache=False,
                                                          follow_redirects=True,
                                                          debugging_id=self._debugging_id)
-        except Exception, e:
+        except Exception as e:
             msg = 'Failed to submit the login form: %s'
             self._log_debug(msg % e)
             return False

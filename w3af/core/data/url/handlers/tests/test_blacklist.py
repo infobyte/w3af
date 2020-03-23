@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
 import unittest
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from nose.plugins.attrib import attr
 
@@ -49,9 +49,9 @@ class TestBlacklistHandler(unittest.TestCase):
         blocked_url = URL(get_moth_http('/abc/def/'))
         cf.cf.save('non_targets', [blocked_url,])
         
-        opener = urllib2.build_opener(BlacklistHandler)
+        opener = urllib.request.build_opener(BlacklistHandler)
         
-        request = urllib2.Request(blocked_url.url_string)
+        request = urllib.request.Request(blocked_url.url_string)
         request.url_object = blocked_url
         response = opener.open(request)
         
@@ -60,9 +60,9 @@ class TestBlacklistHandler(unittest.TestCase):
     @attr('moth')
     def test_blacklist_handler_pass(self):
         """Verify that the blacklist handler works as expected"""
-        opener = urllib2.build_opener(BlacklistHandler)
+        opener = urllib.request.build_opener(BlacklistHandler)
         
-        request = urllib2.Request(get_moth_http())
+        request = urllib.request.Request(get_moth_http())
         request.url_object = URL(get_moth_http())
         response = opener.open(request)
         

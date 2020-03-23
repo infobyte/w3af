@@ -18,13 +18,13 @@ You should have received a copy of the GNU General Public License
 along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import sys
 
 scan_db_url = 'https://raw.github.com/sullo/nikto/master/program/databases/db_tests'
 target_path = 'scan_database.db'
 
-response = urllib2.urlopen(scan_db_url)
+response = urllib.request.urlopen(scan_db_url)
 db_content = response.read()
 
 if 'Source: https://cirt.net' not in db_content:

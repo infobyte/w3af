@@ -19,7 +19,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-from urllib import urlencode
+from urllib.parse import urlencode
 
 import w3af.core.controllers.output_manager as om
 
@@ -83,7 +83,7 @@ class generic(AuthPlugin):
                                                   cache=False,
                                                   follow_redirects=True,
                                                   debugging_id=self._debugging_id)
-        except Exception, e:
+        except Exception as e:
             msg = 'Failed to login to the application because of exception: %s'
             self._log_debug(msg % e)
             return False
@@ -122,7 +122,7 @@ class generic(AuthPlugin):
                                                  cache=False,
                                                  follow_redirects=True,
                                                  debugging_id=self._debugging_id)
-        except Exception, e:
+        except Exception as e:
             msg = 'Failed to check if session is active because of exception: %s'
             self._log_debug(msg % e)
             return False

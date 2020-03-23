@@ -102,7 +102,7 @@ def suggest(tree, part, skipList=[]):
     :author: Alexander Berezhnoy (alexander.berezhnoy |at| gmail.com)
     """
     try:
-        list = tree.keys()
+        list = list(tree.keys())
         dir = True
     except:
         dir = False

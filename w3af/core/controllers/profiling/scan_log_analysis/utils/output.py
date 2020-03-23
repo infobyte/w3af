@@ -21,7 +21,7 @@ class KeyValueOutput(object):
         print('[%s] %s' % (self.function, self.title))
 
         if isinstance(self.values, dict):
-            values_list = self.values.items()
+            values_list = list(self.values.items())
             values_list.sort(sort_by_value)
 
             for key, value in values_list:
@@ -37,7 +37,7 @@ class KeyValueOutput(object):
         elif isinstance(self.values, (int, float)):
             print('    - %s' % (self.values,))
 
-        elif isinstance(self.values, basestring):
+        elif isinstance(self.values, str):
             data = self.values
             data = data.replace('\n', '\n    ')
             print('    %s' % data)

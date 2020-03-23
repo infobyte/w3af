@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 Utility to HTTP GET from wordpress.org and generate a DB with the archives/md5sums
 """
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import re
 
 release_re = " \(<a href='https://wordpress.org/wordpress-(.*?).md5'>md5</a>"
 release_md5_fmt = 'https://wordpress.org/wordpress-%s.md5'
 
-response = urllib2.urlopen('https://wordpress.org/download/release-archive/')
+response = urllib.request.urlopen('https://wordpress.org/download/release-archive/')
 extracted_links = re.findall(release_re, response.read())
 
 if len(extracted_links) < 500:
@@ -43,7 +43,7 @@ release_db = file('release.db', 'w')
 for i, version in enumerate(extracted_links):
     version_md5_url = release_md5_fmt % version
     try:
-        version_md5 = urllib2.urlopen(version_md5_url).read().strip()
+        version_md5 = urllib.request.urlopen(version_md5_url).read().strip()
     except KeyboardInterrupt:
         break
     except:

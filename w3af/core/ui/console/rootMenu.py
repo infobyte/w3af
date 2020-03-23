@@ -112,7 +112,7 @@ class rootMenu(menu):
     def wait_for_start(self):
         delay = 0.1
 
-        for _ in xrange(int(self.MAX_WAIT_FOR_START / delay)):
+        for _ in range(int(self.MAX_WAIT_FOR_START / delay)):
             if self._w3af.status.is_running():
                 return True
 
@@ -142,9 +142,9 @@ class rootMenu(menu):
             self._w3af.plugins.init_plugins()
             self._w3af.verify_environment()
             self._w3af.start()
-        except BaseFrameworkException, w3:
+        except BaseFrameworkException as w3:
             om.out.error(str(w3))
-        except ScanMustStopException, w3:
+        except ScanMustStopException as w3:
             om.out.error(str(w3))
         except Exception:
             self._w3af.stop()

@@ -1,4 +1,4 @@
-import cPickle
+import pickle
 import time
 import base64
 
@@ -13,12 +13,12 @@ class DelayUsingSleep22(object):
         return time.sleep, (22,)
 
 
-dump = cPickle.dumps(DelayUsingSleep1())
+dump = pickle.dumps(DelayUsingSleep1())
 payload = base64.b64encode(dump)
 
 print('Save this to pickle.json "1": %s' % payload)
 
-dump = cPickle.dumps(DelayUsingSleep22())
+dump = pickle.dumps(DelayUsingSleep22())
 payload = base64.b64encode(dump)
 
 print('Save this to pickle.json "2": %s' % payload)

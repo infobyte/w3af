@@ -72,7 +72,7 @@ class request(object):
             else:
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((HOST, PORT))
-        except Exception, e:
+        except Exception as e:
             msg = 'hmap connection failed to %s:%s. Exception: "%s"'
             args = (HOST, PORT, e)
             raise BaseFrameworkException(msg % args)
@@ -81,7 +81,7 @@ class request(object):
         if useSSL:
             try:
                 s2 = ssl.wrap_socket(s)
-            except Exception, e:
+            except Exception as e:
                 msg = 'hmap SSL connection failed to %s:%s. Exception: "%s"'
                 args = (HOST, PORT, e)
                 raise BaseFrameworkException(msg % args)
@@ -107,7 +107,7 @@ class request(object):
             # Send the "HTTP request" to the socket
             try:
                 s.send(str(self))
-            except Exception, e:
+            except Exception as e:
                 om.out.debug('hmap failed to send data to socket: "%s"' % e)
 
                 # Try again
@@ -134,10 +134,10 @@ class request(object):
 
                     # we were able to read from the socket, append and try again
                     data += temp
-            except KeyboardInterrupt, e:
+            except KeyboardInterrupt as e:
                 raise e
 
-            except socket.sslerror, ssl_err:
+            except socket.sslerror as ssl_err:
                 # When the remote server has no more data to send
                 # It simply closes the remote connection, which raises:
                 # (6, 'TLS/SSL connection has been closed')
@@ -155,7 +155,7 @@ class request(object):
 
                 continue
 
-            except Exception, e:
+            except Exception as e:
                 msg = 'hmap found an exception while reading data from socket: "%s"'
                 om.out.debug(msg % e)
 
@@ -285,7 +285,7 @@ def get_fingerprint(url, threads):
 
         try:
             result = test(url)
-        except Exception, e:
+        except Exception as e:
             args = (test.__name__, e)
             om.out.debug('[hmap] Test %s raised an exception: "%s"' % args)
             raise
@@ -512,7 +512,7 @@ def malformed_method_line(url):
                           )
 
     #print len(malformed_methods)
-    for index, mm in zip(range(len(malformed_methods)), malformed_methods):
+    for index, mm in zip(list(range(len(malformed_methods))), malformed_methods):
         req = request(url)
         req.adhoc_method_line = mm
         res = req.submit()
@@ -779,7 +779,7 @@ def winnow_ordered_list(ordered_list):
 
     index = 0
     result = []
-    for (index, elem) in zip(range(len(ordered_list) - 1), ordered_list):
+    for (index, elem) in zip(list(range(len(ordered_list) - 1)), ordered_list):
         is_ok = 1
         for other in ordered_list[index + 1:]:
             if is_partial_ordered_sublist(elem, other):
@@ -994,7 +994,7 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
         try:
             ### FIXME: This eval is awful, I should change it to pickle.
             ks = eval(ksf.read())
-        except Exception, e:
+        except Exception as e:
             raise BaseFrameworkException(
                 'The signature file "' + f + '" has an invalid syntax.')
         else:
@@ -1003,10 +1003,10 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
 
     # Generate the fingerprint file
     if generateFP:
-        for i in xrange(10):
+        for i in range(10):
             try:
                 fd = open('hmap-fingerprint-' + server + '-' + str(i), 'w')
-            except Exception, e:
+            except Exception as e:
                 raise BaseFrameworkException(
                     'Cannot open fingerprint file. Error:' + str(e))
             else:

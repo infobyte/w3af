@@ -75,7 +75,7 @@ def generate_helper_script(pkg_manager_cmd, os_packages, pip_cmd, failed_deps,
         script_file.write('%s\n' % cmd)
 
     # Make it executable
-    os.chmod(script_path, 0755)
+    os.chmod(script_path, 0o755)
 
     script_file.close()
     return script_path

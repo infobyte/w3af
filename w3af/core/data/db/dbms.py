@@ -19,7 +19,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-from __future__ import with_statement, print_function
+
 
 import os
 import sys
@@ -465,7 +465,7 @@ class SQLiteExecutor(Process):
 
             try:
                 result = handler(*args, **kwds)
-            except sqlite3.OperationalError, e:
+            except sqlite3.OperationalError as e:
                 # I don't like this string match, but it seems that the
                 # exception doesn't have any error code to match
                 if 'no such table' in str(e):
@@ -481,7 +481,7 @@ class SQLiteExecutor(Process):
 
                 future.set_exception(dbe)
 
-            except Exception, e:
+            except Exception as e:
                 dbe = DBException(str(e))
                 future.set_exception(dbe)
 

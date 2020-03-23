@@ -124,6 +124,6 @@ class MacOSX(Platform):
         except ImportError:
             # The user just needs to work on his dependencies.
             pass
-        except OSError, ose:
+        except OSError as ose:
             if "Device not configured" in str(ose):
                 print(TRACEROUTE_SCAPY_MSG)

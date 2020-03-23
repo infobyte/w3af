@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License
 along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
-import cPickle
+import pickle
 import msgpack
 import operator
 import os
@@ -51,7 +51,7 @@ class HistorySuggestion(object):
                 # it and migrate to msgpack
                 #
                 try:
-                    self.history = cPickle.load(file(filename, 'rb'))
+                    self.history = pickle.load(file(filename, 'rb'))
                 except:
                     #
                     # Well... the file is completely broken, just write an
@@ -74,7 +74,7 @@ class HistorySuggestion(object):
         :return: a generator with the texts
         """
         info = sorted(
-            self.history.items(), key=operator.itemgetter(1), reverse=True)
+            list(self.history.items()), key=operator.itemgetter(1), reverse=True)
         return [k for k, v in info]
 
     def insert(self, newtext):
@@ -84,7 +84,7 @@ class HistorySuggestion(object):
     def save(self):
         """Saves the history information."""
         fileh = open(self.filename, "w")
-        cPickle.dump(self.history, fileh)
+        pickle.dump(self.history, fileh)
         fileh.close()
 
 
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     his = HistorySuggestion(arch)
 
     texts = ["".join(random.choice(
-        string.letters) for x in xrange(LENGTH)) for y in xrange(QUANT)]
+        string.letters) for x in range(LENGTH)) for y in range(QUANT)]
 
     print "Storing the elements:",
     tini = time.time()

@@ -19,7 +19,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-import Queue
+import queue
 
 import w3af.core.controllers.output_manager as om
 
@@ -63,7 +63,7 @@ class auth(BaseConsumer):
                 # process the POISON_PILL, which will end up in an endless
                 # wait for .join()
                 continue
-            except Queue.Empty:
+            except queue.Empty:
                 # pylint: disable=E1120
                 self._login()
                 # pylint: enable=E1120
@@ -110,7 +110,7 @@ class auth(BaseConsumer):
             try:
                 if not plugin.has_active_session():
                     plugin.login()
-            except Exception, e:
+            except Exception as e:
                 self.handle_exception('auth', plugin.get_name(), None, e)
 
             took_line.send()

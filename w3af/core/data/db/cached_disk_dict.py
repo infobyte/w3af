@@ -89,12 +89,12 @@ class CachedDiskDict(object):
 
                 Then the method will generate [1, 2].
         """
-        items = self._access_count.items()
+        items = list(self._access_count.items())
         items.sort(sort_by_value)
 
         iterator = min(self._max_in_memory, len(items))
 
-        for i in xrange(iterator):
+        for i in range(iterator):
             yield items[i][0]
 
     def _belongs_in_memory(self, key):
@@ -124,7 +124,7 @@ class CachedDiskDict(object):
         :return: The name of the key that was moved to disk, or None if
                  all the keys are still in memory.
         """
-        for key in self._in_memory.keys():
+        for key in list(self._in_memory.keys()):
             if not self._belongs_in_memory(key):
                 try:
                     value = self._in_memory[key]

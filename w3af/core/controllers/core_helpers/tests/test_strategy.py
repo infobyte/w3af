@@ -100,7 +100,7 @@ class TestStrategy(PluginTest):
 
         loops = 2 if is_running_on_ci() else 10
 
-        for i in xrange(loops):
+        for i in range(loops):
             print('Start run #%s' % i)
             found_vulns = set()
 
@@ -154,5 +154,5 @@ class TestSameFuzzableRequestSet(PluginTest):
         id_after_fr = id(self.kb.get_all_known_fuzzable_requests())
         id_after_ur = id(self.kb.get_all_known_urls())
 
-        self.assertEquals(id_before_fr, id_after_fr)
-        self.assertEquals(id_before_ur, id_after_ur)
+        self.assertEqual(id_before_fr, id_after_fr)
+        self.assertEqual(id_before_ur, id_after_ur)

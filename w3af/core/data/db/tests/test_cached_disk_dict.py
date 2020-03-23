@@ -50,8 +50,8 @@ class TestCachedDiskDict(unittest.TestCase):
 
         self.cdd[4] = None
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 3])
-        self.assertEqual(self.cdd._disk_dict.keys(), [4])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 3])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [4])
 
     def test_one_in_disk_then_moves_to_memory(self):
         self.cdd[1] = None
@@ -64,15 +64,15 @@ class TestCachedDiskDict(unittest.TestCase):
 
         self.cdd[4] = None
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 3])
-        self.assertEqual(self.cdd._disk_dict.keys(), [4])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 3])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [4])
 
         self.cdd[4]
         self.cdd[4]
         self.cdd[4]
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 4])
-        self.assertEqual(self.cdd._disk_dict.keys(), [3])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 4])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [3])
 
     def test_one_in_disk_then_moves_to_memory_then_disk_again(self):
         self.cdd[1] = None
@@ -85,15 +85,15 @@ class TestCachedDiskDict(unittest.TestCase):
 
         self.cdd[4] = None
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 3])
-        self.assertEqual(self.cdd._disk_dict.keys(), [4])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 3])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [4])
 
         self.cdd[4]
         self.cdd[4]
         self.cdd[4]
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 4])
-        self.assertEqual(self.cdd._disk_dict.keys(), [3])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 4])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [3])
 
         self.cdd[1]
         self.cdd[1]
@@ -107,5 +107,5 @@ class TestCachedDiskDict(unittest.TestCase):
         self.cdd[2]
         self.cdd[2]
 
-        self.assertEqual(self.cdd._in_memory.keys(), [1, 2, 3])
-        self.assertEqual(self.cdd._disk_dict.keys(), [4])
+        self.assertEqual(list(self.cdd._in_memory.keys()), [1, 2, 3])
+        self.assertEqual(list(self.cdd._disk_dict.keys()), [4])

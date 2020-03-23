@@ -139,7 +139,7 @@ class HelpContainer(object):
         d.append(subj)
 
     def get_categories(self):
-        return self._subj2Gat.keys()
+        return list(self._subj2Gat.keys())
 
     def add_help(self, table, cat=''):
         for subj in table:
@@ -152,7 +152,7 @@ class HelpContainer(object):
         return self._table[subj]
 
     def get_items(self):
-        return self._table.keys()
+        return list(self._table.keys())
 
     def get_plain_help_table(self, separators=True, cat=None):
         """

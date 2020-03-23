@@ -27,7 +27,7 @@ def generate_crawl_graph(scan_log_filename, scan):
     def sort_by_len(a, b):
         return cmp(len(a), len(b))
 
-    referers = data.keys()
+    referers = list(data.keys())
     referers.sort(sort_by_len)
 
     print('')

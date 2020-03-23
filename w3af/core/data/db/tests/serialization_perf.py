@@ -39,7 +39,7 @@ def do_ultrajson(obj):
 def measure(funct, times, *args):
     start = time.time()
     
-    for _ in xrange(times):
+    for _ in range(times):
         funct(*args)
         
     return time.time() - start 
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     import time
     import msgpack
     import json
-    import cPickle
+    import pickle
     import ujson
 
     for serializator_name, serializator_func in tests:

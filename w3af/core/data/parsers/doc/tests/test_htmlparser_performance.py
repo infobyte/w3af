@@ -55,7 +55,7 @@ class TestHTMLParserPerformance(unittest.TestCase):
 
         parsers = []
 
-        for _ in xrange(40):
+        for _ in range(40):
             p = HTMLParser(response)
             p.parse()
             #parsers.append(p)

@@ -16,7 +16,7 @@ from optparse import OptionParser
 
 def hideAscii(data):
     retVal = ""
-    for i in xrange(len(data)):
+    for i in range(len(data)):
         if ord(data[i]) < 128:
             retVal += chr(ord(data[i]) ^ 127)
         else:
@@ -59,7 +59,7 @@ def main():
         if not args.inputFile:
             parser.error('Missing the input file, -h for help')
 
-    except (OptionError, TypeError), e:
+    except (OptionError, TypeError) as e:
         parser.error(e)
 
     if not os.path.isfile(args.inputFile):

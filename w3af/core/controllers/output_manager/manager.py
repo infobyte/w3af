@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import sys
 import time
-import Queue
+import queue
 import threading
 
 from multiprocessing.dummy import Process
@@ -147,7 +147,7 @@ class OutputManager(Process):
         while True:
             try:
                 work_unit = self.in_queue.get(timeout=self.FLUSH_TIMEOUT)
-            except Queue.Empty:
+            except queue.Empty:
                 self.flush_plugin_output()
                 continue
 
@@ -249,7 +249,7 @@ class OutputManager(Process):
 
         try:
             o_plugin.flush()
-        except Exception, exception:
+        except Exception as exception:
             self._handle_output_plugin_exception(o_plugin, exception)
         finally:
             o_plugin.is_running_flush = False
@@ -412,7 +412,7 @@ class OutputManager(Process):
         # Given that we don't want to convert to utf8 inside every plugin
         # before sending to a file, we do it here
         for arg in args:
-            if isinstance(arg, unicode):
+            if isinstance(arg, str):
                 arg = arg.encode(UTF8, 'replace')
 
             encoded_params.append(arg)
@@ -442,8 +442,8 @@ class OutputManager(Process):
             
             try:
                 opl_func_ptr = getattr(o_plugin, action_name)
-                apply(opl_func_ptr, args, kwds)
-            except Exception, exception:
+                opl_func_ptr(*args, **kwds)
+            except Exception as exception:
                 self._handle_output_plugin_exception(o_plugin, exception)
 
     def set_output_plugin_inst(self, output_plugin_inst):
@@ -504,7 +504,7 @@ class OutputManager(Process):
         plugin = factory('w3af.plugins.output.%s' % plugin_name)
         plugin.set_w3af_core(self._w3af_core)
 
-        if plugin_name in self._plugin_options.keys():
+        if plugin_name in list(self._plugin_options.keys()):
             plugin.set_options(self._plugin_options[plugin_name])
 
         return plugin
