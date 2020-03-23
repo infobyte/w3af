@@ -71,8 +71,8 @@ class TestDiffPerformance(unittest.TestCase):
         print()
 
     def _run_test_xml(self, diff):
-        a = file(os.path.join(self.DATA, 'source.xml')).read()
-        b = file(os.path.join(self.DATA, 'target.xml')).read()
+        a = open(os.path.join(self.DATA, 'source.xml')).read()
+        b = open(os.path.join(self.DATA, 'target.xml')).read()
 
         diff(a, b)
 

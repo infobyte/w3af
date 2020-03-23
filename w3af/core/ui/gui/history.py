@@ -44,14 +44,14 @@ class HistorySuggestion(object):
             # serialization algorithm we want to use
             #
             try:
-                self.history = msgpack.load(file(filename, 'rb'), raw=False)
+                self.history = msgpack.load(open(filename, 'rb'), raw=False)
             except:
                 #
                 # The history file might still be in pickle format, we read
                 # it and migrate to msgpack
                 #
                 try:
-                    self.history = pickle.load(file(filename, 'rb'))
+                    self.history = pickle.load(open(filename, 'rb'))
                 except:
                     #
                     # Well... the file is completely broken, just write an
@@ -59,14 +59,14 @@ class HistorySuggestion(object):
                     # the next time the user executes the GUI
                     #
                     self.history = {}
-                    msgpack.dump({}, file(filename, 'wb'))
+                    msgpack.dump({}, open(filename, 'wb'))
                 else:
                     #
                     # We were able to read using pickle, migrate the file to
                     # msgpack to prevent deserialization issues
                     # https://github.com/andresriancho/w3af/issues/17807
                     #
-                    msgpack.dump(self.history, file(filename, 'wb'))
+                    msgpack.dump(self.history, open(filename, 'wb'))
 
     def get_texts(self):
         """Provides the texts, ordered by relevance.

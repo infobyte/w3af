@@ -132,13 +132,13 @@ def convert_xml_to_csv():
         # encoding, so it will simply decode using the header:
         #
         # <?xml version="1.0" encoding="utf-8"?>
-        phishtank_db_fd = file(XML_DB_FILE, 'r')
+        phishtank_db_fd = open(XML_DB_FILE, 'r')
     except Exception as e:
         msg = 'Failed to open XML phishtank database: "%s", exception: "%s".'
         sys.exit(msg % (XML_DB_FILE, e))
 
     try:
-        output_csv_file = file(CSV_DB_FILE, 'w')
+        output_csv_file = open(CSV_DB_FILE, 'w')
     except Exception as e:
         msg = 'Failed to open CSV phishtank database: "%s", exception: "%s".'
         sys.exit(msg % (CSV_DB_FILE, e))

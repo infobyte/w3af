@@ -135,14 +135,14 @@ def get_test_ids(nose_selector):
                  'core.controllers.auto_update.tests.test_git_auto_update',
                  'TestGitAutoUpdate.test_is_git_repo'),
     """
-    nose_ids = pickle.load(file(ID_FILE))
+    nose_ids = pickle.load(open(ID_FILE))
     return list(nose_ids['ids'].keys())
 
 
 @nottest
 def save_noseids_as_json():
-    nose_ids = pickle.load(file(ID_FILE))
-    file(JSON_ID_FILE, 'w').write(json.dumps(nose_ids['ids'], indent=4))
+    nose_ids = pickle.load(open(ID_FILE))
+    open(JSON_ID_FILE, 'w').write(json.dumps(nose_ids['ids'], indent=4))
 
 
 @nottest

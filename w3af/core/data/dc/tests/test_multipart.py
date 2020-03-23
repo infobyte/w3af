@@ -151,7 +151,7 @@ class TestMultipartContainer(unittest.TestCase):
 
         test_dir = os.path.dirname(os.path.realpath(__file__))
         post_data_file = os.path.join(test_dir, 'samples', 'post-data-3570')
-        multipart_post_data = file(post_data_file).read()
+        multipart_post_data = open(post_data_file).read()
 
         self.assertIn('db36a3a8bb45ec40c22301ffcaa98e05', multipart_post_data)
         self.assertEqual(len(multipart_post_data), 557)

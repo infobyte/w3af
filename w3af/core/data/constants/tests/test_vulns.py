@@ -37,7 +37,7 @@ class TestVulnsConstants(unittest.TestCase):
 
     def get_all_vulnerability_names(self):
         # Just skip the entire license header
-        vulns_file = file(self.LOCATION)
+        vulns_file = open(self.LOCATION)
         for _ in range(21):
             vulns_file.readline()
 
@@ -89,7 +89,7 @@ class TestVulnsConstants(unittest.TestCase):
                 if should_continue:
                     continue
 
-                all_plugin_sources += file(full_path).read()
+                all_plugin_sources += open(full_path).read()
 
         for dir_name, subdir_list, file_list in os.walk(vuln_template_path):
 
@@ -104,7 +104,7 @@ class TestVulnsConstants(unittest.TestCase):
                     continue
 
                 full_path = os.path.join(vuln_template_path, dir_name, fname)
-                all_plugin_sources += file(full_path).read()
+                all_plugin_sources += open(full_path).read()
 
         return all_plugin_sources
 
@@ -175,7 +175,7 @@ class TestVulnsConstants(unittest.TestCase):
             return
 
         missing_list = []
-        for line in file(missing):
+        for line in open(missing):
             line = line.strip()
 
             if not line:

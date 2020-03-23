@@ -105,7 +105,7 @@ class ExecShell(Shell):
             return 'Remote file does not exist.'
         else:
             try:
-                fh = file(local_filename, 'w')
+                fh = open(local_filename, 'w')
             except:
                 return 'Failed to open local file for writing.'
             else:
@@ -125,7 +125,7 @@ class ExecShell(Shell):
         :return: The message to show to the user.
         """
         try:
-            fh = file(local_filename, 'r')
+            fh = open(local_filename, 'r')
         except:
             return 'Failed to open local file for reading.'
         else:

@@ -53,7 +53,7 @@ class TestOpenAPIMain(unittest.TestCase):
 
     def test_json_pet_store(self):
         # http://petstore.swagger.io/v2/swagger.json
-        body = file(self.SWAGGER_JSON).read()
+        body = open(self.SWAGGER_JSON).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -130,7 +130,7 @@ class TestOpenAPIMain(unittest.TestCase):
             self.assertIn(data, e_api_calls)
 
     def test_json_multiple_paths_and_headers(self):
-        body = file(self.MULTIPLE_PATHS_AND_HEADERS).read()
+        body = open(self.MULTIPLE_PATHS_AND_HEADERS).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -216,7 +216,7 @@ class TestOpenAPIMain(unittest.TestCase):
 
     # Check if the OpenAPI plugin takes into account content types provided in a 'consumes' list.
     def test_custom_content_type(self):
-        body = file(self.CUSTOM_CONTENT_TYPE).read()
+        body = open(self.CUSTOM_CONTENT_TYPE).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -276,7 +276,7 @@ class TestOpenAPIMain(unittest.TestCase):
     # Check if the OpenAPI plugin doesn't return a fuzzable request for a endpoint
     # which contains an unknown content type in its 'consumes' list.
     def test_unknown_content_type(self):
-        body = file(self.UNKNOWN_CONTENT_TYPE).read()
+        body = open(self.UNKNOWN_CONTENT_TYPE).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -293,7 +293,7 @@ class TestOpenAPIMain(unittest.TestCase):
     # Check if the OpenAPI parser can extract all api calls from a rather
     # large swagger file
     def test_large_many_endpoints(self):
-        body = file(self.LARGE_MANY_ENDPOINTS).read()
+        body = open(self.LARGE_MANY_ENDPOINTS).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -331,7 +331,7 @@ class TestOpenAPIMain(unittest.TestCase):
         self.assertEqual(expected_uri, uri)
 
     def test_disabling_headers_discovery(self):
-        body = file(self.MULTIPLE_PATHS_AND_HEADERS).read()
+        body = open(self.MULTIPLE_PATHS_AND_HEADERS).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -414,7 +414,7 @@ class TestOpenAPIMain(unittest.TestCase):
         self.assertEqual(api_call.get_force_fuzzing_headers(), e_force_fuzzing_headers)
 
     def test_disabling_spec_validation(self):
-        body = file(self.NOT_VALID_SPEC).read()
+        body = open(self.NOT_VALID_SPEC).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -454,7 +454,7 @@ class TestOpenAPIMain(unittest.TestCase):
         self.assertEqual(len(api_calls), 0)
 
     def test_real_api_yaml(self):
-        body = file(self.REAL_API_YAML).read()
+        body = open(self.REAL_API_YAML).read()
         headers = Headers(list({'Content-Type': 'application/yaml'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.yaml'),
@@ -614,7 +614,7 @@ class TestOpenAPIMain(unittest.TestCase):
     # file that is missing the license name (which is required if license
     # attribute is specified)
     def test_missing_license_name(self):
-        body = file(self.MISSING_LICENSE).read()
+        body = open(self.MISSING_LICENSE).read()
         headers = Headers(list({'Content-Type': 'application/json'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.json'),
@@ -636,7 +636,7 @@ class TestOpenAPIMain(unittest.TestCase):
         self.assertEqual(expected_uri, uri)
 
     def test_issue_210(self):
-        body = file(self.ISSUE_210_API_YAML).read()
+        body = open(self.ISSUE_210_API_YAML).read()
         headers = Headers(list({'Content-Type': 'application/yaml'}.items()))
         response = HTTPResponse(200, body, headers,
                                 URL('http://moth/swagger.yaml'),

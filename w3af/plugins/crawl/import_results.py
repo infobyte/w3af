@@ -74,7 +74,7 @@ class import_results(CrawlPlugin):
             return
 
         try:
-            file_handler = file(self._input_base64, 'rb')
+            file_handler = open(self._input_base64, 'rb')
         except BaseFrameworkException as e:
             msg = 'An error was found while trying to read "%s": "%s".'
             om.out.error(msg % (self._input_base64, e))
@@ -126,7 +126,7 @@ class import_results(CrawlPlugin):
         parser = etree.XMLParser(target=xp, resolve_entities=False)
 
         try:
-            requests = etree.fromstring(file(burp_file).read(), parser)
+            requests = etree.fromstring(open(burp_file).read(), parser)
         except XMLSyntaxError as xse:
             msg = ('The Burp input file is not a valid XML document. The'
                    ' parser error is: "%s"')

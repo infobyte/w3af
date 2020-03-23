@@ -54,7 +54,7 @@ class TestWebserver(unittest.TestCase):
 
     def _create_file(self):
         # Create a file and request it
-        test_fh = file(os.path.join(self.tempdir, 'foofile.txt'), 'w')
+        test_fh = open(os.path.join(self.tempdir, 'foofile.txt'), 'w')
         test_fh.write(self.TESTSTRING)
         test_fh.close()
 

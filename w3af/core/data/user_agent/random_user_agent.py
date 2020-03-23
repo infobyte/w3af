@@ -31,7 +31,7 @@ UA_FILE = os.path.join(ROOT_PATH, 'core', 'data', 'user_agent',
 
 def get_random_user_agent(agent_list=UA_CACHE):
     if not len(agent_list):
-        ua_file = file(UA_FILE)
+        ua_file = open(UA_FILE)
 
         for line in ua_file:
             line = line.strip()

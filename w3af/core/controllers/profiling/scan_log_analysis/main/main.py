@@ -146,7 +146,7 @@ def generate_console_output(scan_log_filename, scan):
 
 def generate_json_output(scan_log_filename, scan, json_filename):
     try:
-        output_fp = file(json_filename, 'w')
+        output_fp = open(json_filename, 'w')
     except Exception as e:
         print('Failed to open %s for writing: "%s"' % e)
         sys.exit(1)

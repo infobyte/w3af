@@ -38,7 +38,7 @@ DEBUG = 0
 errors = 0
 counter = 0
 
-release_db = file('release.db', 'w')
+release_db = open('release.db', 'w')
 
 for i, version in enumerate(extracted_links):
     version_md5_url = release_md5_fmt % version

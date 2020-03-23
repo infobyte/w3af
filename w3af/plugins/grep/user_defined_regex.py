@@ -124,7 +124,7 @@ class user_defined_regex(GrepPlugin):
             self._regex_file_path = regex_file_path
 
             try:
-                f = file(self._regex_file_path)
+                f = open(self._regex_file_path)
             except Exception as e:
                 msg = 'Unable to open file "%s", error: "%s".'
                 raise BaseFrameworkException(msg % (self._regex_file_path, e))

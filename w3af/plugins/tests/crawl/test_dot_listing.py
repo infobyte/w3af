@@ -37,7 +37,7 @@ class TestDotListing(PluginTest):
         }
     }
 
-    DOT_LISTING = file(os.path.join(ROOT_PATH, 'plugins', 'tests', 'crawl', 'dot_listing', 'listing_test_1.txt')).read()
+    DOT_LISTING = open(os.path.join(ROOT_PATH, 'plugins', 'tests', 'crawl', 'dot_listing', 'listing_test_1.txt')).read()
 
     MOCK_RESPONSES = [MockResponse('http://mock/.listing', DOT_LISTING),
                       MockResponse('http://mock/wasadhiya-7.mp3', 'Secret file'),
@@ -74,7 +74,7 @@ class TestDotListing(PluginTest):
         for i in range(1, 4):
             file_name = file_name_fmt % i
             file_path = os.path.join(listing_files_path, file_name)
-            file_content = file(file_path).read()
+            file_content = open(file_path).read()
             for user, group, filename in dot_listing_inst._extract_info_from_listing(file_content):
                 users.add(user)
                 groups.add(group)

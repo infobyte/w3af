@@ -26,7 +26,7 @@ DEFAULT_PHP_MOTH = 'php_moth-fallback:80'
 
 def get_php_moth_http(path='/'):
     try:
-        php_moth_netloc = file(HTTP_PHP_MOTH).read().strip()
+        php_moth_netloc = open(HTTP_PHP_MOTH).read().strip()
     except IOError:
         php_moth_netloc = DEFAULT_PHP_MOTH
 

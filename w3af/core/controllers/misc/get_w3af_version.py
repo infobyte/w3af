@@ -34,7 +34,7 @@ VERSION_FILE = os.path.join(ROOT_PATH, 'core', 'data', 'constants',
 
 
 def get_minimalistic_version():
-    return file(VERSION_FILE).read().strip()
+    return open(VERSION_FILE).read().strip()
 
 
 @memoized

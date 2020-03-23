@@ -90,7 +90,7 @@ class ClientlessReverseHTTP(BasePayloadTransfer):
         # Create the file
         filename = rand_alpha(10)
         file_path = get_temp_dir() + os.path.sep + filename
-        f = file(file_path, 'w')
+        f = open(file_path, 'w')
         f.write(data_str)
         f.close()
 

@@ -31,6 +31,6 @@ if 'Source: https://cirt.net' not in db_content:
     print('db_tests download failed')
     sys.exit(-1)
 
-target_fd = file(target_path, 'w')
+target_fd = open(target_path, 'w')
 target_fd.write(db_content)
 target_fd.close()

@@ -144,7 +144,7 @@ class TestPostDataMutant(unittest.TestCase):
         freq = FuzzableRequest(URL('http://www.w3af.com/upload'),
                                post_data=form, method='POST')
 
-        payloads = [file(__file__)]
+        payloads = [open(__file__)]
         created_mutants = PostDataMutant.create_mutants(freq, payloads,
                                                         ['file_upload', ],
                                                         False,

@@ -40,7 +40,7 @@ def generate_helper_script(pkg_manager_cmd, os_packages, pip_cmd, failed_deps,
     
     script_path = os.path.join(temp_dir, SCRIPT_NAME)
     
-    script_file = file(script_path, 'w')
+    script_file = open(script_path, 'w')
     script_file.write('#!/bin/bash\n')
     
     #

@@ -63,7 +63,7 @@ class TestComplexHTMLForm(unittest.TestCase):
         Reported by one of our partners. The issue seems to be that there are
         too many variants being generated.
         """
-        body = file(self.COMPLEX_FORM).read()
+        body = open(self.COMPLEX_FORM).read()
         resp = build_http_response(self.url, body)
         p = RaiseHTMLParser(resp)
         p.parse()

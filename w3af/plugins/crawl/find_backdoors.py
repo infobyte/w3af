@@ -59,7 +59,7 @@ class find_backdoors(CrawlPlugin):
             self._signature_re = MultiRE(signatures, hint_len=2)
 
     def _read_signatures(self):
-        for line in file(self.SIGNATURE_DB):
+        for line in open(self.SIGNATURE_DB):
             line = line.strip()
 
             if not line:
@@ -99,7 +99,7 @@ class find_backdoors(CrawlPlugin):
         """
         :yield: lines from the web shell DB
         """
-        for line in file(self.WEBSHELL_DB):
+        for line in open(self.WEBSHELL_DB):
             line = line.strip()
 
             if line.startswith('#'):

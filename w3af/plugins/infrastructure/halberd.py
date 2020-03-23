@@ -118,7 +118,7 @@ class halberd(InfrastructurePlugin):
 
         :return: None.
         """
-        halberd_report = file(report_file).read()
+        halberd_report = open(report_file).read()
         os.unlink(report_file)
         om.out.information(halberd_report)
 

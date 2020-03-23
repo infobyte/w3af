@@ -100,7 +100,7 @@ class TestXMLOutput(PluginTest):
             set(sorted([v.get_plugin_name() for v in file_vulns]))
         )
 
-        self.assertEqual(validate_xml(file(self.FILENAME).read(), self.XSD), '')
+        self.assertEqual(validate_xml(open(self.FILENAME).read(), self.XSD), '')
 
     def tearDown(self):
         super(TestXMLOutput, self).tearDown()
@@ -253,7 +253,7 @@ class XMLParser(object):
 def get_vulns_from_xml(filename):
     xp = XMLParser()
     parser = etree.XMLParser(target=xp)
-    vulns = etree.fromstring(file(filename).read(), parser)
+    vulns = etree.fromstring(open(filename).read(), parser)
     return vulns
 
 
@@ -286,7 +286,7 @@ class TestXMLOutputBinary(PluginTest):
 
     MOCK_RESPONSES = [
               MockResponse(url='http://rpm-path-binary/',
-                           body=file(TEST_FILE).read(),
+                           body=open(TEST_FILE).read(),
                            content_type='text/plain',
                            method='GET', status=200),
     ]
@@ -338,7 +338,7 @@ class TestXML0x0B(PluginTest):
 
     MOCK_RESPONSES = [
               MockResponse(url='http://0x0b-path-binary/',
-                           body=file(TEST_FILE).read(),
+                           body=open(TEST_FILE).read(),
                            content_type='text/plain',
                            method='GET', status=200),
     ]

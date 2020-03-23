@@ -215,7 +215,7 @@ def generate_index_html(output):
 
     index_html = render_index_html(href)
 
-    file(os.path.join(output, 'index.html'), 'w').write(index_html)
+    open(os.path.join(output, 'index.html'), 'w').write(index_html)
 
 
 def get_probabilistic_count(count):
@@ -292,7 +292,7 @@ def generate_site(pages, parameters_per_page, forms, form_params, output):
             generated_forms.append(Form(action, params))
 
         page_content = render(title, hrefs, generated_forms)
-        file(output_file, 'w').write(page_content)
+        open(output_file, 'w').write(page_content)
 
 
 if __name__ == "__main__":

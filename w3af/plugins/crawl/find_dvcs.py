@@ -355,7 +355,7 @@ class find_dvcs(CrawlPlugin):
                                               delete=False,
                                               dir=get_temp_dir())
 
-        temp_db_fh = file(temp_db.name, 'w')
+        temp_db_fh = open(temp_db.name, 'w')
         temp_db_fh.write(body)
         temp_db_fh.close()
 

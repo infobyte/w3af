@@ -9,7 +9,7 @@ def read_response(filename, _id):
     recording = False
     output = ''
 
-    for line in file(filename):
+    for line in open(filename):
         if line.startswith('=' * 40 + 'Response %s ' % _id):
             recording = True
             continue
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     for _id in ids:
         print('Processing response %s' % _id)
         response = read_response(filename, _id)
-        file('response-%s.txt' % _id, 'w').write(response)
+        open('response-%s.txt' % _id, 'w').write(response)

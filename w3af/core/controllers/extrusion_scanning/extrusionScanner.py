@@ -246,7 +246,7 @@ class extrusionScanner(object):
             filename = os.path.join(ROOT_PATH, 'core', 'controllers',
                                     'extrusion_scanning', 'client',
                                     'extrusionClient.py')
-            fileContent = file(filename).read()
+            fileContent = open(filename).read()
             extension = 'py'
             interpreter = 'python'
         else:

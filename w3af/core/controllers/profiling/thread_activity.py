@@ -83,7 +83,7 @@ def dump_thread_stack():
         data['%x' % thread] = {'traceback': trace,
                                'name': get_thread_name(threads, thread)}
 
-    json.dump(data, file(output_file, 'w'), indent=4)
+    json.dump(data, open(output_file, 'w'), indent=4)
 
 
 @should_dump_thread_stack

@@ -233,7 +233,7 @@ class LoggingHandler(ProxyHandler):
         ))
 
         http_response = HTTPResponse(200,
-                                     file(favicon, 'rb').read(),
+                                     open(favicon, 'rb').read(),
                                      headers,
                                      http_response.get_uri(),
                                      http_response.get_uri(),

@@ -180,7 +180,7 @@ class TestContainsSourceCode(unittest.TestCase):
         self.assertEqual(match, None)
 
     def test_code_false_positive_image(self):
-        no_source = self.create_response(file(self.TEST_FILE).read(),
+        no_source = self.create_response(open(self.TEST_FILE).read(),
                                          content_type='image/jpeg')
         match, lang = contains_source_code(no_source)
         self.assertEqual(match, None)

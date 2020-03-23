@@ -94,7 +94,7 @@ class ReadShell(Shell):
             return 'Remote file does not exist.'
         else:
             try:
-                fh = file(local_filename, 'w')
+                fh = open(local_filename, 'w')
             except:
                 return 'Failed to open local file for writing.'
             else:

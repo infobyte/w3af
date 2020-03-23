@@ -491,7 +491,7 @@ class TestHTMLParser(unittest.TestCase):
     def test_unicodedecoreerror_ascii_url(self):
         HTML_FILE = os.path.join(ROOT_PATH, 'core', 'data', 'parsers', 'doc',
                                  'tests', 'data', 'se.html')
-        body = file(HTML_FILE).read()
+        body = open(HTML_FILE).read()
 
         headers = Headers()
         headers['content-type'] = 'text/html; charset=utf-8'

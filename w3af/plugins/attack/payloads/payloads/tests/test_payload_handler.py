@@ -152,7 +152,7 @@ class FakeReadShell(ReadShell):
         super(FakeReadShell, self).__init__(vuln, None, None)
 
     def read(self, filename):
-        return file(filename).read()
+        return open(filename).read()
 
     def end(self):
         pass

@@ -990,7 +990,7 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
     # Read the fingerprint db
     known_servers = []
     for f in glob.glob(fingerprintDir + '*'):
-        ksf = file(f)
+        ksf = open(f)
         try:
             ### FIXME: This eval is awful, I should change it to pickle.
             ks = eval(ksf.read())

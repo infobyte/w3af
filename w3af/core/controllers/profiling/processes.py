@@ -92,7 +92,7 @@ def dump_processes():
 
         data[pid] = child_data
 
-    json.dump(data, file(output_file, 'w'), indent=4)
+    json.dump(data, open(output_file, 'w'), indent=4)
 
 
 @should_dump_processes

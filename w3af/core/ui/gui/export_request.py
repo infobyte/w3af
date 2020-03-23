@@ -139,7 +139,7 @@ class export_request(entries.RememberingWindow):
             # Save the contents of the self.exported_text to the selected file
             filename = chooser.get_filename()
             try:
-                fh = file(filename, 'w')
+                fh = open(filename, 'w')
                 fh.write(self.exported_text.get_text())
             except:
                 msg = _("Failed to save exported data to file")

@@ -57,8 +57,8 @@ def get_payload_bin_for_command_len(payload, command_len):
     payload_bin_2 = get_payload_bin(payload, sample_2)
 
     # Enable for debugging only
-    #file('%s-%s-a.bin' % (payload, command_len), 'w').write(payload_bin_1)
-    #file('%s-%s-b.bin' % (payload, command_len), 'w').write(payload_bin_2)
+    #open('%s-%s-a.bin' % (payload, command_len), 'w').write(payload_bin_1)
+    #open('%s-%s-b.bin' % (payload, command_len), 'w').write(payload_bin_2)
 
     offsets = []
 
@@ -104,7 +104,7 @@ def main(payloads):
                         "2": {"payload": base64.b64encode(p2),
                               "offsets": o2}}
 
-        file('%s.json' % payload, 'w').write(json.dumps(payload_json, indent=4))
+        open('%s.json' % payload, 'w').write(json.dumps(payload_json, indent=4))
         print('Successfully created %s.json' % payload)
         print('\n\n\n')
 

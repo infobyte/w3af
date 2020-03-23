@@ -122,7 +122,7 @@ class wordpress_fingerprint(CrawlPlugin):
 
             release_db = self._release_db
 
-            for line in file(release_db):
+            for line in open(release_db):
                 try:
                     line = line.strip()
                     release_db_hash, release_db_name = line.split(',')

@@ -120,7 +120,7 @@ class phishtank(CrawlPlugin):
         :return: A list with the sites to match against the phishtank db
         """
         try:
-            phishtank_db_fd = file(self.PHISHTANK_DB, 'r')
+            phishtank_db_fd = open(self.PHISHTANK_DB, 'r')
         except Exception as e:
             msg = 'Failed to open phishtank database: "%s", exception: "%s".'
             raise BaseFrameworkException(msg % (self.PHISHTANK_DB, e))

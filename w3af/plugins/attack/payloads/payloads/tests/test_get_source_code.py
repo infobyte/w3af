@@ -49,7 +49,7 @@ class test_get_source_code(PayloadTestHelper):
         self.assertEqual(expected_url, downloaded_url)
 
         downloaded_file_path = list(result.items())[0][1][1]
-        downloaded_file_content = file(downloaded_file_path).read()
+        downloaded_file_content = open(downloaded_file_path).read()
         self.assertTrue(self.CONTENT in downloaded_file_content)
 
         shutil.rmtree(temp_dir)

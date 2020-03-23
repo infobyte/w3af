@@ -38,7 +38,7 @@ def iter_http_request_responses(filename):
 
     _id = 1
 
-    for line in file(filename):
+    for line in open(filename):
         if line.startswith(REQUEST_START):
             inside_request = True
             continue

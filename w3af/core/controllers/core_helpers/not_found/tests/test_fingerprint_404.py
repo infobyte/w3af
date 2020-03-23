@@ -55,7 +55,7 @@ class Generic404Test(unittest.TestCase):
         body = '\n'.join(parts)
 
         # filename = str(abs(hash(''.join(parts)))) + '-hash.txt'
-        # file(filename, 'w').write(body)
+        # open(filename, 'w').write(body)
 
         return body
 

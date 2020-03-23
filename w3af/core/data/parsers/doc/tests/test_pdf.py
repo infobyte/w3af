@@ -38,7 +38,7 @@ class TestPDF(unittest.TestCase):
                                 'tests', 'data', 'links.pdf')
     
     def test_pdf_to_text(self):
-        text = pdf_to_text(file(self.SIMPLE_SAMPLE).read())
+        text = pdf_to_text(open(self.SIMPLE_SAMPLE).read())
         self.assertIn('Hello', text)
         self.assertIn('World', text)
 
@@ -47,7 +47,7 @@ class TestPDF(unittest.TestCase):
         self.assertEqual('', text)
     
     def test_pdf_parser(self):
-        body = file(self.LINKS_SAMPLE).read()
+        body = open(self.LINKS_SAMPLE).read()
         hdrs = Headers(list({'Content-Type': 'application/pdf'}.items()))
         response = HTTPResponse(200, body, hdrs,
                                 URL('http://moth/'),

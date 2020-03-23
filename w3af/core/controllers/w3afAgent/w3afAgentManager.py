@@ -182,7 +182,7 @@ class w3afAgentManager(Process):
         if python.startswith('/'):
             client = os.path.join(ROOT_PATH, 'core', 'controllers', 'w3afAgent',
                                   'client', 'w3afAgentClient.py')
-            file_content = file(client).read()
+            file_content = open(client).read()
             extension = 'py'
             interpreter = python
         else:

@@ -4,7 +4,7 @@ if __name__ == '__main__':
 
     ip = sys.argv[1]
     port = sys.argv[2]
-    f = file(sys.argv[3], 'w')
+    f = open(sys.argv[3], 'w')
 
     cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     cs.connect((ip, port))

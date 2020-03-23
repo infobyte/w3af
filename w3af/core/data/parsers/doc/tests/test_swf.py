@@ -41,7 +41,7 @@ class TestSWFParser(unittest.TestCase):
     DOMAIN_DECODE_2 = os.path.join(SAMPLE_DIR, 'test-5925-2.swf')
     
     def parse(self, filename):
-        body = file(filename).read()
+        body = open(filename).read()
         swf_mime = 'application/x-shockwave-flash'
         hdrs = Headers(list({'Content-Type': swf_mime}.items()))
         response = HTTPResponse(200, body, hdrs,

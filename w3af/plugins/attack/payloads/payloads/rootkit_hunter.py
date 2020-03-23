@@ -30,7 +30,7 @@ class rootkit_hunter(Payload):
         #    Rootkit Hunter Shell Script by Michael Boelen
         #
         #    TODO: Find a way to keep the DB updated!
-        for fname in file(os.path.join(ROOT_PATH, 'plugins', 'attack',
+        for fname in open(os.path.join(ROOT_PATH, 'plugins', 'attack',
                                        'payloads', 'payloads', 'rootkit_hunter',
                                        'rootkit_hunter_files.db')):
             fname = fname.strip()

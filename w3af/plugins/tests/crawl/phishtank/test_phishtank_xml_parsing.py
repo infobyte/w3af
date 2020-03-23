@@ -34,7 +34,7 @@ class TestPhishTankParseMethods(unittest.TestCase):
     def test_target_parser(self):
         raise SkipTest('This method is awful in terms of memory usage')
 
-        phishtank_db_fd = file(PHISHTANK_DB)
+        phishtank_db_fd = open(PHISHTANK_DB)
 
         # pylint: disable=E0602
         pt_handler = PhishTankHandler([])
@@ -44,7 +44,7 @@ class TestPhishTankParseMethods(unittest.TestCase):
     def test_iterparse(self):
         raise SkipTest('This method is awful in terms of memory usage')
 
-        phishtank_db_fd = file(PHISHTANK_DB)
+        phishtank_db_fd = open(PHISHTANK_DB)
 
         context = etree.iterparse(phishtank_db_fd, events=('end',), html=True)
         for action, elem in context:
@@ -78,7 +78,7 @@ class TestPhishTankParseMethods(unittest.TestCase):
 
             del context
 
-        phishtank_db_fd = file(PHISHTANK_DB)
+        phishtank_db_fd = open(PHISHTANK_DB)
 
         def process_element(elem):
             pass

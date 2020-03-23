@@ -133,7 +133,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         print('Analyzed samples: %s' % total)
 
         output = '/tmp/%s.txt' % func_name
-        output_fh = file(output, 'w')
+        output_fh = open(output, 'w')
         for domain_a, domain_b in sorted(failed_domains):
             output_fh.write('%s - %s\n' % (domain_a, domain_b))
 
@@ -172,7 +172,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         print('Analyzed samples: %s' % total)
 
         output = '/tmp/%s.txt' % func_name
-        output_fh = file(output, 'w')
+        output_fh = open(output, 'w')
         for domain in sorted(failed_domains):
             output_fh.write('%s\n' % domain)
 
@@ -235,7 +235,7 @@ class Test404FuzzyStringMatch(unittest.TestCase):
         print('Analyzed samples: %s' % total)
 
         output = '/tmp/%s.txt' % func_name
-        output_fh = file(output, 'w')
+        output_fh = open(output, 'w')
         for domain in sorted(failed_domains):
             output_fh.write('%s\n' % domain)
 

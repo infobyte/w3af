@@ -96,7 +96,7 @@ def dump_data(w3af_core):
 
     json_data = json.dumps(data, indent=4)
     output_file = PROFILING_OUTPUT_FMT % get_filename_fmt()
-    file(output_file, 'w').write(json_data)
+    open(output_file, 'w').write(json_data)
 
 
 @should_profile_core

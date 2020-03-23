@@ -281,7 +281,7 @@ if __name__ == '__main__':
     parsed_args = parser.parse_args()
 
     try:
-        scan = file(parsed_args.scan_log)
+        scan = open(parsed_args.scan_log)
     except:
         print('The scan log file does not exist!')
         sys.exit(2)

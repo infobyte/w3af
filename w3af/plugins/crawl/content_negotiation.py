@@ -185,7 +185,7 @@ class content_negotiation(CrawlPlugin):
                     if directory_url not in self._already_tested_dir:
                         self._already_tested_dir.add(directory_url)
 
-                        for word in file(self._wordlist):
+                        for word in open(self._wordlist):
                             word = word.strip()
                             yield directory_url.url_join(word)
 

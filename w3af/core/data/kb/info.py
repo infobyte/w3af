@@ -235,7 +235,7 @@ class Info(dict):
 
         if not is_valid_name(name):
             missing = os.path.join(ARTIFACTS_DIR, 'missing-vulndb.txt')
-            missing = file(missing, 'a')
+            missing = open(missing, 'a')
             missing.write('%s\n' % name)
             missing.close()
 

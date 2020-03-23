@@ -86,7 +86,7 @@ class json_file(OutputPlugin):
         self.output_file = os.path.expanduser(self.output_file)
 
         try:
-            output_handler = file(self.output_file, 'wb')
+            output_handler = open(self.output_file, 'wb')
         except IOError as ioe:
             msg = 'Failed to open the output file for writing: "%s"'
             om.out.error(msg % ioe)

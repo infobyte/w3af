@@ -47,7 +47,7 @@ class TestInputFileOption(unittest.TestCase):
         opt = opt_factory('name', value, 'desc', INPUT_FILE, 'help', 'tab')
 
         self.assertEqual(opt.get_value_for_profile(), value)
-        self.assertEqual(file(opt.get_value()).read(), 'xyz')
+        self.assertEqual(open(opt.get_value()).read(), 'xyz')
 
         self.assertEqual(opt.get_default_value(), opt.get_value())
 

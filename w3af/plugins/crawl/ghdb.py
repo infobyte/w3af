@@ -129,7 +129,7 @@ class ghdb(CrawlPlugin):
                  objects.
         """
         try:
-            ghdb_fd = file(self._ghdb_file)
+            ghdb_fd = open(self._ghdb_file)
         except Exception as e:
             msg = 'Failed to open ghdb file: "%s", error: "%s".'
             raise BaseFrameworkException(msg % (self._ghdb_file, e))

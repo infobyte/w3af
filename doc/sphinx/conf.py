@@ -51,7 +51,7 @@ copyright = '2014, Andres Riancho'
 # built documents.
 #
 # The short X.Y version.
-version = file('../../w3af/core/data/constants/version.txt').read().strip()
+version = open('../../w3af/core/data/constants/version.txt').read().strip()
 # The full version, including alpha/beta/rc tags.
 release = version
 

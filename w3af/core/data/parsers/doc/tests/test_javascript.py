@@ -34,7 +34,7 @@ class TestJavaScriptParser(unittest.TestCase):
     DATA_PATH = 'w3af/core/data/parsers/pynarcissus/tests/data/'
 
     def parse(self, filename):
-        body = file(os.path.join(self.DATA_PATH, filename)).read()
+        body = open(os.path.join(self.DATA_PATH, filename)).read()
         js_mime = 'text/javascript'
         hdrs = Headers(list({'Content-Type': js_mime}.items()))
         response = HTTPResponse(200, body, hdrs,

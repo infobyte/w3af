@@ -219,6 +219,6 @@ class InputFileOption(BaseOption):
         :return: Encoded data which can be decoded using decode_b64_data, this
                  output is usually stored in a profile.
         """
-        data = base64.b64encode(file(filename).read().encode('zlib')).strip()
+        data = base64.b64encode(open(filename).read().encode('zlib')).strip()
         return '%s%s' % (self.DATA_PROTO, data)
 

@@ -35,7 +35,7 @@ def generate_requirements_txt(failed_deps):
     :param failed_deps: A list with missing PIPDependency objects
     :return: The path to the script name.
     """
-    req_file = file(REQUIREMENTS_TXT, 'w')
+    req_file = open(REQUIREMENTS_TXT, 'w')
     
     #
     #    Report all missing python modules

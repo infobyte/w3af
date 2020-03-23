@@ -280,7 +280,7 @@ class TestHTMLContext(ContextTest):
         self.assertIsInstance(context, HtmlAttr)
 
     def test_django_500_sample(self):
-        html = file(os.path.join(self.SAMPLES_DIR, 'django-500.html')).read()
+        html = open(os.path.join(self.SAMPLES_DIR, 'django-500.html')).read()
         contexts = get_context(html, 'QUBD5 =')
 
         self.assertEqual(len(contexts), 9)

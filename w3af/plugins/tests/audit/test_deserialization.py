@@ -273,7 +273,7 @@ class TestJSONPayloadIsValid(unittest.TestCase):
                     continue
 
                 if file_name.endswith(deserialization.PAYLOAD_EXTENSION):
-                    json_str = file(os.path.join(root, file_name)).read()
+                    json_str = open(os.path.join(root, file_name)).read()
                     data = json.loads(json_str)
 
                     self.assertIn('1', data, file_name)
@@ -331,7 +331,7 @@ class TestExactDelay(unittest.TestCase):
                     continue
 
                 if file_name.endswith(deserialization.PAYLOAD_EXTENSION):
-                    json_str = file(os.path.join(root, file_name)).read()
+                    json_str = open(os.path.join(root, file_name)).read()
                     payload = json.loads(json_str)
 
                     ed = B64DeserializationExactDelay(payload)
@@ -344,8 +344,8 @@ class TestExactDelay(unittest.TestCase):
                         args = (e, file_name)
                         self.assertTrue(False, msg % args)
 
-                    #file('1', 'w').write(base64.b64decode(payload['1']['payload']))
-                    #file('2', 'w').write(base64.b64decode(payload_1))
+                    #open('1', 'w').write(base64.b64decode(payload['1']['payload']))
+                    #open('2', 'w').write(base64.b64decode(payload_1))
 
                     self.assertEqual(payload['1']['payload'], payload_1, file_name)
                     self.assertEqual(payload['2']['payload'], payload_22, file_name)

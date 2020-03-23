@@ -62,7 +62,7 @@ class TestExportRequests(PluginTest):
 
     def _get_fuzzable_requests_from_file(self):
         # Get the contents of the output file
-        for line in file('output-fr.b64'):
+        for line in open('output-fr.b64'):
             yield FuzzableRequest.from_base64(line)
 
     def tearDown(self):

@@ -17,7 +17,7 @@ def open_nosetests_output(suffix, first, last):
     name = '%s_%s-%s.%s' % (NOSE_OUTPUT_PREFIX, first, last, suffix)
     path_name = os.path.join(ARTIFACT_DIR, name)
     
-    fhandler = file(path_name, 'wb')
+    fhandler = open(path_name, 'wb')
     logging.debug('nosetests output file: "%s"' % path_name)
     
     return fhandler

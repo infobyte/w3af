@@ -74,7 +74,7 @@ For example, you can do:
   First ten letters: $string.lowercase[:10]$
   The words "spam" and "eggs": $['spam', 'eggs']$
   The content of a file:
-      $[l.strip() for l in file('input.txt').readlines()]$
+      $[l.strip() for l in open('input.txt').readlines()]$
 </tt>
 """
 

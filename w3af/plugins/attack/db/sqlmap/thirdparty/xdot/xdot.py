@@ -1567,7 +1567,7 @@ class DotWidget(gtk.DrawingArea):
     def reload(self):
         if self.openfilename is not None:
             try:
-                fp = file(self.openfilename, 'rt')
+                fp = open(self.openfilename, 'rt')
                 self.set_dotcode(fp.read(), self.openfilename)
                 fp.close()
             except IOError:
@@ -2024,7 +2024,7 @@ class DotWindow(gtk.Window):
 
     def open_file(self, filename):
         try:
-            fp = file(filename, 'rt')
+            fp = open(filename, 'rt')
             self.set_dotcode(fp.read(), filename)
             fp.close()
         except IOError as ex:

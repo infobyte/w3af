@@ -58,7 +58,7 @@ class get_source_code(Payload):
                         os.makedirs(local_directory)
 
                     #    Write the file!
-                    fh = file(local_full_path, 'w')
+                    fh = open(local_full_path, 'w')
                     fh.write(file_content)
                     fh.close()
 

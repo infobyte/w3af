@@ -1143,4 +1143,4 @@ def parse(source, filename=None, starting_line_number=1):
     return n
 
 if __name__ == "__main__":
-    print(str(parse(file(sys.argv[1]).read(),sys.argv[1])))
+    print(str(parse(open(sys.argv[1]).read(),sys.argv[1])))

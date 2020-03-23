@@ -154,12 +154,12 @@ class TestProfilesConsoleUI(ConsoleTestHelper):
         # The profile is now self contained
         p = profile(self.get_profile_name())
         self.assertIn('caFileName = base64://',
-                      file(p.profile_file_name).read())
+                      open(p.profile_file_name).read())
 
         # Before it wasn't
         p = profile('OWASP_TOP10')
         self.assertIn('caFileName = %ROOT_PATH%',
-                      file(p.profile_file_name).read())
+                      open(p.profile_file_name).read())
 
     def test_use_self_contained_profile(self):
         """
@@ -194,7 +194,7 @@ class TestProfilesConsoleUI(ConsoleTestHelper):
             filename = match.group(0)
 
             self.assertIn('Bundle of CA Root Certificates',
-                          file(filename).read())
+                          open(filename).read())
             break
         else:
             self.assertTrue(False, 'No self contained file found')
