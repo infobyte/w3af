@@ -51,13 +51,12 @@ def get_net_iface():
         import fcntl
         import struct
 
-        interfaces = ["eth0", "eth1", "eth2", "wlan0", "wlan1",
-                      "wifi0", "ath0", "ath1", "ppp0"]
+        interfaces = [b"eth0", b"eth1", b"eth2", b"wlan0", b"wlan1",
+                      b"wifi0", b"ath0", b"ath1", b"ppp0"]
         for ifname in interfaces:
             try:
                 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                interface_ip = socket.inet_ntoa(fcntl.ioctl(
-                    s.fileno(),
+                interface_ip = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
                     0x8915,  # SIOCGIFADDR
                     struct.pack('256s', ifname[:15])
                 )[20:24])
