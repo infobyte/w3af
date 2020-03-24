@@ -32,7 +32,7 @@ class ErrorHandler(urllib.request.HTTPDefaultErrorHandler):
         raise err
 
 
-class NoOpErrorHandler(urllib2.HTTPErrorProcessor):
+class NoOpErrorHandler(urllib.request.HTTPErrorProcessor):
     """
     no-op, we want to handle HTTP errors (which for urllib2 are the ones
     which have 200 <= code < 300) the same way we handle the rest of the
