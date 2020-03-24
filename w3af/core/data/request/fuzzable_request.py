@@ -44,7 +44,7 @@ from w3af.core.data.misc.encoding import smart_str_ignore
 
 
 ALL_CHARS = ''.join(chr(i) for i in range(256))
-TRANS_TABLE = string.maketrans(ALL_CHARS, ALL_CHARS)
+TRANS_TABLE = str.maketrans(ALL_CHARS, ALL_CHARS)
 DELETE_CHARS = ''.join(['\\',
                         "'",
                         '"',
