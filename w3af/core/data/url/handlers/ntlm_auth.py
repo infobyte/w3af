@@ -13,7 +13,7 @@
 # or <http://www.gnu.org/licenses/lgpl.txt>.
 
 import urllib.request, urllib.error, urllib.parse
-from ntlm import ntlm
+from ntlm3 import ntlm
 
 
 class AbstractNtlmAuthHandler(urllib.request.BaseHandler):
