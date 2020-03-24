@@ -26,6 +26,7 @@ import queue
 import threading
 
 from multiprocessing.dummy import Process
+from multiprocessing import get_context
 from functools import wraps
 
 from w3af import ROOT_PATH
@@ -110,7 +111,8 @@ class OutputManager(Process):
         self._plugin_options = {}
 
         # Internal variables
-        self.in_queue = SilentJoinableQueue()
+        ctx = get_context()
+        self.in_queue = SilentJoinableQueue(ctx=ctx)
         self._w3af_core = None
         self._last_output_flush = None
         self._is_shutting_down = False
