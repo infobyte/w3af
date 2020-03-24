@@ -377,8 +377,6 @@ class SQLiteExecutor(Process):
         # Convert the filename to UTF-8, this is needed for windows, and special
         # characters, see:
         # http://www.sqlite.org/c3ref/open.html
-        unicode_filename = filename.decode(sys.getfilesystemencoding())
-        filename = unicode_filename.encode("utf-8")
         self.filename = replace_file_special_chars(filename)
 
         self.autocommit = autocommit
