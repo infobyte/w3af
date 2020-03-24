@@ -19,7 +19,7 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
 
 
 class NormalizeHandler(urllib.request.BaseHandler):
@@ -27,7 +27,7 @@ class NormalizeHandler(urllib.request.BaseHandler):
     Make sure that the HTTP request has some "required" headers.
     """
 
-    handler_order = urllib2.HTTPErrorProcessor.handler_order - 1
+    handler_order = urllib.request.HTTPErrorProcessor.handler_order - 1
 
     def http_request(self, request):
         #
