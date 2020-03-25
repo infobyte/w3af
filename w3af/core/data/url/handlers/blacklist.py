@@ -19,10 +19,10 @@ along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
-import urllib.request, urllib.error, urllib.parse
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.response
 import io
-import mimetools
+import email
 
 import w3af.core.controllers.output_manager as om
 import w3af.core.data.kb.config as cf
@@ -41,7 +41,7 @@ class BlacklistHandler(urllib.request.BaseHandler):
     this triggered bugs and errors.
     """
 
-    handler_order = urllib2.HTTPErrorProcessor.handler_order - 1
+    handler_order = urllib.request.HTTPErrorProcessor.handler_order - 1
 
     def __init__(self):
         non_targets = cf.cf.get('non_targets') or []
@@ -81,9 +81,10 @@ class BlacklistHandler(urllib.request.BaseHandler):
 
 def http_response_to_httplib(nncr):
     header_string = io.StringIO(str(nncr.get_headers()))
-    headers = mimetools.Message(header_string)
-    
-    addinfo_inst = urllib.addinfourl(io.StringIO(nncr.get_body()),
+    headers = email.message_from_string(header_string.getvalue())
+
+    addinfo_inst = urllib.response.addinfourl(
+                                    io.StringIO(nncr.get_body()),
                                      headers,
                                      nncr.get_url().url_string,
                                      code=nncr.get_code())
