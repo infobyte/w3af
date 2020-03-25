@@ -1,0 +1,317 @@
+
+Caching and Least-Recently-Used Eviction
+=========================================
+
+.. py:module:: darts.lib.utils.lru
+
+
+Reference
+---------
+
+.. py:class:: LRUDict ([capacity=1024])
+
+   Instances of this class are basically dictionaries, which
+   limit the number of entries they can hold. Each dictionary
+   has a `capacity` (initialized by the capacity argument to
+   the constructor), which defines this maximum number. The 
+   value can be changed at run-time by modifying the :py:attr:`capacity`
+   property of an instance.
+
+   If the dictionary has to remove entries in order to make
+   room for new ones, it will remove those, which haven't been
+   accessed for a "long time".
+
+   Thread-safety: Instances of this class **are not thread-safe**,
+   even if only the read accessors are used concurrently. An
+   application intending to share an instance of this class
+   among multiple concurrently executing threads needs to 
+   synchronize all access to the instance itself.
+
+   The :class:`SynchronizedLRUDict` provides a stand-alone
+   thread-safe version of this class.
+
+   Iteration: The ordering of entries under iteration is 
+   undefined. In particular, it usually does not reflect the
+   eviction priority order.
+
+   .. py:data:: capacity
+
+      Contains the current capacity of the dictionary. At
+      any time, the dictionary holds as most as many entries
+      as this value indicates. Changing the value of the 
+      property to a smaller number may cause entries to be
+      removed from the dictionary.
+
+   .. py:method:: clear()
+
+      Removes all entries from this dictionary. Note, that
+      currently, this method has a run-time complexity proportional
+      to the number of entries contained in the dictionary.
+
+   .. py:method:: peek(key, [, default=None])
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method returns `default` instead. Note,
+      that unlike most accessor methods, this one does not affect
+      the priority of a matching entry, i.e., looking up a value
+      using this method does not count as "access", adn won't
+      change the likelyhood of the entry found to be discarded
+      or not, if the dictionary needs to make room for new 
+      entries.
+
+   .. py:method:: get(key [, default=None])
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method returns `default` instead. If a
+      matching entry exists, its priority is boosted by this
+      method, making it less likely, that the entry is removed
+      the next time, the dictionary has to make room for new
+      elements.
+
+   .. py:method:: __getitem__(key)
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method raises a `KeyError` instead. If a
+      matching entry exists, its priority is boosted by this
+      method, making it less likely, that the entry is removed
+      the next time, the dictionary has to make room for new
+      elements.
+   
+   .. py:method:: __setitem__(key, value)
+   
+      Associates the value `value` to `key` in this dictionary.
+      If there was already an entry for `key`, its value is 
+      replaced with `value`.
+
+      This method boosts the entry's priority, making it less likely, 
+      that the entry is removed the next time, the dictionary has 
+      to make room for new elements.
+
+   .. py:method:: __delitem__(key)
+
+      Deletes an entry from this dictionary. This method deletes
+      the entry associated with `key` from this dictionary. If
+      no matching entry exists, this method raises a `KeyError`
+      instead. Calling this method does not affect the priorities
+      of other entries.
+
+   .. py:method:: __len__()
+
+      Answers the current number of elements contained in this
+      dictionary.
+
+   .. py:method:: __contains__(key)
+
+      Tests, whether this dictionary has an entry for the given
+      `key`. If so, the entry's priority is boosted, making it 
+      less likely, that the entry is removed the next time, the 
+      dictionary has to make room for new elements.
+
+   .. py:method:: __iter__()
+
+      See :py:meth:`iterkeys`.
+
+   .. py:method:: iterkeys()
+
+      This method returns a generator, which produces all the
+      keys currently present in the dictionary. The ordering of
+      the keys is undefined.
+
+   .. py:method:: itervalues()
+
+      This method returns a generator, which produces all the
+      values currently present in the dictionary. The ordering of
+      the values is undefined.
+
+   .. py:method:: iteritems()
+
+      This method returns a generator, which produces tuples of
+      the form `key, value` for all entries in the dictionary. The 
+      ordering of the values is undefined.
+
+.. py:class:: SynchronizedLRUDict ([capacity=1024 [, lock=None]])
+   
+   This class provides a thread-safe version of :class:`LRUDict`.
+   Each instance maintains a plain `LRUDict` internally, and 
+   delegates all method calls to that object, making sure, that
+   the calls are properly synchronized using a thread lock.
+   
+   If no explicit `lock` argument is provided at instance creation
+   time, the synchronized LRU dict will create its own lock.
+
+   Note, that this class does not inherit from `LRUDict`.
+
+   .. py:data:: capacity
+
+      Contains the current capacity of the dictionary. At
+      any time, the dictionary holds as most as many entries
+      as this value indicates. Changing the value of the 
+      property to a smaller number may cause entries to be
+      removed from the dictionary.
+
+   .. py:method:: clear()
+
+      Removes all entries from this dictionary. Note, that
+      currently, this method has a run-time complexity proportional
+      to the number of entries contained in the dictionary.
+
+   .. py:method:: peek(key [, default=None])
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method returns `default` instead. Note,
+      that unlike most accessor methods, this one does not affect
+      the priority of a matching entry, i.e., looking up a value
+      using this method does not count as "access", adn won't
+      change the likelyhood of the entry found to be discarded
+      or not, if the dictionary needs to make room for new 
+      entries.
+
+   .. py:method:: get(key [, default=None])
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method returns `default` instead. If a
+      matching entry exists, its priority is boosted by this
+      method, making it less likely, that the entry is removed
+      the next time, the dictionary has to make room for new
+      elements.
+
+   .. py:method:: __getitem__(key)
+
+      Look up the value of `key`. This method returns the value
+      associated with `key` in this dictionary. If no matching
+      entry exists, the method raises a `KeyError` instead. If a
+      matching entry exists, its priority is boosted by this
+      method, making it less likely, that the entry is removed
+      the next time, the dictionary has to make room for new
+      elements.
+   
+   .. py:method:: __setitem__(key, value)
+   
+      Associates the value `value` to `key` in this dictionary.
+      If there was already an entry for `key`, its value is 
+      replaced with `value`.
+
+      This method boosts the entry's priority, making it less likely, 
+      that the entry is removed the next time, the dictionary has 
+      to make room for new elements.
+
+   .. py:method:: __delitem__(key)
+
+      Deletes an entry from this dictionary. This method deletes
+      the entry associated with `key` from this dictionary. If
+      no matching entry exists, this method raises a `KeyError`
+      instead. Calling this method does not affect the priorities
+      of other entries.
+
+   .. py:method:: __len__()
+
+      Answers the current number of elements contained in this
+      dictionary.
+
+   .. py:method:: __contains__(key)
+
+      Tests, whether this dictionary has an entry for the given
+      `key`. If so, the entry's priority is boosted, making it 
+      less likely, that the entry is removed the next time, the 
+      dictionary has to make room for new elements.
+
+   .. py:method:: __iter__()
+
+      See :py:meth:`iterkeys`.
+
+   .. py:method:: iterkeys()
+
+      This method returns a generator, which produces all the
+      keys currently present in the dictionary. The ordering of
+      the keys is undefined.
+
+      Note, that the generator returned will traverse over a
+      snapshot copy of the actual key set made, when the `iterkeys`
+      method was called.
+
+   .. py:method:: itervalues()
+
+      This method returns a generator, which produces all the
+      values currently present in the dictionary. The ordering of
+      the values is undefined.
+
+      Note, that the generator returned will traverse over a
+      snapshot copy of the actual value collection made, when 
+      the `itervalues` method was called.
+
+   .. py:method:: iteritems()
+
+      This method returns a generator, which produces tuples of
+      the form `key, value` for all entries in the dictionary. The 
+      ordering of the values is undefined.
+      
+      Note, that the generator returned will traverse over a
+      snapshot copy of the actual items collection made, when 
+      the `iteritems` method was called.
+
+
+.. py:class:: AutoLRUCache(loader [, capacity=1024])
+
+   Instances of this class act as self-contained resource loaders
+   and caches. Each instance of this class has a maximum number of
+   elements it may contains (the cache's capacity).
+
+   The `loader` must be a callable with the signature
+
+      lambda key: ...
+
+   where `key` will be the identifier passed to :py:meth:`load`.
+   The loader function should return `None`, if there is no resource
+   with the given `key`. Any other return value is taken to be 
+   the actual resource. Note, that the cache is likely to cache
+   any value returned by this function, even `None`.
+
+   The cache is careful to coalesce multiple concurrent load
+   operations with the same key into a single operation. Note, 
+   though, that any number of load operations may started 
+   concurrently, as long as they have different keys.
+
+   Thread-safety: Instances of this class are fully thread-safe,
+   managing all required synchronization internally. Note, however,
+   that the custom `loader` function is always called outside of
+   any synchronization scope. In particular, it needs to perform
+   its own synchronization if it needs one.
+
+  .. py:method:: clear([discard_loads=False])
+
+     Removes all entries from this cache. This method removes all
+     entries from this cache. If `discard_loads` is true, then 
+     all currently pending load operations will be discarded, and
+     their results will be ignored.
+
+  .. py:method:: load(key [,default=None])
+
+     Load a resource for a given `key`. This method returns the
+     resource, whose key matches `key`, or `default` if there is 
+     no matching resource. If the resource is not currently present
+     in the cache, the cache's resource loader function is called
+     to load the resource from whatever is the underlying storage.
+
+     If an exception is raised by the loader function, it will
+     be re-raised by this method, wrapped in a :py:class:`CacheLoadError`
+     exception.
+
+     If a call to :py:meth:`clear` is made with `discard_loads`
+     set to true, while the loader function is loading the resource,
+     the method will raise a `CacheAbandonedError` exception as 
+     soon as the loader finishes loading.
+
+
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
