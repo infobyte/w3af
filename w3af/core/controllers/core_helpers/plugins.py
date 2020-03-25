@@ -30,7 +30,7 @@ from w3af.core.controllers.misc.get_file_list import get_file_list
 from w3af.core.controllers.misc.factory import factory
 from w3af.core.controllers.exceptions import BaseFrameworkException
 from w3af import ROOT_PATH
-import imp
+import importlib as imp
 
 
 class CorePlugins(object):
