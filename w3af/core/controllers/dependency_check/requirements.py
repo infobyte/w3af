@@ -35,7 +35,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('tblib', 'tblib', '0.2.0'),
                      PIPDependency('pdfminer', 'pdfminer', '20191125'),
                      # PIPDependency('concurrent.futures', 'futures', '3.2.0'), # @TODO
-                     PIPDependency('OpenSSL', 'pyOpenSSL', '18.0.0'),
+                     PIPDependency('OpenSSL', 'pyOpenSSL', '19.0.0'),
                      PIPDependency('ndg', 'ndg-httpsclient', '0.4.0'),
 
                      # We need 0.1.8 because of mitmproxy
@@ -49,7 +49,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('ntlm', 'python-ntlm3', '1.0.2'),
                      # PIPDependency('Halberd', 'halberd', '0.2.4'), # @TODO
                      PIPDependency('darts.lib.utils', 'darts.util.lru', '0.5'),
-                     PIPDependency('jinja2', 'Jinja2', '2.10'),
+                     PIPDependency('jinja2', 'Jinja2', '2.11.1'),
                      PIPDependency('vulndb', 'vulndb', '0.1.3'),
                      PIPDependency('markdown', 'markdown', '2.6.1'),
 
@@ -64,14 +64,14 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('termcolor', 'termcolor', '1.1.0'),
 
                      # We "outsource" the HTTP proxy feature to mitmproxy
-                     PIPDependency('mitmproxy', 'mitmproxy', '0.13'),
+                     PIPDependency('mitmproxy', 'mitmproxy', '5.0.1'),
 
                      # https://gist.github.com/andresriancho/cf2fa1ce239b30f37bd9
                      # PIPDependency('ruamel.ordereddict', 'ruamel.ordereddict', '0.4.14'), # @TODO
 
                      # Only used by the REST API, but in the future the console
                      # and GUI will consume it so it's ok to put this here
-                     PIPDependency('Flask', 'Flask', '0.10.1'),
+                     PIPDependency('Flask', 'Flask', '1.1.1'),
                      PIPDependency('yaml', 'PyYAML', '3.12'),
 
                      # tldextract extracts the tld from any domain name
