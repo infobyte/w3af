@@ -66,11 +66,6 @@ __all__ = ['AmbiguityError', 'CheckboxControl', 'Control',
            'SubmitButtonControl', 'SubmitControl', 'TextControl',
            'TextareaControl', 'XHTMLCompatibleFormParser']
 
-try: True
-except NameError:
-    True = 1
-    False = 0
-
 try: bool
 except NameError:
     def bool(expr):
