@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Halberd.crew</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="Halberd-module.html">Package&nbsp;Halberd</a> ::
+        Module&nbsp;crew
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="Halberd.crew-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="Halberd.crew-module.html">Module Halberd.crew</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: iso-8859-1 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""\</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">Work crew pattern of parallel scanners</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">======================================</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">Overview</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">--------</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">A work crew is instantiated passing a ScanTask object as a parameter, thus</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">defining the target and the way the scanning should be done. After the</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">initialization of the work crew it can be used to scan the target and get the</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">obtained clues back.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; crew = WorkCrew(scantask)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; clues = crew.scan()</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">Requirements</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">------------</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">These are the features that the WorkCrew must provide:</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    1. There are 3 different types of consumers:</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">        - Controller thread (Performs timing + error-checking).</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        - Local scanning thread.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        - Remote scanning thread.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">    2. We need a way to signal:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        - When a fatal error has happened.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        - When the user has pressed Control-C</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">Types of scanning threads</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">-------------------------</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">The WorkCrew object spawns different kinds of threads. Here's a brief summary</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">of what they do:</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    - Manager: Detects when the time for performing the scan has expired</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    and notifies the rest of the threads. This code is executed in the main</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    thread in order to be able to appropriately catch signals, etc.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">    - Scanner: Performs a load-balancer scan from the current machine.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">The following is a diagram showing the way it works::</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">                                     .--&gt; Manager --.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">                                     |              |</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">                                     +--&gt; Scanner --+</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        .----------.   .----------.  |              |   .-------.</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring"> IN --&gt; | ScanTask |-&gt;-| WorkCrew |--+--&gt; Scanner --+-&gt;-| Clues |--&gt; OUT</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        `----------'   `----------'  |              |   `-------'</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">                                     +--&gt; Scanner --+</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">                                     |              |</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">                                     `--&gt; Scanner --'</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2004, 2005, 2006, 2010  Juan M. Bello Rivas &lt;jmbr@superadditive.com&gt;</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-comment"># This program is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation; either version 2 of the License, or</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment"># along with this program; if not, write to the Free Software</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-comment"># Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">math</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">copy</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">signal</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package Halberd=Halberd-module.html"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-0', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Variable Halberd.clues.analysis.logger=Halberd.clues.analysis-module.html#logger,Module Halberd.logger=Halberd.logger-module.html"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-1');">logger</a></tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-2" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-2', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package Halberd.clues=Halberd.clues-module.html"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-3', 'clues', 'link-3');">clues</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Module Halberd.clues.Clue=Halberd.clues.Clue-module.html,Class Halberd.clues.Clue.Clue=Halberd.clues.Clue.Clue-class.html"><a title="Halberd.clues.Clue
+Halberd.clues.Clue.Clue" class="py-name" href="#" onclick="return doclink('link-4', 'Clue', 'link-4');">Clue</a></tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-5" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-5', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module Halberd.clientlib=Halberd.clientlib-module.html"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-6', 'clientlib', 'link-6');">clientlib</a></tt> <tt class="py-keyword">as</tt> <tt id="link-7" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-7', 'clientlib', 'link-6');">clientlib</a></tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-name">__all__</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'WorkCrew'</tt><tt class="py-op">]</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="ScanState"></a><div id="ScanState-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="ScanState-toggle" onclick="return toggle('ScanState');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html">ScanState</a><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ScanState-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-docstring">"""Shared state among scanner threads.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar shouldstop: Signals when the threads should stop scanning.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    @type shouldstop: C{threading.Event}</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    caught with an exception).</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="ScanState.__init__"></a><div id="ScanState.__init__-def"><a name="L97"></a><tt class="py-lineno"> 97</tt> <a class="py-toggle" href="#" id="ScanState.__init__-toggle" onclick="return toggle('ScanState.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.__init__-expanded"><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-docstring">"""Initializes shared state among scanning threads.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Lock</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">shouldstop</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Event</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__error</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__missed</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__replies</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.getStats"></a><div id="ScanState.getStats-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="ScanState.getStats-toggle" onclick="return toggle('ScanState.getStats');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#getStats">getStats</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.getStats-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.getStats-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-docstring">"""Provides statistics about the scanning process.</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Number of clues gathered so far, number of successful requests</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring">        and number of unsuccessful ones (missed replies).</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{tuple}</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-comment"># xxx - I badly need read/write locks.</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-name">nclues</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">replies</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__replies</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">missed</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__missed</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">nclues</tt><tt class="py-op">,</tt> <tt class="py-name">replies</tt><tt class="py-op">,</tt> <tt class="py-name">missed</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.insertClue"></a><div id="ScanState.insertClue-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="ScanState.insertClue-toggle" onclick="return toggle('ScanState.insertClue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#insertClue">insertClue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">clue</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.insertClue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.insertClue-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-docstring">"""Inserts a clue in the list if it is new.</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">count</tt> <tt class="py-op">=</tt> <tt class="py-name">clue</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method Halberd.clues.Clue.Clue.getCount()=Halberd.clues.Clue.Clue-class.html#getCount"><a title="Halberd.clues.Clue.Clue.getCount" class="py-name" href="#" onclick="return doclink('link-8', 'getCount', 'link-8');">getCount</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__replies</tt> <tt class="py-op">+=</tt> <tt class="py-name">count</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">            <tt class="py-name">idx</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt><tt class="py-op">.</tt><tt class="py-name">index</tt><tt class="py-op">(</tt><tt class="py-name">clue</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt><tt class="py-op">[</tt><tt class="py-name">idx</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method Halberd.clues.Clue.Clue.incCount()=Halberd.clues.Clue.Clue-class.html#incCount"><a title="Halberd.clues.Clue.Clue.incCount" class="py-name" href="#" onclick="return doclink('link-9', 'incCount', 'link-9');">incCount</a></tt><tt class="py-op">(</tt><tt class="py-name">count</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">ValueError</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">clue</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.getClues"></a><div id="ScanState.getClues-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="ScanState.getClues-toggle" onclick="return toggle('ScanState.getClues');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#getClues">getClues</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.getClues-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.getClues-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-docstring">"""Clue accessor.</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A copy of all obtained clues.</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{list}</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt id="link-10" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-10', 'clues', 'link-3');">clues</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__clues</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-11" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-11', 'clues', 'link-3');">clues</a></tt> </tt>
+</div><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.incMissed"></a><div id="ScanState.incMissed-def"><a name="L151"></a><tt class="py-lineno">151</tt> <a class="py-toggle" href="#" id="ScanState.incMissed-toggle" onclick="return toggle('ScanState.incMissed');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#incMissed">incMissed</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.incMissed-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.incMissed-expanded"><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-docstring">"""Increase the counter of missed replies.</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__missed</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.setError"></a><div id="ScanState.setError-def"><a name="L158"></a><tt class="py-lineno">158</tt> <a class="py-toggle" href="#" id="ScanState.setError-toggle" onclick="return toggle('ScanState.setError');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#setError">setError</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">err</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.setError-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.setError-expanded"><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-docstring">"""Signal an error condition.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__error</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-comment"># An error has already been signalled.</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__error</tt> <tt class="py-op">=</tt> <tt class="py-name">err</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">shouldstop</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="ScanState.getError"></a><div id="ScanState.getError-def"><a name="L170"></a><tt class="py-lineno">170</tt> <a class="py-toggle" href="#" id="ScanState.getError-toggle" onclick="return toggle('ScanState.getError');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.ScanState-class.html#getError">getError</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanState.getError-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanState.getError-expanded"><a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-docstring">"""Returns the reason of the error condition.</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-comment"># Since we don't know what the nature of __error will be, we need to</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-comment"># provide a clean copy of it to the caller so that no possible</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-comment"># references or changes to __error can affect the object we return.</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">err</tt> <tt class="py-op">=</tt> <tt class="py-name">copy</tt><tt class="py-op">.</tt><tt class="py-name">deepcopy</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__error</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__mutex</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">err</tt> </tt>
+</div></div><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="WorkCrew"></a><div id="WorkCrew-def"><a name="L183"></a><tt class="py-lineno">183</tt> <a class="py-toggle" href="#" id="WorkCrew-toggle" onclick="return toggle('WorkCrew');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html">WorkCrew</a><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WorkCrew-expanded"><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">    <tt class="py-docstring">"""Pool of scanners working in parallel.</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar task: A reference to scantask.</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-docstring">    @type task: L{ScanTask}</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar working: Indicates whether the crew is working or idle.</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">    @type working: C{bool}</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar prev: Previous SIGINT handler.</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="WorkCrew.__init__"></a><div id="WorkCrew.__init__-def"><a name="L194"></a><tt class="py-lineno">194</tt> <a class="py-toggle" href="#" id="WorkCrew.__init__-toggle" onclick="return toggle('WorkCrew.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew.__init__-expanded"><a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">workers</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name" targets="Class Halberd.crew.ScanState=Halberd.crew.ScanState-class.html"><a title="Halberd.crew.ScanState" class="py-name" href="#" onclick="return doclink('link-12', 'ScanState', 'link-12');">ScanState</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">working</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prev</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">         </tt>
+<a name="WorkCrew._setupSigHandler"></a><div id="WorkCrew._setupSigHandler-def"><a name="L204"></a><tt class="py-lineno">204</tt> <a class="py-toggle" href="#" id="WorkCrew._setupSigHandler-toggle" onclick="return toggle('WorkCrew._setupSigHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#_setupSigHandler">_setupSigHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew._setupSigHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew._setupSigHandler-expanded"><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">        <tt class="py-docstring">"""Performs what's needed to catch SIGINT.</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">interrupt</tt><tt class="py-op">(</tt><tt class="py-param">signum</tt><tt class="py-op">,</tt> <tt class="py-param">frame</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">            <tt class="py-docstring">"""SIGINT handler</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">            """</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method Halberd.crew.ScanState.setError()=Halberd.crew.ScanState-class.html#setError"><a title="Halberd.crew.ScanState.setError" class="py-name" href="#" onclick="return doclink('link-13', 'setError', 'link-13');">setError</a></tt><tt class="py-op">(</tt><tt class="py-string">'received SIGINT'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prev</tt> <tt class="py-op">=</tt> <tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">signal</tt><tt class="py-op">(</tt><tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">SIGINT</tt><tt class="py-op">,</tt> <tt class="py-name">interrupt</tt><tt class="py-op">)</tt>  </tt>
+</div><a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="WorkCrew._restoreSigHandler"></a><div id="WorkCrew._restoreSigHandler-def"><a name="L214"></a><tt class="py-lineno">214</tt> <a class="py-toggle" href="#" id="WorkCrew._restoreSigHandler-toggle" onclick="return toggle('WorkCrew._restoreSigHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#_restoreSigHandler">_restoreSigHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew._restoreSigHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew._restoreSigHandler-expanded"><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">        <tt class="py-docstring">"""Restore previous SIGINT handler.</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">        <tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">signal</tt><tt class="py-op">(</tt><tt class="py-name">signal</tt><tt class="py-op">.</tt><tt class="py-name">SIGINT</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">prev</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line"> </tt>
+<a name="WorkCrew._initLocal"></a><div id="WorkCrew._initLocal-def"><a name="L219"></a><tt class="py-lineno">219</tt> <a class="py-toggle" href="#" id="WorkCrew._initLocal-toggle" onclick="return toggle('WorkCrew._initLocal');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#_initLocal">_initLocal</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew._initLocal-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew._initLocal-expanded"><a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt class="py-docstring">"""Initializes conventional (local) scanner threads.</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">xrange</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">parallelism</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">            <tt class="py-name">worker</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name" targets="Class Halberd.crew.Scanner=Halberd.crew.Scanner-class.html"><a title="Halberd.crew.Scanner" class="py-name" href="#" onclick="return doclink('link-14', 'Scanner', 'link-14');">Scanner</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">workers</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">worker</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"> </tt>
+<a name="WorkCrew.scan"></a><div id="WorkCrew.scan-def"><a name="L226"></a><tt class="py-lineno">226</tt> <a class="py-toggle" href="#" id="WorkCrew.scan-toggle" onclick="return toggle('WorkCrew.scan');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#scan">scan</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew.scan-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew.scan-expanded"><a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">        <tt class="py-docstring">"""Perform a parallel load-balancer scan.</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">working</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method Halberd.crew.WorkCrew._setupSigHandler()=Halberd.crew.WorkCrew-class.html#_setupSigHandler"><a title="Halberd.crew.WorkCrew._setupSigHandler" class="py-name" href="#" onclick="return doclink('link-15', '_setupSigHandler', 'link-15');">_setupSigHandler</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method Halberd.crew.WorkCrew._initLocal()=Halberd.crew.WorkCrew-class.html#_initLocal"><a title="Halberd.crew.WorkCrew._initLocal" class="py-name" href="#" onclick="return doclink('link-16', '_initLocal', 'link-16');">_initLocal</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">worker</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">workers</tt><tt class="py-op">:</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">            <tt class="py-name">worker</tt><tt class="py-op">.</tt><tt class="py-name">start</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">        <tt class="py-comment"># The Manager executes in the main thread WHILE the others are working</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-comment"># so that signals are correctly caught.</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">        <tt class="py-name">manager</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name" targets="Class Halberd.crew.Manager=Halberd.crew.Manager-class.html"><a title="Halberd.crew.Manager" class="py-name" href="#" onclick="return doclink('link-17', 'Manager', 'link-17');">Manager</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">        <tt class="py-name">manager</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method Halberd.crew.BaseScanner.run()=Halberd.crew.BaseScanner-class.html#run"><a title="Halberd.crew.BaseScanner.run" class="py-name" href="#" onclick="return doclink('link-18', 'run', 'link-18');">run</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">worker</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">workers</tt><tt class="py-op">:</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">            <tt class="py-name">worker</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">        <tt class="py-comment"># Display status information for the last time.</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">        <tt class="py-name">manager</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method Halberd.crew.Manager.showStats()=Halberd.crew.Manager-class.html#showStats"><a title="Halberd.crew.Manager.showStats" class="py-name" href="#" onclick="return doclink('link-19', 'showStats', 'link-19');">showStats</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'\n\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method Halberd.crew.WorkCrew._restoreSigHandler()=Halberd.crew.WorkCrew-class.html#_restoreSigHandler"><a title="Halberd.crew.WorkCrew._restoreSigHandler" class="py-name" href="#" onclick="return doclink('link-20', '_restoreSigHandler', 'link-20');">_restoreSigHandler</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">working</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line"> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">        <tt class="py-name">err</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method Halberd.crew.ScanState.getError()=Halberd.crew.ScanState-class.html#getError"><a title="Halberd.crew.ScanState.getError" class="py-name" href="#" onclick="return doclink('link-21', 'getError', 'link-21');">getError</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">err</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">            <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stderr</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'*** finished (%s) ***\n\n'</tt> <tt class="py-op">%</tt> <tt class="py-name">err</tt><tt class="py-op">)</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line"> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method Halberd.crew.WorkCrew._getClues()=Halberd.crew.WorkCrew-class.html#_getClues"><a title="Halberd.crew.WorkCrew._getClues" class="py-name" href="#" onclick="return doclink('link-22', '_getClues', 'link-22');">_getClues</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"> </tt>
+<a name="WorkCrew._getClues"></a><div id="WorkCrew._getClues-def"><a name="L258"></a><tt class="py-lineno">258</tt> <a class="py-toggle" href="#" id="WorkCrew._getClues-toggle" onclick="return toggle('WorkCrew._getClues');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.WorkCrew-class.html#_getClues">_getClues</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WorkCrew._getClues-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WorkCrew._getClues-expanded"><a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">        <tt class="py-docstring">"""Returns a sequence of clues obtained during the scan.</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">working</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method Halberd.crew.ScanState.getClues()=Halberd.crew.ScanState-class.html#getClues"><a title="Halberd.crew.ScanState.getClues" class="py-name" href="#" onclick="return doclink('link-23', 'getClues', 'link-23');">getClues</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner"></a><div id="BaseScanner-def"><a name="L266"></a><tt class="py-lineno">266</tt> <a class="py-toggle" href="#" id="BaseScanner-toggle" onclick="return toggle('BaseScanner');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html">BaseScanner</a><tt class="py-op">(</tt><tt class="py-base-class">threading</tt><tt class="py-op">.</tt><tt class="py-base-class">Thread</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="BaseScanner-expanded"><a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">    <tt class="py-docstring">"""Base class for load balancer scanning threads.</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar timeout: Time (in seconds since the UNIX Epoch) when the scan will be</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"><tt class="py-docstring">    stopped.</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line"><tt class="py-docstring">    @type timeout: C{float}</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="BaseScanner.__init__"></a><div id="BaseScanner.__init__-def"><a name="L273"></a><tt class="py-lineno">273</tt> <a class="py-toggle" href="#" id="BaseScanner.__init__-toggle" onclick="return toggle('BaseScanner.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">state</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.__init__-expanded"><a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">        <tt class="py-docstring">"""Initializes the scanning thread.</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"><tt class="py-docstring">        @param state: Container to store the results of the scan (shared among</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line"><tt class="py-docstring">        scanning threads).</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line"><tt class="py-docstring">        @type state: C{instanceof(ScanState)}</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"><tt class="py-docstring">        @param scantask: Object providing information needed to perform the</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"><tt class="py-docstring">        scan.</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"><tt class="py-docstring">        @type scantask: C{instanceof(ScanTask)}</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">        <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Thread</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Method Halberd.ScanTask.ConfError.__init__()=Halberd.ScanTask.ConfError-class.html#__init__,Method Halberd.ScanTask.ScanTask.__init__()=Halberd.ScanTask.ScanTask-class.html#__init__,Method Halberd.clientlib.HTTPClient.__init__()=Halberd.clientlib.HTTPClient-class.html#__init__,Method Halberd.clientlib.HTTPError.__init__()=Halberd.clientlib.HTTPError-class.html#__init__,Method Halberd.clientlib.HTTPSClient.__init__()=Halberd.clientlib.HTTPSClient-class.html#__init__,Method Halberd.clues.Clue.Clue.__init__()=Halberd.clues.Clue.Clue-class.html#__init__,Method Halberd.clues.file.ClueDir.__init__()=Halberd.clues.file.ClueDir-class.html#__init__,Method Halberd.clues.file.InvalidFile.__init__()=Halberd.clues.file.InvalidFile-class.html#__init__,Method Halberd.conflib.ConfReader.__init__()=Halberd.conflib.ConfReader-class.html#__init__,Method Halberd.crew.BaseScanner.__init__()=Halberd.crew.BaseScanner-class.html#__init__,Method Halberd.crew.ScanState.__init__()=Halberd.crew.ScanState-class.html#__init__,Method Halberd.crew.WorkCrew.__init__()=Halberd.crew.WorkCrew-class.html#__init__,Method Halberd.shell.BaseStrategy.__init__()=Halberd.shell.BaseStrategy-class.html#__init__,Method Halberd.shell.ClueReaderStrategy.__init__()=Halberd.shell.ClueReaderStrategy-class.html#__init__,Method Halberd.shell.MultiScanStrategy.__init__()=Halberd.shell.MultiScanStrategy-class.html#__init__,Method Halberd.shell.ScanError.__init__()=Halberd.shell.ScanError-class.html#__init__,Method Halberd.shell.UniScanStrategy.__init__()=Halberd.shell.UniScanStrategy-class.html#__init__"><a title="Halberd.ScanTask.ConfError.__init__
+Halberd.ScanTask.ScanTask.__init__
+Halberd.clientlib.HTTPClient.__init__
+Halberd.clientlib.HTTPError.__init__
+Halberd.clientlib.HTTPSClient.__init__
+Halberd.clues.Clue.Clue.__init__
+Halberd.clues.file.ClueDir.__init__
+Halberd.clues.file.InvalidFile.__init__
+Halberd.conflib.ConfReader.__init__
+Halberd.crew.BaseScanner.__init__
+Halberd.crew.ScanState.__init__
+Halberd.crew.WorkCrew.__init__
+Halberd.shell.BaseStrategy.__init__
+Halberd.shell.ClueReaderStrategy.__init__
+Halberd.shell.MultiScanStrategy.__init__
+Halberd.shell.ScanError.__init__
+Halberd.shell.UniScanStrategy.__init__" class="py-name" href="#" onclick="return doclink('link-24', '__init__', 'link-24');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt> <tt class="py-op">=</tt> <tt class="py-name">state</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Variable Halberd.clientlib.HTTPClient.timeout=Halberd.clientlib.HTTPClient-class.html#timeout"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-25', 'timeout', 'link-25');">timeout</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-26', 'logger', 'link-1');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-27', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-28', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner.remaining"></a><div id="BaseScanner.remaining-def"><a name="L290"></a><tt class="py-lineno">290</tt> <a class="py-toggle" href="#" id="BaseScanner.remaining-toggle" onclick="return toggle('BaseScanner.remaining');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#remaining">remaining</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">end</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.remaining-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.remaining-expanded"><a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">        <tt class="py-docstring">"""Seconds left until a given point in time.</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line"><tt class="py-docstring">        @param end: Ending time.</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line"><tt class="py-docstring">        @type end: C{float}</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Remaining time until L{self.timeout}</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{int}</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">end</tt><tt class="py-op">:</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">            <tt class="py-name">end</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-29', 'timeout', 'link-25');">timeout</a></tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">end</tt> <tt class="py-op">-</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner.hasExpired"></a><div id="BaseScanner.hasExpired-def"><a name="L303"></a><tt class="py-lineno">303</tt> <a class="py-toggle" href="#" id="BaseScanner.hasExpired-toggle" onclick="return toggle('BaseScanner.hasExpired');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#hasExpired">hasExpired</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.hasExpired-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.hasExpired-expanded"><a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">        <tt class="py-docstring">"""Expiration predicate.</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"><tt class="py-docstring">        @return: True if the timeout has expired, False otherwise.</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{bool}</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method Halberd.crew.BaseScanner.remaining()=Halberd.crew.BaseScanner-class.html#remaining"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-30', 'remaining', 'link-30');">remaining</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;=</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner.setTimeout"></a><div id="BaseScanner.setTimeout-def"><a name="L311"></a><tt class="py-lineno">311</tt> <a class="py-toggle" href="#" id="BaseScanner.setTimeout-toggle" onclick="return toggle('BaseScanner.setTimeout');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#setTimeout">setTimeout</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">secs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.setTimeout-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.setTimeout-expanded"><a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">        <tt class="py-docstring">"""Compute an expiration time.</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line"><tt class="py-docstring">        @param secs: Amount of seconds to spend scanning the target.</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line"><tt class="py-docstring">        @type secs: C{int}</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The moment in time when the task expires.</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{float}</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-31', 'timeout', 'link-25');">timeout</a></tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">secs</tt> </tt>
+</div><a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner.run"></a><div id="BaseScanner.run-def"><a name="L322"></a><tt class="py-lineno">322</tt> <a class="py-toggle" href="#" id="BaseScanner.run-toggle" onclick="return toggle('BaseScanner.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.run-expanded"><a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">        <tt class="py-docstring">"""Perform the scan.</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method Halberd.crew.BaseScanner.setTimeout()=Halberd.crew.BaseScanner-class.html#setTimeout"><a title="Halberd.crew.BaseScanner.setTimeout" class="py-name" href="#" onclick="return doclink('link-32', 'setTimeout', 'link-32');">setTimeout</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">scantime</tt><tt class="py-op">)</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line"> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt class="py-name">shouldstop</tt><tt class="py-op">.</tt><tt class="py-name">isSet</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method Halberd.crew.BaseScanner.process()=Halberd.crew.BaseScanner-class.html#process,Method Halberd.crew.Manager.process()=Halberd.crew.Manager-class.html#process,Method Halberd.crew.Scanner.process()=Halberd.crew.Scanner-class.html#process"><a title="Halberd.crew.BaseScanner.process
+Halberd.crew.Manager.process
+Halberd.crew.Scanner.process" class="py-name" href="#" onclick="return doclink('link-33', 'process', 'link-33');">process</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line"> </tt>
+<a name="BaseScanner.process"></a><div id="BaseScanner.process-def"><a name="L330"></a><tt class="py-lineno">330</tt> <a class="py-toggle" href="#" id="BaseScanner.process-toggle" onclick="return toggle('BaseScanner.process');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.BaseScanner-class.html#process">process</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseScanner.process-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseScanner.process-expanded"><a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line">        <tt class="py-docstring">"""Perform a scanning task.</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line"><tt class="py-docstring">        This method should be overriden to do actual work.</tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line"> </tt>
+<a name="Scanner"></a><div id="Scanner-def"><a name="L337"></a><tt class="py-lineno">337</tt> <a class="py-toggle" href="#" id="Scanner-toggle" onclick="return toggle('Scanner');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.crew.Scanner-class.html">Scanner</a><tt class="py-op">(</tt><tt class="py-base-class">BaseScanner</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Scanner-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Scanner-expanded"><a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line">    <tt class="py-docstring">"""Scans the target host from the local machine.</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Scanner.process"></a><div id="Scanner.process-def"><a name="L340"></a><tt class="py-lineno">340</tt> <a class="py-toggle" href="#" id="Scanner.process-toggle" onclick="return toggle('Scanner.process');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.Scanner-class.html#process">process</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Scanner.process-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Scanner.process-expanded"><a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">        <tt class="py-docstring">"""Gathers clues connecting directly to the target web server.</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">        <tt class="py-name">client</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-34', 'clientlib', 'link-6');">clientlib</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Function Halberd.clientlib.clientFactory()=Halberd.clientlib-module.html#clientFactory"><a title="Halberd.clientlib.clientFactory" class="py-name" href="#" onclick="return doclink('link-35', 'clientFactory', 'link-35');">clientFactory</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line"> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line">        <tt class="py-name">fatal_exceptions</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">            <tt id="link-36" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-36', 'clientlib', 'link-6');">clientlib</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Class Halberd.clientlib.ConnectionRefused=Halberd.clientlib.ConnectionRefused-class.html"><a title="Halberd.clientlib.ConnectionRefused" class="py-name" href="#" onclick="return doclink('link-37', 'ConnectionRefused', 'link-37');">ConnectionRefused</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">            <tt id="link-38" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-38', 'clientlib', 'link-6');">clientlib</a></tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Class Halberd.clientlib.UnknownReply=Halberd.clientlib.UnknownReply-class.html"><a title="Halberd.clientlib.UnknownReply" class="py-name" href="#" onclick="return doclink('link-39', 'UnknownReply', 'link-39');">UnknownReply</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line">            <tt id="link-40" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-40', 'clientlib', 'link-6');">clientlib</a></tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Class Halberd.clientlib.HTTPSError=Halberd.clientlib.HTTPSError-class.html"><a title="Halberd.clientlib.HTTPSError" class="py-name" href="#" onclick="return doclink('link-41', 'HTTPSError', 'link-41');">HTTPSError</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line">        <tt class="py-op">)</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line"> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line">            <tt class="py-name">ts</tt><tt class="py-op">,</tt> <tt class="py-name">hdrs</tt> <tt class="py-op">=</tt> <tt class="py-name">client</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method Halberd.clientlib.HTTPClient.getHeaders()=Halberd.clientlib.HTTPClient-class.html#getHeaders"><a title="Halberd.clientlib.HTTPClient.getHeaders" class="py-name" href="#" onclick="return doclink('link-42', 'getHeaders', 'link-42');">getHeaders</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">fatal_exceptions</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">:</tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="Halberd.crew.ScanState.setError" class="py-name" href="#" onclick="return doclink('link-43', 'setError', 'link-13');">setError</a></tt><tt class="py-op">(</tt><tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt id="link-44" class="py-name"><a title="Halberd.clientlib" class="py-name" href="#" onclick="return doclink('link-44', 'clientlib', 'link-6');">clientlib</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Class Halberd.clientlib.TimedOut=Halberd.clientlib.TimedOut-class.html"><a title="Halberd.clientlib.TimedOut" class="py-name" href="#" onclick="return doclink('link-45', 'TimedOut', 'link-45');">TimedOut</a></tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">:</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Method Halberd.crew.ScanState.incMissed()=Halberd.crew.ScanState-class.html#incMissed"><a title="Halberd.crew.ScanState.incMissed" class="py-name" href="#" onclick="return doclink('link-46', 'incMissed', 'link-46');">incMissed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Method Halberd.crew.ScanState.insertClue()=Halberd.crew.ScanState-class.html#insertClue"><a title="Halberd.crew.ScanState.insertClue" class="py-name" href="#" onclick="return doclink('link-47', 'insertClue', 'link-47');">insertClue</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Method Halberd.crew.Scanner.makeClue()=Halberd.crew.Scanner-class.html#makeClue"><a title="Halberd.crew.Scanner.makeClue" class="py-name" href="#" onclick="return doclink('link-48', 'makeClue', 'link-48');">makeClue</a></tt><tt class="py-op">(</tt><tt class="py-name">ts</tt><tt class="py-op">,</tt> <tt class="py-name">hdrs</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line"> </tt>
+<a name="Scanner.makeClue"></a><div id="Scanner.makeClue-def"><a name="L360"></a><tt class="py-lineno">360</tt> <a class="py-toggle" href="#" id="Scanner.makeClue-toggle" onclick="return toggle('Scanner.makeClue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.Scanner-class.html#makeClue">makeClue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">timestamp</tt><tt class="py-op">,</tt> <tt class="py-param">headers</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Scanner.makeClue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Scanner.makeClue-expanded"><a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">        <tt class="py-docstring">"""Compose a clue object.</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line"><tt class="py-docstring">        @param timestamp: Time when the reply was received.</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line"><tt class="py-docstring">        @type timestamp: C{float}</tt> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line"><tt class="py-docstring">        @param headers: MIME headers coming from an HTTP response.</tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line"><tt class="py-docstring">        @type headers: C{str}</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A valid clue</tt> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{Clue}</tt> </tt>
+<a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L372"></a><tt class="py-lineno">372</tt>  <tt class="py-line">        <tt class="py-name">clue</tt> <tt class="py-op">=</tt> <tt id="link-49" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-49', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-50', 'clues', 'link-3');">clues</a></tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="Halberd.clues.Clue
+Halberd.clues.Clue.Clue" class="py-name" href="#" onclick="return doclink('link-51', 'Clue', 'link-4');">Clue</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="Halberd.clues.Clue
+Halberd.clues.Clue.Clue" class="py-name" href="#" onclick="return doclink('link-52', 'Clue', 'link-4');">Clue</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line">        <tt class="py-name">clue</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Method Halberd.clues.Clue.Clue.setTimestamp()=Halberd.clues.Clue.Clue-class.html#setTimestamp"><a title="Halberd.clues.Clue.Clue.setTimestamp" class="py-name" href="#" onclick="return doclink('link-53', 'setTimestamp', 'link-53');">setTimestamp</a></tt><tt class="py-op">(</tt><tt class="py-name">timestamp</tt><tt class="py-op">)</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line">        <tt class="py-name">clue</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Method Halberd.clues.Clue.Clue.parse()=Halberd.clues.Clue.Clue-class.html#parse,Method Halberd.conflib.ConfReader.parse()=Halberd.conflib.ConfReader-class.html#parse"><a title="Halberd.clues.Clue.Clue.parse
+Halberd.conflib.ConfReader.parse" class="py-name" href="#" onclick="return doclink('link-54', 'parse', 'link-54');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">headers</tt><tt class="py-op">)</tt> </tt>
+<a name="L375"></a><tt class="py-lineno">375</tt>  <tt class="py-line"> </tt>
+<a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">clue</tt> </tt>
+</div></div><a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line"> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line"> </tt>
+<a name="Manager"></a><div id="Manager-def"><a name="L379"></a><tt class="py-lineno">379</tt> <a class="py-toggle" href="#" id="Manager-toggle" onclick="return toggle('Manager');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.crew.Manager-class.html">Manager</a><tt class="py-op">(</tt><tt class="py-base-class">BaseScanner</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Manager-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Manager-expanded"><a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line">    <tt class="py-docstring">"""Performs management tasks during the scan.</tt> </tt>
+<a name="L381"></a><tt class="py-lineno">381</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L382"></a><tt class="py-lineno">382</tt>  <tt class="py-line">    <tt class="py-comment"># Indicates how often the state must be refreshed (in seconds).</tt> </tt>
+<a name="L383"></a><tt class="py-lineno">383</tt>  <tt class="py-line">    <tt id="link-55" class="py-name" targets="Variable Halberd.crew.Manager.refresh_interval=Halberd.crew.Manager-class.html#refresh_interval"><a title="Halberd.crew.Manager.refresh_interval" class="py-name" href="#" onclick="return doclink('link-55', 'refresh_interval', 'link-55');">refresh_interval</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0.25</tt> </tt>
+<a name="L384"></a><tt class="py-lineno">384</tt>  <tt class="py-line"> </tt>
+<a name="Manager.process"></a><div id="Manager.process-def"><a name="L385"></a><tt class="py-lineno">385</tt> <a class="py-toggle" href="#" id="Manager.process-toggle" onclick="return toggle('Manager.process');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.Manager-class.html#process">process</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Manager.process-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Manager.process-expanded"><a name="L386"></a><tt class="py-lineno">386</tt>  <tt class="py-line">        <tt class="py-docstring">"""Controls the whole scanning process.</tt> </tt>
+<a name="L387"></a><tt class="py-lineno">387</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L388"></a><tt class="py-lineno">388</tt>  <tt class="py-line"><tt class="py-docstring">        This method checks when the timeout has expired and notifies the rest</tt> </tt>
+<a name="L389"></a><tt class="py-lineno">389</tt>  <tt class="py-line"><tt class="py-docstring">        of the scanning threads that they should stop. It also displays (in</tt> </tt>
+<a name="L390"></a><tt class="py-lineno">390</tt>  <tt class="py-line"><tt class="py-docstring">        case the user asked for it) detailed information regarding the process.</tt> </tt>
+<a name="L391"></a><tt class="py-lineno">391</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L392"></a><tt class="py-lineno">392</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="Halberd.crew.Manager.showStats" class="py-name" href="#" onclick="return doclink('link-56', 'showStats', 'link-19');">showStats</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L393"></a><tt class="py-lineno">393</tt>  <tt class="py-line"> </tt>
+<a name="L394"></a><tt class="py-lineno">394</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method Halberd.crew.BaseScanner.hasExpired()=Halberd.crew.BaseScanner-class.html#hasExpired"><a title="Halberd.crew.BaseScanner.hasExpired" class="py-name" href="#" onclick="return doclink('link-57', 'hasExpired', 'link-57');">hasExpired</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L395"></a><tt class="py-lineno">395</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt class="py-name">shouldstop</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L396"></a><tt class="py-lineno">396</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L397"></a><tt class="py-lineno">397</tt>  <tt class="py-line">            <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="Halberd.crew.Manager.refresh_interval" class="py-name" href="#" onclick="return doclink('link-58', 'refresh_interval', 'link-55');">refresh_interval</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L398"></a><tt class="py-lineno">398</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt><tt class="py-op">:</tt> </tt>
+<a name="L399"></a><tt class="py-lineno">399</tt>  <tt class="py-line">            <tt class="py-comment"># Catch interrupted system call exception (it happens when</tt> </tt>
+<a name="L400"></a><tt class="py-lineno">400</tt>  <tt class="py-line">            <tt class="py-comment"># CONTROL-C is pressed on win32 systems).</tt> </tt>
+<a name="L401"></a><tt class="py-lineno">401</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt class="py-name">shouldstop</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L402"></a><tt class="py-lineno">402</tt>  <tt class="py-line"> </tt>
+<a name="Manager.showStats"></a><div id="Manager.showStats-def"><a name="L403"></a><tt class="py-lineno">403</tt> <a class="py-toggle" href="#" id="Manager.showStats-toggle" onclick="return toggle('Manager.showStats');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.crew.Manager-class.html#showStats">showStats</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Manager.showStats-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Manager.showStats-expanded"><a name="L404"></a><tt class="py-lineno">404</tt>  <tt class="py-line">        <tt class="py-docstring">"""Displays certain statistics while the scan is happening.</tt> </tt>
+<a name="L405"></a><tt class="py-lineno">405</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L406"></a><tt class="py-lineno">406</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> </tt>
+<a name="L407"></a><tt class="py-lineno">407</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L408"></a><tt class="py-lineno">408</tt>  <tt class="py-line"> </tt>
+<a name="L409"></a><tt class="py-lineno">409</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">statbar</tt><tt class="py-op">(</tt><tt class="py-param">elapsed</tt><tt class="py-op">,</tt> <tt class="py-param">total</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L410"></a><tt class="py-lineno">410</tt>  <tt class="py-line">            <tt class="py-docstring">"""Compose a status bar string showing progress.</tt> </tt>
+<a name="L411"></a><tt class="py-lineno">411</tt>  <tt class="py-line"><tt class="py-docstring">            """</tt> </tt>
+<a name="L412"></a><tt class="py-lineno">412</tt>  <tt class="py-line">            <tt class="py-name">done</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">floor</tt><tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">total</tt> <tt class="py-op">-</tt> <tt class="py-name">elapsed</tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">total</tt> <tt class="py-op">*</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L413"></a><tt class="py-lineno">413</tt>  <tt class="py-line">            <tt class="py-name">notdone</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">ceil</tt><tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">elapsed</tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">total</tt> <tt class="py-op">*</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L414"></a><tt class="py-lineno">414</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-string">'['</tt> <tt class="py-op">+</tt> <tt class="py-string">'#'</tt> <tt class="py-op">*</tt> <tt class="py-name">done</tt> <tt class="py-op">+</tt> <tt class="py-string">' '</tt> <tt class="py-op">*</tt> <tt class="py-name">notdone</tt> <tt class="py-op">+</tt> <tt class="py-string">']'</tt> </tt>
+</div><a name="L415"></a><tt class="py-lineno">415</tt>  <tt class="py-line"> </tt>
+<a name="L416"></a><tt class="py-lineno">416</tt>  <tt class="py-line">        <tt class="py-name">nclues</tt><tt class="py-op">,</tt> <tt class="py-name">replies</tt><tt class="py-op">,</tt> <tt class="py-name">missed</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">state</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name" targets="Method Halberd.crew.ScanState.getStats()=Halberd.crew.ScanState-class.html#getStats"><a title="Halberd.crew.ScanState.getStats" class="py-name" href="#" onclick="return doclink('link-59', 'getStats', 'link-59');">getStats</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L417"></a><tt class="py-lineno">417</tt>  <tt class="py-line"> </tt>
+<a name="L418"></a><tt class="py-lineno">418</tt>  <tt class="py-line">        <tt class="py-comment"># We put a lower bound on the remaining time.</tt> </tt>
+<a name="L419"></a><tt class="py-lineno">419</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-60', 'remaining', 'link-30');">remaining</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L420"></a><tt class="py-lineno">420</tt>  <tt class="py-line">            <tt id="link-61" class="py-name"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-61', 'remaining', 'link-30');">remaining</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L421"></a><tt class="py-lineno">421</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L422"></a><tt class="py-lineno">422</tt>  <tt class="py-line">            <tt id="link-62" class="py-name"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-62', 'remaining', 'link-30');">remaining</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-63', 'remaining', 'link-30');">remaining</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L423"></a><tt class="py-lineno">423</tt>  <tt class="py-line"> </tt>
+<a name="L424"></a><tt class="py-lineno">424</tt>  <tt class="py-line">        <tt class="py-name">statusline</tt> <tt class="py-op">=</tt> <tt class="py-string">'\r'</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt><tt class="py-op">.</tt><tt class="py-name">ljust</tt><tt class="py-op">(</tt><tt class="py-number">15</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L425"></a><tt class="py-lineno">425</tt>  <tt class="py-line">                    <tt class="py-string">'  %s  clues: %3d | replies: %3d | missed: %3d'</tt> \ </tt>
+<a name="L426"></a><tt class="py-lineno">426</tt>  <tt class="py-line">                    <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">statbar</tt><tt class="py-op">(</tt><tt id="link-64" class="py-name"><a title="Halberd.crew.BaseScanner.remaining" class="py-name" href="#" onclick="return doclink('link-64', 'remaining', 'link-30');">remaining</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">scantime</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L427"></a><tt class="py-lineno">427</tt>  <tt class="py-line">                       <tt class="py-name">nclues</tt><tt class="py-op">,</tt> <tt class="py-name">replies</tt><tt class="py-op">,</tt> <tt class="py-name">missed</tt><tt class="py-op">)</tt> </tt>
+<a name="L428"></a><tt class="py-lineno">428</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">statusline</tt><tt class="py-op">)</tt> </tt>
+<a name="L429"></a><tt class="py-lineno">429</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt class="py-name">flush</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L430"></a><tt class="py-lineno">430</tt>  <tt class="py-line"> </tt>
+<a name="L431"></a><tt class="py-lineno">431</tt>  <tt class="py-line"> </tt>
+<a name="L432"></a><tt class="py-lineno">432</tt>  <tt class="py-line"><tt class="py-comment"># vim: ts=4 sw=4 et</tt> </tt>
+<a name="L433"></a><tt class="py-lineno">433</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Aug 14 15:09:28 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

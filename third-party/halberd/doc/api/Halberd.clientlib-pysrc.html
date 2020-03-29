@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Halberd.clientlib</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="Halberd-module.html">Package&nbsp;Halberd</a> ::
+        Module&nbsp;clientlib
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="Halberd.clientlib-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="Halberd.clientlib-module.html">Module Halberd.clientlib</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: iso-8859-1 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""HTTP/HTTPS client module.</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">@var default_timeout: Default timeout for socket operations.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">@type default_timeout: C{float}</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">@var default_bufsize: Default number of bytes to try to read from the network.</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">@type default_bufsize: C{int}</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">@var default_template: Request template, must be filled by L{HTTPClient}</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">@type default_template: C{str}</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2004, 2005, 2006, 2010  Juan M. Bello Rivas &lt;jmbr@superadditive.com&gt;</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># This program is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation; either version 2 of the License, or</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># along with this program; if not, write to the Free Software</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-comment"># Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">urlparse</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">itertools</tt> <tt class="py-keyword">import</tt> <tt class="py-name">takewhile</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package Halberd=Halberd-module.html"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-0', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module Halberd.ScanTask=Halberd.ScanTask-module.html,Class Halberd.ScanTask.ScanTask=Halberd.ScanTask.ScanTask-class.html"><a title="Halberd.ScanTask
+Halberd.ScanTask.ScanTask" class="py-name" href="#" onclick="return doclink('link-1', 'ScanTask', 'link-1');">ScanTask</a></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable Halberd.clientlib.default_timeout=Halberd.clientlib-module.html#default_timeout"><a title="Halberd.clientlib.default_timeout" class="py-name" href="#" onclick="return doclink('link-2', 'default_timeout', 'link-2');">default_timeout</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable Halberd.clientlib.default_bufsize=Halberd.clientlib-module.html#default_bufsize"><a title="Halberd.clientlib.default_bufsize" class="py-name" href="#" onclick="return doclink('link-3', 'default_bufsize', 'link-3');">default_bufsize</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1024</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-comment"># WARNING - Changing the HTTP request method in the following template will</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-comment"># require updating tests/test_clientlib.py accordingly.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable Halberd.clientlib.default_template=Halberd.clientlib-module.html#default_template"><a title="Halberd.clientlib.default_template" class="py-name" href="#" onclick="return doclink('link-4', 'default_template', 'link-4');">default_template</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""\</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-string">GET %(request)s HTTP/1.1\r\n\</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-string">Host: %(hostname)s%(port)s\r\n\</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-string">Pragma: no-cache\r\n\</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-string">Cache-control: no-cache\r\n\</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-string">User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20050414 Firefox/1.0.3\r\n\</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-string">Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg,\</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-string"> application/x-shockwave-flash, */*\r\n\</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-string">Accept-Language: en-us,en;q=0.5\r\n\</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-string">Accept-Encoding: gzip,deflate\r\n\</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-string">Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7\r\n\</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-string">Keep-Alive: 300\r\n\</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-string">Connection: keep-alive\r\n\r\n\</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="HTTPError"></a><div id="HTTPError-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="HTTPError-toggle" onclick="return toggle('HTTPError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPError-class.html">HTTPError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HTTPError-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-docstring">"""Generic HTTP exception"""</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="HTTPError.__init__"></a><div id="HTTPError.__init__-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="HTTPError.__init__-toggle" onclick="return toggle('HTTPError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPError.__init__-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="HTTPError.__str__"></a><div id="HTTPError.__str__-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="HTTPError.__str__-toggle" onclick="return toggle('HTTPError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPError.__str__-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="HTTPError.__deepcopy__"></a><div id="HTTPError.__deepcopy__-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="HTTPError.__deepcopy__-toggle" onclick="return toggle('HTTPError.__deepcopy__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPError-class.html#__deepcopy__">__deepcopy__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">memo</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPError.__deepcopy__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPError.__deepcopy__-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> </tt>
+</div></div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="HTTPSError"></a><div id="HTTPSError-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="HTTPSError-toggle" onclick="return toggle('HTTPSError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPSError-class.html">HTTPSError</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPSError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HTTPSError-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-docstring">"""Generic HTTPS exception"""</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="InvalidURL"></a><div id="InvalidURL-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="InvalidURL-toggle" onclick="return toggle('InvalidURL');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.InvalidURL-class.html">InvalidURL</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidURL-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InvalidURL-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-docstring">"""Invalid or unsupported URL"""</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="TimedOut"></a><div id="TimedOut-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="TimedOut-toggle" onclick="return toggle('TimedOut');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.TimedOut-class.html">TimedOut</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TimedOut-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TimedOut-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-docstring">"""Operation timed out"""</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="ConnectionRefused"></a><div id="ConnectionRefused-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="ConnectionRefused-toggle" onclick="return toggle('ConnectionRefused');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.ConnectionRefused-class.html">ConnectionRefused</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ConnectionRefused-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ConnectionRefused-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-docstring">"""Unable to reach webserver"""</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="UnknownReply"></a><div id="UnknownReply-def"><a name="L87"></a><tt class="py-lineno"> 87</tt> <a class="py-toggle" href="#" id="UnknownReply-toggle" onclick="return toggle('UnknownReply');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.UnknownReply-class.html">UnknownReply</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnknownReply-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UnknownReply-expanded"><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">    <tt class="py-docstring">"""The remote host didn't return an HTTP reply"""</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient"></a><div id="HTTPClient-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="HTTPClient-toggle" onclick="return toggle('HTTPClient');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html">HTTPClient</a><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HTTPClient-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-docstring">"""Special-purpose HTTP client.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar timeout: Timeout for socket operations (expressed in seconds).</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    B{WARNING}: changing this value is strongly discouraged.</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    @type timeout: C{float}</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar bufsize: Buffer size for network I/O.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">    @type bufsize: C{int}</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar template: Template of the HTTP request to be sent to the target.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">    @type template: C{str}</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar _recv: Reference to a callable responsible from reading data from the</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-docstring">    network.</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt class="py-docstring">    @type _recv: C{callable}</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Variable Halberd.clientlib.HTTPClient.timeout=Halberd.clientlib.HTTPClient-class.html#timeout"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-5', 'timeout', 'link-5');">timeout</a></tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="Halberd.clientlib.default_timeout" class="py-name" href="#" onclick="return doclink('link-6', 'default_timeout', 'link-2');">default_timeout</a></tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt id="link-7" class="py-name" targets="Variable Halberd.clientlib.HTTPClient.bufsize=Halberd.clientlib.HTTPClient-class.html#bufsize"><a title="Halberd.clientlib.HTTPClient.bufsize" class="py-name" href="#" onclick="return doclink('link-7', 'bufsize', 'link-7');">bufsize</a></tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="Halberd.clientlib.default_bufsize" class="py-name" href="#" onclick="return doclink('link-8', 'default_bufsize', 'link-3');">default_bufsize</a></tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt id="link-9" class="py-name" targets="Variable Halberd.clientlib.HTTPClient.template=Halberd.clientlib.HTTPClient-class.html#template"><a title="Halberd.clientlib.HTTPClient.template" class="py-name" href="#" onclick="return doclink('link-9', 'template', 'link-9');">template</a></tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="Halberd.clientlib.default_template" class="py-name" href="#" onclick="return doclink('link-10', 'default_template', 'link-4');">default_template</a></tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient.__init__"></a><div id="HTTPClient.__init__-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="HTTPClient.__init__-toggle" onclick="return toggle('HTTPClient.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient.__init__-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-docstring">"""Initializes the object.</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schemes</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'http'</tt><tt class="py-op">]</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">default_port</tt> <tt class="py-op">=</tt> <tt class="py-number">80</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-comment"># _timeout_exceptions MUST be converted to a tuple before using it with</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-comment"># except.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_timeout_exceptions</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-11', 'timeout', 'link-5');">timeout</a></tt><tt class="py-op">]</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">socket</tt><tt class="py-op">(</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">AF_INET</tt><tt class="py-op">,</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">SOCK_STREAM</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">.</tt><tt class="py-name">settimeout</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-12', 'timeout', 'link-5');">timeout</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_recv</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">.</tt><tt class="py-name">recv</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient.getHeaders"></a><div id="HTTPClient.getHeaders-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="HTTPClient.getHeaders-toggle" onclick="return toggle('HTTPClient.getHeaders');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#getHeaders">getHeaders</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">address</tt><tt class="py-op">,</tt> <tt class="py-param">urlstr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient.getHeaders-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient.getHeaders-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-docstring">"""Talk to the target webserver and fetch MIME headers.</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring">        @param address: The target's network address.</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        @type address: C{tuple}</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-docstring">        @param urlstr: URL to use.</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">        @type urlstr: C{str}</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The time when the client started reading the server's response</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">        and the MIME headers that were sent.</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{tuple}</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method Halberd.clientlib.HTTPClient._putRequest()=Halberd.clientlib.HTTPClient-class.html#_putRequest"><a title="Halberd.clientlib.HTTPClient._putRequest" class="py-name" href="#" onclick="return doclink('link-13', '_putRequest', 'link-13');">_putRequest</a></tt><tt class="py-op">(</tt><tt class="py-name">address</tt><tt class="py-op">,</tt> <tt class="py-name">urlstr</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-name">timestamp</tt><tt class="py-op">,</tt> <tt class="py-name">headers</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method Halberd.clientlib.HTTPClient._getReply()=Halberd.clientlib.HTTPClient-class.html#_getReply"><a title="Halberd.clientlib.HTTPClient._getReply" class="py-name" href="#" onclick="return doclink('link-14', '_getReply', 'link-14');">_getReply</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">headers</tt><tt class="py-op">:</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-comment"># Remove HTTP response and leave only the MIME headers.</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">headers</tt> <tt class="py-op">=</tt> <tt class="py-name">headers</tt><tt class="py-op">.</tt><tt class="py-name">splitlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">headers</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">takewhile</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">x</tt><tt class="py-op">:</tt> <tt class="py-name">x</tt> <tt class="py-op">!=</tt> <tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-name">headers</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">headers</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'\r\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-name">headers</tt> <tt class="py-op">=</tt> <tt class="py-string">'\r\n'</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">headers</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">timestamp</tt><tt class="py-op">,</tt> <tt class="py-name">headers</tt> </tt>
+</div><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._putRequest"></a><div id="HTTPClient._putRequest-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="HTTPClient._putRequest-toggle" onclick="return toggle('HTTPClient._putRequest');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_putRequest">_putRequest</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">address</tt><tt class="py-op">,</tt> <tt class="py-param">urlstr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._putRequest-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._putRequest-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-docstring">"""Sends an HTTP request to the target webserver.</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"><tt class="py-docstring">        This method connects to the target server, sends the HTTP request and</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"><tt class="py-docstring">        records a timestamp.</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        @param address: Target address.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        @type address: C{str}</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        @param urlstr: A valid Unified Resource Locator.</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-docstring">        @type urlstr: C{str}</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">        @raise InvalidURL: In case the URL scheme is not HTTP or HTTPS</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-docstring">        @raise ConnectionRefused: If it can't reach the target webserver.</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt class="py-docstring">        @raise TimedOut: If we cannot send the data within the specified time.</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-name">scheme</tt><tt class="py-op">,</tt> <tt class="py-name">netloc</tt><tt class="py-op">,</tt> <tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">params</tt><tt class="py-op">,</tt> <tt class="py-name">query</tt><tt class="py-op">,</tt> <tt class="py-name">fragment</tt> <tt class="py-op">=</tt> <tt class="py-name">urlparse</tt><tt class="py-op">.</tt><tt class="py-name">urlparse</tt><tt class="py-op">(</tt><tt class="py-name">urlstr</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">scheme</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schemes</tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-15" class="py-name" targets="Class Halberd.clientlib.InvalidURL=Halberd.clientlib.InvalidURL-class.html"><a title="Halberd.clientlib.InvalidURL" class="py-name" href="#" onclick="return doclink('link-15', 'InvalidURL', 'link-15');">InvalidURL</a></tt><tt class="py-op">,</tt> <tt class="py-string">'%s is not a supported protocol'</tt> <tt class="py-op">%</tt> <tt class="py-name">scheme</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method Halberd.clientlib.HTTPClient._getHostAndPort()=Halberd.clientlib.HTTPClient-class.html#_getHostAndPort"><a title="Halberd.clientlib.HTTPClient._getHostAndPort" class="py-name" href="#" onclick="return doclink('link-16', '_getHostAndPort', 'link-16');">_getHostAndPort</a></tt><tt class="py-op">(</tt><tt class="py-name">netloc</tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">        <tt class="py-comment"># NOTE: address and hostname may not be the same. The caller is</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-comment"># responsible for checking that.</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">             </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-name">req</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method Halberd.clientlib.HTTPClient._fillTemplate()=Halberd.clientlib.HTTPClient-class.html#_fillTemplate"><a title="Halberd.clientlib.HTTPClient._fillTemplate" class="py-name" href="#" onclick="return doclink('link-17', '_fillTemplate', 'link-17');">_fillTemplate</a></tt><tt class="py-op">(</tt><tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">,</tt> <tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">params</tt><tt class="py-op">,</tt> <tt class="py-name">query</tt><tt class="py-op">,</tt> <tt class="py-name">fragment</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method Halberd.clientlib.HTTPClient._connect()=Halberd.clientlib.HTTPClient-class.html#_connect,Method Halberd.clientlib.HTTPSClient._connect()=Halberd.clientlib.HTTPSClient-class.html#_connect"><a title="Halberd.clientlib.HTTPClient._connect
+Halberd.clientlib.HTTPSClient._connect" class="py-name" href="#" onclick="return doclink('link-18', '_connect', 'link-18');">_connect</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">address</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method Halberd.clientlib.HTTPClient._sendAll()=Halberd.clientlib.HTTPClient-class.html#_sendAll,Method Halberd.clientlib.HTTPSClient._sendAll()=Halberd.clientlib.HTTPSClient-class.html#_sendAll"><a title="Halberd.clientlib.HTTPClient._sendAll
+Halberd.clientlib.HTTPSClient._sendAll" class="py-name" href="#" onclick="return doclink('link-19', '_sendAll', 'link-19');">_sendAll</a></tt><tt class="py-op">(</tt><tt class="py-name">req</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._getHostAndPort"></a><div id="HTTPClient._getHostAndPort-def"><a name="L184"></a><tt class="py-lineno">184</tt> <a class="py-toggle" href="#" id="HTTPClient._getHostAndPort-toggle" onclick="return toggle('HTTPClient._getHostAndPort');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_getHostAndPort">_getHostAndPort</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">netloc</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._getHostAndPort-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._getHostAndPort-expanded"><a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">        <tt class="py-docstring">"""Determine the hostname and port to connect to from an URL</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-docstring">        @param netloc: Relevant part of the parsed URL.</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-docstring">        @type netloc: C{str}</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Hostname (C{str}) and port (C{int})</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{tuple}</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">            <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">portnum</tt> <tt class="py-op">=</tt> <tt class="py-name">netloc</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">':'</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">ValueError</tt><tt class="py-op">:</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">            <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">netloc</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">default_port</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">portnum</tt><tt class="py-op">.</tt><tt class="py-name">isdigit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">                <tt class="py-name">port</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">portnum</tt><tt class="py-op">)</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt id="link-20" class="py-name"><a title="Halberd.clientlib.InvalidURL" class="py-name" href="#" onclick="return doclink('link-20', 'InvalidURL', 'link-15');">InvalidURL</a></tt><tt class="py-op">,</tt> <tt class="py-string">'%s is not a valid port number'</tt> <tt class="py-op">%</tt> <tt class="py-name">portnum</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line"> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">port</tt> </tt>
+</div><a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._fillTemplate"></a><div id="HTTPClient._fillTemplate-def"><a name="L205"></a><tt class="py-lineno">205</tt> <a class="py-toggle" href="#" id="HTTPClient._fillTemplate-toggle" onclick="return toggle('HTTPClient._fillTemplate');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_fillTemplate">_fillTemplate</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">hostname</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">,</tt> <tt class="py-param">params</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-param">query</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-param">fragment</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._fillTemplate-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._fillTemplate-expanded"><a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">        <tt class="py-docstring">"""Fills the request template with relevant information.</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt class="py-docstring">        @param hostname: Target host to reach.</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring">        @type hostname: C{str}</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt class="py-docstring">        @param port: Remote port.</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring">        @type port: C{int}</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line"><tt class="py-docstring">        @param url: URL to use as source.</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"><tt class="py-docstring">        @type url: C{str}</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A request ready to be sent</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{str}</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt class="py-name">urlstr</tt> <tt class="py-op">=</tt> <tt class="py-name">url</tt> <tt class="py-keyword">or</tt> <tt class="py-string">'/'</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">params</tt><tt class="py-op">:</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">            <tt class="py-name">urlstr</tt> <tt class="py-op">+=</tt> <tt class="py-string">';'</tt> <tt class="py-op">+</tt> <tt class="py-name">params</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">query</tt><tt class="py-op">:</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">            <tt class="py-name">urlstr</tt> <tt class="py-op">+=</tt> <tt class="py-string">'?'</tt> <tt class="py-op">+</tt> <tt class="py-name">query</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">fragment</tt><tt class="py-op">:</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">            <tt class="py-name">urlstr</tt> <tt class="py-op">+=</tt> <tt class="py-string">'#'</tt> <tt class="py-op">+</tt> <tt class="py-name">fragment</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">port</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">default_port</tt><tt class="py-op">:</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">            <tt class="py-name">p</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">            <tt class="py-name">p</tt> <tt class="py-op">=</tt> <tt class="py-string">':'</tt> <tt class="py-op">+</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">port</tt><tt class="py-op">)</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-name">values</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'request'</tt><tt class="py-op">:</tt> <tt class="py-name">urlstr</tt><tt class="py-op">,</tt> <tt class="py-string">'hostname'</tt><tt class="py-op">:</tt> <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-string">'port'</tt><tt class="py-op">:</tt> <tt class="py-name">p</tt><tt class="py-op">}</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line"> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="Halberd.clientlib.HTTPClient.template" class="py-name" href="#" onclick="return doclink('link-21', 'template', 'link-9');">template</a></tt> <tt class="py-op">%</tt> <tt class="py-name">values</tt> </tt>
+</div><a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._connect"></a><div id="HTTPClient._connect-def"><a name="L237"></a><tt class="py-lineno">237</tt> <a class="py-toggle" href="#" id="HTTPClient._connect-toggle" onclick="return toggle('HTTPClient._connect');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_connect">_connect</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">addr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._connect-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._connect-expanded"><a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-docstring">"""Connect to the target address.</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line"><tt class="py-docstring">        @param addr: The target's address.</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"><tt class="py-docstring">        @type addr: C{tuple}</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line"><tt class="py-docstring">        @raise ConnectionRefused: If it can't reach the target webserver.</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">.</tt><tt class="py-name">connect</tt><tt class="py-op">(</tt><tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">:</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-22" class="py-name" targets="Class Halberd.clientlib.ConnectionRefused=Halberd.clientlib.ConnectionRefused-class.html"><a title="Halberd.clientlib.ConnectionRefused" class="py-name" href="#" onclick="return doclink('link-22', 'ConnectionRefused', 'link-22');">ConnectionRefused</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Connection refused'</tt> </tt>
+</div><a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._sendAll"></a><div id="HTTPClient._sendAll-def"><a name="L250"></a><tt class="py-lineno">250</tt> <a class="py-toggle" href="#" id="HTTPClient._sendAll-toggle" onclick="return toggle('HTTPClient._sendAll');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_sendAll">_sendAll</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._sendAll-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._sendAll-expanded"><a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">        <tt class="py-docstring">"""Sends a string to the socket.</tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">.</tt><tt class="py-name">sendall</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-23', 'timeout', 'link-5');">timeout</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-24" class="py-name" targets="Class Halberd.clientlib.TimedOut=Halberd.clientlib.TimedOut-class.html"><a title="Halberd.clientlib.TimedOut" class="py-name" href="#" onclick="return doclink('link-24', 'TimedOut', 'link-24');">TimedOut</a></tt><tt class="py-op">,</tt> <tt class="py-string">'timed out while writing to the network'</tt> </tt>
+</div><a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient._getReply"></a><div id="HTTPClient._getReply-def"><a name="L258"></a><tt class="py-lineno">258</tt> <a class="py-toggle" href="#" id="HTTPClient._getReply-toggle" onclick="return toggle('HTTPClient._getReply');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#_getReply">_getReply</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient._getReply-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient._getReply-expanded"><a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">        <tt class="py-docstring">"""Read a reply from the server.</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Time when the data started arriving plus the received data.</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: C{tuple}</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring">        @raise UnknownReply: If the remote server doesn't return a valid HTTP</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"><tt class="py-docstring">        reply.</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line"><tt class="py-docstring">        @raise TimedOut: In case reading from the network takes too much time.</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">        <tt class="py-name">timestamp</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">        <tt class="py-name">stoptime</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="Halberd.clientlib.HTTPClient.timeout" class="py-name" href="#" onclick="return doclink('link-25', 'timeout', 'link-5');">timeout</a></tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">stoptime</tt><tt class="py-op">:</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">                <tt class="py-name">chunk</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_recv</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="Halberd.clientlib.HTTPClient.bufsize" class="py-name" href="#" onclick="return doclink('link-26', 'bufsize', 'link-7');">bufsize</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">tuple</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_timeout_exceptions</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">:</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt id="link-27" class="py-name"><a title="Halberd.clientlib.TimedOut" class="py-name" href="#" onclick="return doclink('link-27', 'TimedOut', 'link-24');">TimedOut</a></tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">     </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">chunk</tt><tt class="py-op">:</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">                <tt class="py-comment"># The remote end closed the connection.</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">timestamp</tt><tt class="py-op">:</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">                <tt class="py-name">timestamp</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line"> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">            <tt class="py-name">data</tt> <tt class="py-op">+=</tt> <tt class="py-name">chunk</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">            <tt class="py-name">idx</tt> <tt class="py-op">=</tt> <tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">find</tt><tt class="py-op">(</tt><tt class="py-string">'\r\n\r\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">idx</tt> <tt class="py-op">!=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">                <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-name">idx</tt><tt class="py-op">]</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">startswith</tt><tt class="py-op">(</tt><tt class="py-string">'HTTP/'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-28" class="py-name" targets="Class Halberd.clientlib.UnknownReply=Halberd.clientlib.UnknownReply-class.html"><a title="Halberd.clientlib.UnknownReply" class="py-name" href="#" onclick="return doclink('link-28', 'UnknownReply', 'link-28');">UnknownReply</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Invalid protocol'</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line"> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">timestamp</tt><tt class="py-op">,</tt> <tt class="py-name">data</tt> </tt>
+</div><a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line"> </tt>
+<a name="HTTPClient.__del__"></a><div id="HTTPClient.__del__-def"><a name="L295"></a><tt class="py-lineno">295</tt> <a class="py-toggle" href="#" id="HTTPClient.__del__-toggle" onclick="return toggle('HTTPClient.__del__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPClient-class.html#__del__">__del__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPClient.__del__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPClient.__del__-expanded"><a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">:</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Method Halberd.conflib.ConfReader.close()=Halberd.conflib.ConfReader-class.html#close"><a title="Halberd.conflib.ConfReader.close" class="py-name" href="#" onclick="return doclink('link-29', 'close', 'link-29');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line"> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"> </tt>
+<a name="HTTPSClient"></a><div id="HTTPSClient-def"><a name="L300"></a><tt class="py-lineno">300</tt> <a class="py-toggle" href="#" id="HTTPSClient-toggle" onclick="return toggle('HTTPSClient');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPSClient-class.html">HTTPSClient</a><tt class="py-op">(</tt><tt class="py-base-class">HTTPClient</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPSClient-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="HTTPSClient-expanded"><a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">    <tt class="py-docstring">"""Special-purpose HTTPS client.</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line"> </tt>
+<a name="HTTPSClient.__init__"></a><div id="HTTPSClient.__init__-def"><a name="L304"></a><tt class="py-lineno">304</tt> <a class="py-toggle" href="#" id="HTTPSClient.__init__-toggle" onclick="return toggle('HTTPSClient.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPSClient-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPSClient.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPSClient.__init__-expanded"><a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">        <tt id="link-30" class="py-name" targets="Class Halberd.clientlib.HTTPClient=Halberd.clientlib.HTTPClient-class.html"><a title="Halberd.clientlib.HTTPClient" class="py-name" href="#" onclick="return doclink('link-30', 'HTTPClient', 'link-30');">HTTPClient</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method Halberd.ScanTask.ConfError.__init__()=Halberd.ScanTask.ConfError-class.html#__init__,Method Halberd.ScanTask.ScanTask.__init__()=Halberd.ScanTask.ScanTask-class.html#__init__,Method Halberd.clientlib.HTTPClient.__init__()=Halberd.clientlib.HTTPClient-class.html#__init__,Method Halberd.clientlib.HTTPError.__init__()=Halberd.clientlib.HTTPError-class.html#__init__,Method Halberd.clientlib.HTTPSClient.__init__()=Halberd.clientlib.HTTPSClient-class.html#__init__,Method Halberd.clues.Clue.Clue.__init__()=Halberd.clues.Clue.Clue-class.html#__init__,Method Halberd.clues.file.ClueDir.__init__()=Halberd.clues.file.ClueDir-class.html#__init__,Method Halberd.clues.file.InvalidFile.__init__()=Halberd.clues.file.InvalidFile-class.html#__init__,Method Halberd.conflib.ConfReader.__init__()=Halberd.conflib.ConfReader-class.html#__init__,Method Halberd.crew.BaseScanner.__init__()=Halberd.crew.BaseScanner-class.html#__init__,Method Halberd.crew.ScanState.__init__()=Halberd.crew.ScanState-class.html#__init__,Method Halberd.crew.WorkCrew.__init__()=Halberd.crew.WorkCrew-class.html#__init__,Method Halberd.shell.BaseStrategy.__init__()=Halberd.shell.BaseStrategy-class.html#__init__,Method Halberd.shell.ClueReaderStrategy.__init__()=Halberd.shell.ClueReaderStrategy-class.html#__init__,Method Halberd.shell.MultiScanStrategy.__init__()=Halberd.shell.MultiScanStrategy-class.html#__init__,Method Halberd.shell.ScanError.__init__()=Halberd.shell.ScanError-class.html#__init__,Method Halberd.shell.UniScanStrategy.__init__()=Halberd.shell.UniScanStrategy-class.html#__init__"><a title="Halberd.ScanTask.ConfError.__init__
+Halberd.ScanTask.ScanTask.__init__
+Halberd.clientlib.HTTPClient.__init__
+Halberd.clientlib.HTTPError.__init__
+Halberd.clientlib.HTTPSClient.__init__
+Halberd.clues.Clue.Clue.__init__
+Halberd.clues.file.ClueDir.__init__
+Halberd.clues.file.InvalidFile.__init__
+Halberd.conflib.ConfReader.__init__
+Halberd.crew.BaseScanner.__init__
+Halberd.crew.ScanState.__init__
+Halberd.crew.WorkCrew.__init__
+Halberd.shell.BaseStrategy.__init__
+Halberd.shell.ClueReaderStrategy.__init__
+Halberd.shell.MultiScanStrategy.__init__
+Halberd.shell.ScanError.__init__
+Halberd.shell.UniScanStrategy.__init__" class="py-name" href="#" onclick="return doclink('link-31', '__init__', 'link-31');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schemes</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'https'</tt><tt class="py-op">)</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">default_port</tt> <tt class="py-op">=</tt> <tt class="py-number">443</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_recv</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sslsock</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_timeout_exceptions</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">sslerror</tt><tt class="py-op">)</tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line"> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-comment"># Path to an SSL key file and certificate.</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keyfile</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">certfile</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line"> </tt>
+<a name="HTTPSClient._connect"></a><div id="HTTPSClient._connect-def"><a name="L319"></a><tt class="py-lineno">319</tt> <a class="py-toggle" href="#" id="HTTPSClient._connect-toggle" onclick="return toggle('HTTPSClient._connect');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPSClient-class.html#_connect">_connect</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">addr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPSClient._connect-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPSClient._connect-expanded"><a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">        <tt class="py-docstring">"""Connect to the target web server.</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line"><tt class="py-docstring">        @param addr: The target's address.</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line"><tt class="py-docstring">        @type addr: C{tuple}</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line"><tt class="py-docstring">        @raise HTTPSError: In case there's some mistake during the SSL</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line"><tt class="py-docstring">        negotiation.</tt> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">        <tt id="link-32" class="py-name"><a title="Halberd.clientlib.HTTPClient" class="py-name" href="#" onclick="return doclink('link-32', 'HTTPClient', 'link-30');">HTTPClient</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="Halberd.clientlib.HTTPClient._connect
+Halberd.clientlib.HTTPSClient._connect" class="py-name" href="#" onclick="return doclink('link-33', '_connect', 'link-18');">_connect</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sslsock</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">ssl</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sock</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keyfile</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">certfile</tt><tt class="py-op">)</tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">sslerror</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">:</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-34" class="py-name" targets="Class Halberd.clientlib.HTTPSError=Halberd.clientlib.HTTPSError-class.html"><a title="Halberd.clientlib.HTTPSError" class="py-name" href="#" onclick="return doclink('link-34', 'HTTPSError', 'link-34');">HTTPSError</a></tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line"> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_recv</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sslsock</tt><tt class="py-op">.</tt><tt class="py-name">read</tt> </tt>
+</div><a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line"> </tt>
+<a name="HTTPSClient._sendAll"></a><div id="HTTPSClient._sendAll-def"><a name="L336"></a><tt class="py-lineno">336</tt> <a class="py-toggle" href="#" id="HTTPSClient._sendAll-toggle" onclick="return toggle('HTTPSClient._sendAll');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib.HTTPSClient-class.html#_sendAll">_sendAll</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HTTPSClient._sendAll-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="HTTPSClient._sendAll-expanded"><a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line">        <tt class="py-docstring">"""Sends a string to the socket.</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line">        <tt class="py-comment"># xxx - currently we don't make sure everything is sent.</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_sslsock</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">         </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line"> </tt>
+<a name="clientFactory"></a><div id="clientFactory-def"><a name="L343"></a><tt class="py-lineno">343</tt> <a class="py-toggle" href="#" id="clientFactory-toggle" onclick="return toggle('clientFactory');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.clientlib-module.html#clientFactory">clientFactory</a><tt class="py-op">(</tt><tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="clientFactory-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="clientFactory-expanded"><a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">    <tt class="py-docstring">"""HTTP/HTTPS client factory.</tt> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line"><tt class="py-docstring">    @param scantask: Object describing where the target is and how to reach it.</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line"><tt class="py-docstring">    @type scantask: C{instanceof(ScanTask)}</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line"><tt class="py-docstring">    @return: The appropriate client class for the specified URL.</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line"><tt class="py-docstring">    @rtype: C{class}</tt> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line">    <tt class="py-name">url</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt><tt class="py-op">.</tt><tt class="py-name">url</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line">    <tt class="py-name">keyfile</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt><tt class="py-op">.</tt><tt class="py-name">keyfile</tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">    <tt class="py-name">certfile</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt><tt class="py-op">.</tt><tt class="py-name">certfile</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line"> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">url</tt><tt class="py-op">.</tt><tt class="py-name">startswith</tt><tt class="py-op">(</tt><tt class="py-string">'http://'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-35" class="py-name"><a title="Halberd.clientlib.HTTPClient" class="py-name" href="#" onclick="return doclink('link-35', 'HTTPClient', 'link-30');">HTTPClient</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">url</tt><tt class="py-op">.</tt><tt class="py-name">startswith</tt><tt class="py-op">(</tt><tt class="py-string">'https://'</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line">        <tt class="py-name">httpsclient</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name" targets="Class Halberd.clientlib.HTTPSClient=Halberd.clientlib.HTTPSClient-class.html"><a title="Halberd.clientlib.HTTPSClient" class="py-name" href="#" onclick="return doclink('link-36', 'HTTPSClient', 'link-36');">HTTPSClient</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line">        <tt class="py-name">httpsclient</tt><tt class="py-op">.</tt><tt class="py-name">keyfile</tt> <tt class="py-op">=</tt> <tt class="py-name">keyfile</tt> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">        <tt class="py-name">httpsclient</tt><tt class="py-op">.</tt><tt class="py-name">certfile</tt> <tt class="py-op">=</tt> <tt class="py-name">certfile</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">httpsclient</tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt id="link-37" class="py-name"><a title="Halberd.clientlib.InvalidURL" class="py-name" href="#" onclick="return doclink('link-37', 'InvalidURL', 'link-15');">InvalidURL</a></tt> </tt>
+</div><a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line"> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line"> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line"><tt class="py-comment"># vim: ts=4 sw=4 et</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Aug 14 15:09:27 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

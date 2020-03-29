@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="class-tree.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink"><a href="Halberd.shell.BaseStrategy-class.html">Halberd.shell.BaseStrategy</a></strong>:
+      <em class="summary">Defines the strategy used to scan.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.shell.ClueReaderStrategy-class.html">Halberd.shell.ClueReaderStrategy</a></strong>:
+      <em class="summary">Clue reader strategy.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.shell.MultiScanStrategy-class.html">Halberd.shell.MultiScanStrategy</a></strong>:
+      <em class="summary">Scan multiple URLs.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.shell.UniScanStrategy-class.html">Halberd.shell.UniScanStrategy</a></strong>:
+      <em class="summary">Scan a single URL.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clues.Clue.Clue-class.html">Halberd.clues.Clue.Clue</a></strong>:
+      <em class="summary">A clue is what we use to tell real servers behind a virtual IP.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clues.file.ClueDir-class.html">Halberd.clues.file.ClueDir</a></strong>:
+      <em class="summary">Stores clues hierarchically using the underlying filesystem.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.conflib.ConfReader-class.html">Halberd.conflib.ConfReader</a></strong>:
+      <em class="summary">Takes care of turning configuration files into meaningful 
+        information.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.HTTPClient-class.html">Halberd.clientlib.HTTPClient</a></strong>:
+      <em class="summary">Special-purpose HTTP client.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.HTTPSClient-class.html">Halberd.clientlib.HTTPSClient</a></strong>:
+      <em class="summary">Special-purpose HTTPS client.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.crew.ScanState-class.html" onclick="show_private();">Halberd.crew.ScanState</a></strong>:
+      <em class="summary">Shared state among scanner threads.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.ScanTask.ScanTask-class.html">Halberd.ScanTask.ScanTask</a></strong>:
+      <em class="summary">Describes the way a scan should be performed.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.crew.WorkCrew-class.html">Halberd.crew.WorkCrew</a></strong>:
+      <em class="summary">Pool of scanners working in parallel.</em>
+    </li>
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.ScanTask.ConfError-class.html">Halberd.ScanTask.ConfError</a></strong>:
+      <em class="summary">Error with configuration file(s)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.HTTPError-class.html">Halberd.clientlib.HTTPError</a></strong>:
+      <em class="summary">Generic HTTP exception</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.ConnectionRefused-class.html">Halberd.clientlib.ConnectionRefused</a></strong>:
+      <em class="summary">Unable to reach webserver</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.HTTPSError-class.html">Halberd.clientlib.HTTPSError</a></strong>:
+      <em class="summary">Generic HTTPS exception</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.InvalidURL-class.html">Halberd.clientlib.InvalidURL</a></strong>:
+      <em class="summary">Invalid or unsupported URL</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.TimedOut-class.html">Halberd.clientlib.TimedOut</a></strong>:
+      <em class="summary">Operation timed out</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clientlib.UnknownReply-class.html">Halberd.clientlib.UnknownReply</a></strong>:
+      <em class="summary">The remote host didn't return an HTTP reply</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.conflib.InvalidConfFile-class.html">Halberd.conflib.InvalidConfFile</a></strong>:
+      <em class="summary">Invalid configuration file.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.clues.file.InvalidFile-class.html">Halberd.clues.file.InvalidFile</a></strong>:
+      <em class="summary">The loaded file is not a valid clue file.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.shell.ScanError-class.html">Halberd.shell.ScanError</a></strong>:
+      <em class="summary">Generic error during scanning.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">threading._Verbose</strong>
+    <ul>
+    <li> <strong class="uidlink">threading.Thread</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.crew.BaseScanner-class.html" onclick="show_private();">Halberd.crew.BaseScanner</a></strong>:
+      <em class="summary">Base class for load balancer scanning threads.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="Halberd.crew.Manager-class.html" onclick="show_private();">Halberd.crew.Manager</a></strong>:
+      <em class="summary">Performs management tasks during the scan.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="Halberd.crew.Scanner-class.html" onclick="show_private();">Halberd.crew.Scanner</a></strong>:
+      <em class="summary">Scans the target host from the local machine.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Aug 14 15:09:27 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

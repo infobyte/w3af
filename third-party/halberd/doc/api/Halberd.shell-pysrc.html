@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Halberd.shell</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="Halberd-module.html">Package&nbsp;Halberd</a> ::
+        Module&nbsp;shell
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="Halberd.shell-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="Halberd.shell-module.html">Module Halberd.shell</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: iso-8859-1 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""Provides scanning patterns to be used as building blocks for more complex</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">scans.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">Strategies are different ways in which target scans may be done. We provide</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">basic functionality so more complex stuff can be built upon this.</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2004, 2005, 2006, 2010  Juan M. Bello Rivas &lt;jmbr@superadditive.com&gt;</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># This program is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation; either version 2 of the License, or</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># along with this program; if not, write to the Free Software</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package Halberd=Halberd-module.html"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-0', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module Halberd.crew=Halberd.crew-module.html"><a title="Halberd.crew" class="py-name" href="#" onclick="return doclink('link-1', 'crew', 'link-1');">crew</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-2" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-2', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Variable Halberd.clues.analysis.logger=Halberd.clues.analysis-module.html#logger,Module Halberd.logger=Halberd.logger-module.html"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-3', 'logger', 'link-3');">logger</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-4" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-4', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Module Halberd.reportlib=Halberd.reportlib-module.html"><a title="Halberd.reportlib" class="py-name" href="#" onclick="return doclink('link-5', 'reportlib', 'link-5');">reportlib</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-6" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-6', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Package Halberd.clues=Halberd.clues-module.html"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-7', 'clues', 'link-7');">clues</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Module Halberd.clues.file=Halberd.clues.file-module.html"><a title="Halberd.clues.file" class="py-name" href="#" onclick="return doclink('link-8', 'file', 'link-8');">file</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-9" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-9', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-10', 'clues', 'link-7');">clues</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Module Halberd.clues.analysis=Halberd.clues.analysis-module.html"><a title="Halberd.clues.analysis" class="py-name" href="#" onclick="return doclink('link-11', 'analysis', 'link-11');">analysis</a></tt> <tt class="py-keyword">as</tt> <tt id="link-12" class="py-name"><a title="Halberd.clues.analysis" class="py-name" href="#" onclick="return doclink('link-12', 'analysis', 'link-11');">analysis</a></tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="ScanError"></a><div id="ScanError-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="ScanError-toggle" onclick="return toggle('ScanError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.shell.ScanError-class.html">ScanError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ScanError-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-docstring">"""Generic error during scanning.</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="ScanError.__init__"></a><div id="ScanError.__init__-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="ScanError.__init__-toggle" onclick="return toggle('ScanError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.ScanError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanError.__init__-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="ScanError.__str__"></a><div id="ScanError.__str__-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="ScanError.__str__-toggle" onclick="return toggle('ScanError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.ScanError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ScanError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ScanError.__str__-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="BaseStrategy"></a><div id="BaseStrategy-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="BaseStrategy-toggle" onclick="return toggle('BaseStrategy');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.shell.BaseStrategy-class.html">BaseStrategy</a><tt class="py-op">:</tt> </tt>
+</div><div id="BaseStrategy-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="BaseStrategy-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt class="py-docstring">"""Defines the strategy used to scan.</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">    A strategy is a certain way to use the program. Theses can be layered to</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">    build a bigger strategy doing more complex things, etc.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="BaseStrategy.__init__"></a><div id="BaseStrategy.__init__-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="BaseStrategy.__init__-toggle" onclick="return toggle('BaseStrategy.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.BaseStrategy-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseStrategy.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseStrategy.__init__-expanded"><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt> <tt class="py-op">=</tt> <tt class="py-name">scantask</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-13', 'logger', 'link-3');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-14', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-15', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="BaseStrategy.execute"></a><div id="BaseStrategy.execute-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="BaseStrategy.execute-toggle" onclick="return toggle('BaseStrategy.execute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.BaseStrategy-class.html#execute">execute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseStrategy.execute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseStrategy.execute-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">"""Executes the strategy.</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-comment"># ---------------------------</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-comment"># Higher-level helper methods</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-comment"># ---------------------------</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="BaseStrategy._scan"></a><div id="BaseStrategy._scan-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="BaseStrategy._scan-toggle" onclick="return toggle('BaseStrategy._scan');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.BaseStrategy-class.html#_scan">_scan</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseStrategy._scan-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseStrategy._scan-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-docstring">"""Allocates a work crew of scanners and launches them on the target.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-16', 'clues', 'link-7');">clues</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">analyzed</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt id="link-17" class="py-name"><a title="Halberd.crew" class="py-name" href="#" onclick="return doclink('link-17', 'crew', 'link-1');">crew</a></tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-18', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="Halberd.crew" class="py-name" href="#" onclick="return doclink('link-19', 'crew', 'link-1');">crew</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Class Halberd.crew.WorkCrew=Halberd.crew.WorkCrew-class.html"><a title="Halberd.crew.WorkCrew" class="py-name" href="#" onclick="return doclink('link-20', 'WorkCrew', 'link-20');">WorkCrew</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-21', 'clues', 'link-7');">clues</a></tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="Halberd.crew" class="py-name" href="#" onclick="return doclink('link-22', 'crew', 'link-1');">crew</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method Halberd.crew.WorkCrew.scan()=Halberd.crew.WorkCrew-class.html#scan"><a title="Halberd.crew.WorkCrew.scan" class="py-name" href="#" onclick="return doclink('link-23', 'scan', 'link-23');">scan</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="BaseStrategy._analyze"></a><div id="BaseStrategy._analyze-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="BaseStrategy._analyze-toggle" onclick="return toggle('BaseStrategy._analyze');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.BaseStrategy-class.html#_analyze">_analyze</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseStrategy._analyze-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseStrategy._analyze-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-docstring">"""Performs clue analysis.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-24', 'clues', 'link-7');">clues</a></tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">analyzed</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name"><a title="Halberd.clues.analysis" class="py-name" href="#" onclick="return doclink('link-25', 'analysis', 'link-11');">analysis</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Function Halberd.clues.analysis.analyze()=Halberd.clues.analysis-module.html#analyze"><a title="Halberd.clues.analysis.analyze" class="py-name" href="#" onclick="return doclink('link-26', 'analyze', 'link-26');">analyze</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-27', 'clues', 'link-7');">clues</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">analyzed</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="Halberd.clues.analysis" class="py-name" href="#" onclick="return doclink('link-28', 'analysis', 'link-11');">analysis</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Function Halberd.clues.analysis.reanalyze()=Halberd.clues.analysis-module.html#reanalyze"><a title="Halberd.clues.analysis.reanalyze" class="py-name" href="#" onclick="return doclink('link-29', 'reanalyze', 'link-29');">reanalyze</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-30', 'clues', 'link-7');">clues</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">analyzed</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">ratio_threshold</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="UniScanStrategy"></a><div id="UniScanStrategy-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="UniScanStrategy-toggle" onclick="return toggle('UniScanStrategy');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.shell.UniScanStrategy-class.html">UniScanStrategy</a><tt class="py-op">(</tt><tt class="py-base-class">BaseStrategy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UniScanStrategy-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UniScanStrategy-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">"""Scan a single URL.</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="UniScanStrategy.__init__"></a><div id="UniScanStrategy.__init__-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="UniScanStrategy.__init__-toggle" onclick="return toggle('UniScanStrategy.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.UniScanStrategy-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UniScanStrategy.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="UniScanStrategy.__init__-expanded"><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt id="link-31" class="py-name" targets="Class Halberd.shell.BaseStrategy=Halberd.shell.BaseStrategy-class.html"><a title="Halberd.shell.BaseStrategy" class="py-name" href="#" onclick="return doclink('link-31', 'BaseStrategy', 'link-31');">BaseStrategy</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method Halberd.ScanTask.ConfError.__init__()=Halberd.ScanTask.ConfError-class.html#__init__,Method Halberd.ScanTask.ScanTask.__init__()=Halberd.ScanTask.ScanTask-class.html#__init__,Method Halberd.clientlib.HTTPClient.__init__()=Halberd.clientlib.HTTPClient-class.html#__init__,Method Halberd.clientlib.HTTPError.__init__()=Halberd.clientlib.HTTPError-class.html#__init__,Method Halberd.clientlib.HTTPSClient.__init__()=Halberd.clientlib.HTTPSClient-class.html#__init__,Method Halberd.clues.Clue.Clue.__init__()=Halberd.clues.Clue.Clue-class.html#__init__,Method Halberd.clues.file.ClueDir.__init__()=Halberd.clues.file.ClueDir-class.html#__init__,Method Halberd.clues.file.InvalidFile.__init__()=Halberd.clues.file.InvalidFile-class.html#__init__,Method Halberd.conflib.ConfReader.__init__()=Halberd.conflib.ConfReader-class.html#__init__,Method Halberd.crew.BaseScanner.__init__()=Halberd.crew.BaseScanner-class.html#__init__,Method Halberd.crew.ScanState.__init__()=Halberd.crew.ScanState-class.html#__init__,Method Halberd.crew.WorkCrew.__init__()=Halberd.crew.WorkCrew-class.html#__init__,Method Halberd.shell.BaseStrategy.__init__()=Halberd.shell.BaseStrategy-class.html#__init__,Method Halberd.shell.ClueReaderStrategy.__init__()=Halberd.shell.ClueReaderStrategy-class.html#__init__,Method Halberd.shell.MultiScanStrategy.__init__()=Halberd.shell.MultiScanStrategy-class.html#__init__,Method Halberd.shell.ScanError.__init__()=Halberd.shell.ScanError-class.html#__init__,Method Halberd.shell.UniScanStrategy.__init__()=Halberd.shell.UniScanStrategy-class.html#__init__"><a title="Halberd.ScanTask.ConfError.__init__
+Halberd.ScanTask.ScanTask.__init__
+Halberd.clientlib.HTTPClient.__init__
+Halberd.clientlib.HTTPError.__init__
+Halberd.clientlib.HTTPSClient.__init__
+Halberd.clues.Clue.Clue.__init__
+Halberd.clues.file.ClueDir.__init__
+Halberd.clues.file.InvalidFile.__init__
+Halberd.conflib.ConfReader.__init__
+Halberd.crew.BaseScanner.__init__
+Halberd.crew.ScanState.__init__
+Halberd.crew.WorkCrew.__init__
+Halberd.shell.BaseStrategy.__init__
+Halberd.shell.ClueReaderStrategy.__init__
+Halberd.shell.MultiScanStrategy.__init__
+Halberd.shell.ScanError.__init__
+Halberd.shell.UniScanStrategy.__init__" class="py-name" href="#" onclick="return doclink('link-32', '__init__', 'link-32');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">scantask</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-33" class="py-name" targets="Class Halberd.shell.ScanError=Halberd.shell.ScanError-class.html"><a title="Halberd.shell.ScanError" class="py-name" href="#" onclick="return doclink('link-33', 'ScanError', 'link-33');">ScanError</a></tt><tt class="py-op">,</tt> <tt class="py-string">'Didn\'t provide an URL to scan'</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-comment"># The user passed a specific address as a parameter.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt><tt class="py-op">]</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">            <tt class="py-name">host</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-34', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Module Halberd.util=Halberd.util-module.html"><a title="Halberd.util" class="py-name" href="#" onclick="return doclink('link-35', 'util', 'link-35');">util</a></tt><tt class="py-op">.</tt><tt class="py-name">hostname</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-36', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'looking up host %s... '</tt><tt class="py-op">,</tt> <tt class="py-name">host</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-37', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="Halberd.util" class="py-name" href="#" onclick="return doclink('link-38', 'util', 'link-35');">util</a></tt><tt class="py-op">.</tt><tt class="py-name">addresses</tt><tt class="py-op">(</tt><tt class="py-name">host</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">KeyboardInterrupt</tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt id="link-39" class="py-name"><a title="Halberd.shell.ScanError" class="py-name" href="#" onclick="return doclink('link-39', 'ScanError', 'link-33');">ScanError</a></tt><tt class="py-op">,</tt> <tt class="py-string">'interrupted by the user'</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt><tt class="py-op">:</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt id="link-40" class="py-name"><a title="Halberd.shell.ScanError" class="py-name" href="#" onclick="return doclink('link-40', 'ScanError', 'link-33');">ScanError</a></tt><tt class="py-op">,</tt> <tt class="py-string">'unable to resolve %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">host</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-41', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'host lookup done.'</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">addr</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt><tt class="py-op">:</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                    <tt class="py-comment">#self.logger.debug('%s resolves to %s', host, addr)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-42', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'%s resolves to %s'</tt><tt class="py-op">,</tt> <tt class="py-name">host</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="UniScanStrategy.execute"></a><div id="UniScanStrategy.execute-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="UniScanStrategy.execute-toggle" onclick="return toggle('UniScanStrategy.execute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.UniScanStrategy-class.html#execute">execute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UniScanStrategy.execute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="UniScanStrategy.execute-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-docstring">"""Scans, analyzes and presents results coming a single target.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method Halberd.clues.file.ClueDir.save()=Halberd.clues.file.ClueDir-class.html#save"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-43', 'save', 'link-43');">save</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">            <tt class="py-name">cluedir</tt> <tt class="py-op">=</tt> <tt id="link-44" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-44', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-45', 'clues', 'link-7');">clues</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="Halberd.clues.file" class="py-name" href="#" onclick="return doclink('link-46', 'file', 'link-8');">file</a></tt><tt class="py-op">.</tt><tt id="link-47" class="py-name" targets="Class Halberd.clues.file.ClueDir=Halberd.clues.file.ClueDir-class.html"><a title="Halberd.clues.file.ClueDir" class="py-name" href="#" onclick="return doclink('link-47', 'ClueDir', 'link-47');">ClueDir</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-48', 'save', 'link-43');">save</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addrs</tt><tt class="py-op">:</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method Halberd.shell.BaseStrategy._scan()=Halberd.shell.BaseStrategy-class.html#_scan"><a title="Halberd.shell.BaseStrategy._scan" class="py-name" href="#" onclick="return doclink('link-49', '_scan', 'link-49');">_scan</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method Halberd.shell.BaseStrategy._analyze()=Halberd.shell.BaseStrategy-class.html#_analyze"><a title="Halberd.shell.BaseStrategy._analyze" class="py-name" href="#" onclick="return doclink('link-50', '_analyze', 'link-50');">_analyze</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">            <tt id="link-51" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-51', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="Halberd.reportlib" class="py-name" href="#" onclick="return doclink('link-52', 'reportlib', 'link-5');">reportlib</a></tt><tt class="py-op">.</tt><tt id="link-53" class="py-name" targets="Function Halberd.reportlib.report()=Halberd.reportlib-module.html#report"><a title="Halberd.reportlib.report" class="py-name" href="#" onclick="return doclink('link-53', 'report', 'link-53');">report</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-54', 'save', 'link-43');">save</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-name">cluedir</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-55', 'save', 'link-43');">save</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt><tt class="py-op">,</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                             <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt><tt class="py-op">,</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                             <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-56', 'clues', 'link-7');">clues</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="MultiScanStrategy"></a><div id="MultiScanStrategy-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="MultiScanStrategy-toggle" onclick="return toggle('MultiScanStrategy');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.shell.MultiScanStrategy-class.html">MultiScanStrategy</a><tt class="py-op">(</tt><tt class="py-base-class">BaseStrategy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MultiScanStrategy-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MultiScanStrategy-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-docstring">"""Scan multiple URLs.</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="MultiScanStrategy.__init__"></a><div id="MultiScanStrategy.__init__-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="MultiScanStrategy.__init__-toggle" onclick="return toggle('MultiScanStrategy.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.MultiScanStrategy-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MultiScanStrategy.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MultiScanStrategy.__init__-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt id="link-57" class="py-name"><a title="Halberd.shell.BaseStrategy" class="py-name" href="#" onclick="return doclink('link-57', 'BaseStrategy', 'link-31');">BaseStrategy</a></tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="Halberd.ScanTask.ConfError.__init__
+Halberd.ScanTask.ScanTask.__init__
+Halberd.clientlib.HTTPClient.__init__
+Halberd.clientlib.HTTPError.__init__
+Halberd.clientlib.HTTPSClient.__init__
+Halberd.clues.Clue.Clue.__init__
+Halberd.clues.file.ClueDir.__init__
+Halberd.clues.file.InvalidFile.__init__
+Halberd.conflib.ConfReader.__init__
+Halberd.crew.BaseScanner.__init__
+Halberd.crew.ScanState.__init__
+Halberd.crew.WorkCrew.__init__
+Halberd.shell.BaseStrategy.__init__
+Halberd.shell.ClueReaderStrategy.__init__
+Halberd.shell.MultiScanStrategy.__init__
+Halberd.shell.ScanError.__init__
+Halberd.shell.UniScanStrategy.__init__" class="py-name" href="#" onclick="return doclink('link-58', '__init__', 'link-32');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">scantask</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">urlfile</tt><tt class="py-op">:</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-59" class="py-name"><a title="Halberd.shell.ScanError" class="py-name" href="#" onclick="return doclink('link-59', 'ScanError', 'link-33');">ScanError</a></tt><tt class="py-op">,</tt> <tt class="py-string">'An urlfile parameter must be provided'</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">urlfp</tt> <tt class="py-op">=</tt> <tt id="link-60" class="py-name" targets="Method Halberd.conflib.ConfReader.open()=Halberd.conflib.ConfReader-class.html#open"><a title="Halberd.conflib.ConfReader.open" class="py-name" href="#" onclick="return doclink('link-60', 'open', 'link-60');">open</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">urlfile</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="MultiScanStrategy._targets"></a><div id="MultiScanStrategy._targets-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="MultiScanStrategy._targets-toggle" onclick="return toggle('MultiScanStrategy._targets');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.MultiScanStrategy-class.html#_targets">_targets</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">urlfp</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MultiScanStrategy._targets-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MultiScanStrategy._targets-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-docstring">"""Obtain target addresses from URLs.</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">        @param urlfp: File where the list of URLs is stored.</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt class="py-docstring">        @type urlfp: C{file}</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Generator providing the desired addresses.</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">url</tt> <tt class="py-keyword">in</tt> <tt class="py-name">urlfp</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">url</tt> <tt class="py-op">==</tt> <tt class="py-string">'\n'</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                <tt class="py-keyword">continue</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-comment"># Strip end of line character and whitespaces.</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">            <tt class="py-name">url</tt> <tt class="py-op">=</tt> <tt class="py-name">url</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">strip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">host</tt> <tt class="py-op">=</tt> <tt id="link-61" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-61', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="Halberd.util" class="py-name" href="#" onclick="return doclink('link-62', 'util', 'link-35');">util</a></tt><tt class="py-op">.</tt><tt class="py-name">hostname</tt><tt class="py-op">(</tt><tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">host</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-63', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warn</tt><tt class="py-op">(</tt><tt class="py-string">'unable to extract hostname from %s'</tt><tt class="py-op">,</tt> <tt class="py-name">host</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">                <tt class="py-keyword">continue</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-64', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'looking up host %s... '</tt><tt class="py-op">,</tt> <tt class="py-name">host</tt><tt class="py-op">)</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">                <tt class="py-name">addrs</tt> <tt class="py-op">=</tt> <tt id="link-65" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-65', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="Halberd.util" class="py-name" href="#" onclick="return doclink('link-66', 'util', 'link-35');">util</a></tt><tt class="py-op">.</tt><tt class="py-name">addresses</tt><tt class="py-op">(</tt><tt class="py-name">host</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">KeyboardInterrupt</tt><tt class="py-op">:</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt id="link-67" class="py-name"><a title="Halberd.shell.ScanError" class="py-name" href="#" onclick="return doclink('link-67', 'ScanError', 'link-33');">ScanError</a></tt><tt class="py-op">,</tt> <tt class="py-string">'interrupted by the user'</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-68', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'host lookup done.'</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">addr</tt> <tt class="py-keyword">in</tt> <tt class="py-name">addrs</tt><tt class="py-op">:</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">                <tt class="py-keyword">yield</tt> <tt class="py-op">(</tt><tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="MultiScanStrategy.execute"></a><div id="MultiScanStrategy.execute-def"><a name="L173"></a><tt class="py-lineno">173</tt> <a class="py-toggle" href="#" id="MultiScanStrategy.execute-toggle" onclick="return toggle('MultiScanStrategy.execute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.MultiScanStrategy-class.html#execute">execute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MultiScanStrategy.execute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MultiScanStrategy.execute-expanded"><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-docstring">"""Launch a multiple URL scan.</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-name">cluedir</tt> <tt class="py-op">=</tt> <tt id="link-69" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-69', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-70', 'clues', 'link-7');">clues</a></tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="Halberd.clues.file" class="py-name" href="#" onclick="return doclink('link-71', 'file', 'link-8');">file</a></tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="Halberd.clues.file.ClueDir" class="py-name" href="#" onclick="return doclink('link-72', 'ClueDir', 'link-47');">ClueDir</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-73', 'save', 'link-43');">save</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name" targets="Method Halberd.shell.MultiScanStrategy._targets()=Halberd.shell.MultiScanStrategy-class.html#_targets"><a title="Halberd.shell.MultiScanStrategy._targets" class="py-name" href="#" onclick="return doclink('link-74', '_targets', 'link-74');">_targets</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">urlfp</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt> <tt class="py-op">=</tt> <tt class="py-name">url</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt> <tt class="py-op">=</tt> <tt class="py-name">addr</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="Halberd.clues.analysis.logger
+Halberd.logger" class="py-name" href="#" onclick="return doclink('link-75', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'scanning %s (%s)'</tt><tt class="py-op">,</tt> <tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name"><a title="Halberd.shell.BaseStrategy._scan" class="py-name" href="#" onclick="return doclink('link-76', '_scan', 'link-49');">_scan</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">            <tt class="py-name">cluedir</tt><tt class="py-op">.</tt><tt id="link-77" class="py-name"><a title="Halberd.clues.file.ClueDir.save" class="py-name" href="#" onclick="return doclink('link-77', 'save', 'link-43');">save</a></tt><tt class="py-op">(</tt><tt class="py-name">url</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-78" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-78', 'clues', 'link-7');">clues</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="Halberd.shell.BaseStrategy._analyze" class="py-name" href="#" onclick="return doclink('link-79', '_analyze', 'link-50');">_analyze</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">            <tt id="link-80" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-80', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="Halberd.reportlib" class="py-name" href="#" onclick="return doclink('link-81', 'reportlib', 'link-5');">reportlib</a></tt><tt class="py-op">.</tt><tt id="link-82" class="py-name"><a title="Halberd.reportlib.report" class="py-name" href="#" onclick="return doclink('link-82', 'report', 'link-53');">report</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"> </tt>
+<a name="ClueReaderStrategy"></a><div id="ClueReaderStrategy-def"><a name="L190"></a><tt class="py-lineno">190</tt> <a class="py-toggle" href="#" id="ClueReaderStrategy-toggle" onclick="return toggle('ClueReaderStrategy');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="Halberd.shell.ClueReaderStrategy-class.html">ClueReaderStrategy</a><tt class="py-op">(</tt><tt class="py-base-class">BaseStrategy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClueReaderStrategy-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ClueReaderStrategy-expanded"><a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">    <tt class="py-docstring">"""Clue reader strategy.</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-docstring">    Works by reading and analyzing files of previously stored clues.</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="ClueReaderStrategy.__init__"></a><div id="ClueReaderStrategy.__init__-def"><a name="L195"></a><tt class="py-lineno">195</tt> <a class="py-toggle" href="#" id="ClueReaderStrategy.__init__-toggle" onclick="return toggle('ClueReaderStrategy.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.ClueReaderStrategy-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">scantask</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClueReaderStrategy.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ClueReaderStrategy.__init__-expanded"><a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">        <tt id="link-83" class="py-name"><a title="Halberd.shell.BaseStrategy" class="py-name" href="#" onclick="return doclink('link-83', 'BaseStrategy', 'link-31');">BaseStrategy</a></tt><tt class="py-op">.</tt><tt id="link-84" class="py-name"><a title="Halberd.ScanTask.ConfError.__init__
+Halberd.ScanTask.ScanTask.__init__
+Halberd.clientlib.HTTPClient.__init__
+Halberd.clientlib.HTTPError.__init__
+Halberd.clientlib.HTTPSClient.__init__
+Halberd.clues.Clue.Clue.__init__
+Halberd.clues.file.ClueDir.__init__
+Halberd.clues.file.InvalidFile.__init__
+Halberd.conflib.ConfReader.__init__
+Halberd.crew.BaseScanner.__init__
+Halberd.crew.ScanState.__init__
+Halberd.crew.WorkCrew.__init__
+Halberd.shell.BaseStrategy.__init__
+Halberd.shell.ClueReaderStrategy.__init__
+Halberd.shell.MultiScanStrategy.__init__
+Halberd.shell.ScanError.__init__
+Halberd.shell.UniScanStrategy.__init__" class="py-name" href="#" onclick="return doclink('link-84', '__init__', 'link-32');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">scantask</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="ClueReaderStrategy.execute"></a><div id="ClueReaderStrategy.execute-def"><a name="L198"></a><tt class="py-lineno">198</tt> <a class="py-toggle" href="#" id="ClueReaderStrategy.execute-toggle" onclick="return toggle('ClueReaderStrategy.execute');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="Halberd.shell.ClueReaderStrategy-class.html#execute">execute</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ClueReaderStrategy.execute-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ClueReaderStrategy.execute-expanded"><a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-docstring">"""Reads and interprets clues.</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt id="link-85" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-85', 'clues', 'link-7');">clues</a></tt> <tt class="py-op">=</tt> <tt id="link-86" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-86', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-87" class="py-name"><a title="Halberd.clues" class="py-name" href="#" onclick="return doclink('link-87', 'clues', 'link-7');">clues</a></tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="Halberd.clues.file" class="py-name" href="#" onclick="return doclink('link-88', 'file', 'link-8');">file</a></tt><tt class="py-op">.</tt><tt class="py-name">load</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">cluefile</tt><tt class="py-op">)</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="Halberd.shell.BaseStrategy._analyze" class="py-name" href="#" onclick="return doclink('link-89', '_analyze', 'link-50');">_analyze</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">url</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">.</tt><tt class="py-name">cluefile</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt id="link-90" class="py-name"><a title="Halberd" class="py-name" href="#" onclick="return doclink('link-90', 'Halberd', 'link-0');">Halberd</a></tt><tt class="py-op">.</tt><tt id="link-91" class="py-name"><a title="Halberd.reportlib" class="py-name" href="#" onclick="return doclink('link-91', 'reportlib', 'link-5');">reportlib</a></tt><tt class="py-op">.</tt><tt id="link-92" class="py-name"><a title="Halberd.reportlib.report" class="py-name" href="#" onclick="return doclink('link-92', 'report', 'link-53');">report</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">task</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">     </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt class="py-comment"># vim: ts=4 sw=4 et</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Aug 14 15:09:27 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

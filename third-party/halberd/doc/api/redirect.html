@@ -1,0 +1,38 @@
+<html><head><title>Epydoc Redirect Page</title>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!--
+var pages = ["Halberd.clientlib.ConnectionRefused-c", "Halberd.shell.ClueReaderStrategy-c", "Halberd.conflib.InvalidConfFile-c", "Halberd.shell.MultiScanStrategy-c", "Halberd.clientlib.UnknownReply-c", "Halberd.clues.file.InvalidFile-c", "Halberd.clientlib.HTTPSClient-c", "Halberd.shell.UniScanStrategy-c", "Halberd.clientlib.HTTPClient-c", "Halberd.clientlib.HTTPSError-c", "Halberd.clientlib.InvalidURL-c", "Halberd.clientlib.HTTPError-c", "Halberd.ScanTask.ConfError-c", "Halberd.clientlib.TimedOut-c", "Halberd.clues.file.ClueDir-c", "Halberd.conflib.ConfReader-c", "Halberd.shell.BaseStrategy-c", "Halberd.ScanTask.ScanTask-c", "Halberd.crew.BaseScanner-c", "Halberd.clues.Clue.Clue-c", "Halberd.shell.ScanError-c", "Halberd.clues.analysis-m", "Halberd.crew.ScanState-c", "Halberd.crew.WorkCrew-c", "Halberd.crew.Manager-c", "Halberd.crew.Scanner-c", "Halberd.clues.Clue-m", "Halberd.clues.file-m", "Halberd.clientlib-m", "Halberd.reportlib-m", "Halberd.ScanTask-m", "Halberd.conflib-m", "Halberd.logger-m", "Halberd.clues-m", "Halberd.shell-m", "Halberd.crew-m", "Halberd.util-m", "Halberd-m"];
+var dottedName = get_anchor();
+if (dottedName) {
+    var target = redirect_url(dottedName);
+    if (target) window.location.replace(target);
+}
+// -->
+</script>
+
+<h3>Epydoc Auto-redirect page</h3>
+
+<p>When javascript is enabled, this page will redirect URLs of
+the form <tt>redirect.html#<i>dotted.name</i></tt> to the
+documentation for the object with the given fully-qualified
+dotted name.</p>
+<p><a id="message"> &nbsp; </a></p>
+
+<script type="text/javascript">
+<!--
+if (dottedName) {
+    var msg = document.getElementById("message");
+    msg.innerHTML = "No documentation found for <tt>"+
+                    dottedName+"</tt>";
+}
+// -->
+</script>
+
+</body>
+</html>

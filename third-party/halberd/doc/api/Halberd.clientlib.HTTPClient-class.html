@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Halberd.clientlib.HTTPClient</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="Halberd-module.html">Package&nbsp;Halberd</a> ::
+        <a href="Halberd.clientlib-module.html">Module&nbsp;clientlib</a> ::
+        Class&nbsp;HTTPClient
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="Halberd.clientlib.HTTPClient-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class HTTPClient</h1><p class="nomargin-top"><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient">source&nbsp;code</a></span></p>
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="Halberd.clientlib.HTTPSClient-class.html">HTTPSClient</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>Special-purpose HTTP client.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__init__"></a><span class="summary-sig-name">__init__</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Initializes the object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>tuple</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#getHeaders" class="summary-sig-name">getHeaders</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">address</span>,
+        <span class="summary-sig-arg">urlstr</span>)</span><br />
+      Talk to the target webserver and fetch MIME headers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient.getHeaders">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#_putRequest" class="summary-sig-name" onclick="show_private();">_putRequest</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">address</span>,
+        <span class="summary-sig-arg">urlstr</span>)</span><br />
+      Sends an HTTP request to the target webserver.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._putRequest">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>tuple</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#_getHostAndPort" class="summary-sig-name" onclick="show_private();">_getHostAndPort</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">netloc</span>)</span><br />
+      Determine the hostname and port to connect to from an URL</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._getHostAndPort">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>str</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#_fillTemplate" class="summary-sig-name" onclick="show_private();">_fillTemplate</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">hostname</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">params</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">query</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">fragment</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span><br />
+      Fills the request template with relevant information.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._fillTemplate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#_connect" class="summary-sig-name" onclick="show_private();">_connect</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">addr</span>)</span><br />
+      Connect to the target address.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._connect">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_sendAll"></a><span class="summary-sig-name">_sendAll</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data</span>)</span><br />
+      Sends a string to the socket.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._sendAll">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>tuple</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="Halberd.clientlib.HTTPClient-class.html#_getReply" class="summary-sig-name" onclick="show_private();">_getReply</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Read a reply from the server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._getReply">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__del__"></a><span class="summary-sig-name">__del__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient.__del__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>float</code></span>
+    </td><td class="summary">
+        <a href="Halberd.clientlib.HTTPClient-class.html#timeout" class="summary-name">timeout</a> = <code title="2">2</code><br />
+      Timeout for socket operations (expressed in seconds).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>int</code></span>
+    </td><td class="summary">
+        <a name="bufsize"></a><span class="summary-name">bufsize</span> = <code title="1024">1024</code><br />
+      Buffer size for network I/O.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>str</code></span>
+    </td><td class="summary">
+        <a href="Halberd.clientlib.HTTPClient-class.html#template" class="summary-name">template</a> = <code title="'''GET %(request)s HTTP/1.1\r
+Host: %(hostname)s%(port)s\r
+Pragma: no-cache\r
+Cache-control: no-cache\r
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20\
+050414 Firefox/1.0.3\r
+Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, applicati\
+on/x-shockwave-flash, */*\r
+..."><code class="variable-quote">'</code><code class="variable-string">GET %(request)s HTTP/1.1\r\nHost: %(hostname)s%(po</code><code class="variable-ellipsis">...</code></code><br />
+      Template of the HTTP request to be sent to the target.
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>callable</code></span>
+    </td><td class="summary">
+        <a name="_recv"></a><span class="summary-name">_recv</span><br />
+      Reference to a callable responsible from reading data from the 
+      network.
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="getHeaders"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getHeaders</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">address</span>,
+        <span class="sig-arg">urlstr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient.getHeaders">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Talk to the target webserver and fetch MIME headers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>address</code></strong> (<code>tuple</code>) - The target's network address.</li>
+        <li><strong class="pname"><code>urlstr</code></strong> (<code>str</code>) - URL to use.</li>
+    </ul></dd>
+    <dt>Returns: <code>tuple</code></dt>
+        <dd>The time when the client started reading the server's response 
+          and the MIME headers that were sent.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_putRequest"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_putRequest</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">address</span>,
+        <span class="sig-arg">urlstr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._putRequest">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sends an HTTP request to the target webserver.</p>
+  <p>This method connects to the target server, sends the HTTP request and 
+  records a timestamp.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>address</code></strong> (<code>str</code>) - Target address.</li>
+        <li><strong class="pname"><code>urlstr</code></strong> (<code>str</code>) - A valid Unified Resource Locator.</li>
+    </ul></dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.InvalidURL-class.html">InvalidURL</a></strong></code> - In case the URL scheme is not HTTP or HTTPS</li>
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.ConnectionRefused-class.html">ConnectionRefused</a></strong></code> - If it can't reach the target webserver.</li>
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.TimedOut-class.html">TimedOut</a></strong></code> - If we cannot send the data within the specified time.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_getHostAndPort"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_getHostAndPort</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">netloc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._getHostAndPort">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Determine the hostname and port to connect to from an URL</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>netloc</code></strong> (<code>str</code>) - Relevant part of the parsed URL.</li>
+    </ul></dd>
+    <dt>Returns: <code>tuple</code></dt>
+        <dd>Hostname (<code>str</code>) and port (<code>int</code>)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_fillTemplate"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_fillTemplate</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">hostname</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">params</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">query</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">fragment</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._fillTemplate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fills the request template with relevant information.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>hostname</code></strong> (<code>str</code>) - Target host to reach.</li>
+        <li><strong class="pname"><code>port</code></strong> (<code>int</code>) - Remote port.</li>
+        <li><strong class="pname"><code>url</code></strong> (<code>str</code>) - URL to use as source.</li>
+    </ul></dd>
+    <dt>Returns: <code>str</code></dt>
+        <dd>A request ready to be sent</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_connect"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_connect</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">addr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._connect">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Connect to the target address.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>addr</code></strong> (<code>tuple</code>) - The target's address.</li>
+    </ul></dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.ConnectionRefused-class.html">ConnectionRefused</a></strong></code> - If it can't reach the target webserver.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_getReply"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_getReply</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="Halberd.clientlib-pysrc.html#HTTPClient._getReply">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read a reply from the server.</p>
+  <dl class="fields">
+    <dt>Returns: <code>tuple</code></dt>
+        <dd>Time when the data started arriving plus the received data.</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.UnknownReply-class.html">UnknownReply</a></strong></code> - If the remote server doesn't return a valid HTTP reply.</li>
+        <li><code><strong class='fraise'><a href="Halberd.clientlib.TimedOut-class.html">TimedOut</a></strong></code> - In case reading from the network takes too much time.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="timeout"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">timeout</h3>
+  Timeout for socket operations (expressed in seconds). <b>WARNING</b>: 
+  changing this value is strongly discouraged.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code>float</code></dd>
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+2
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="template"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">template</h3>
+  Template of the HTTP request to be sent to the target.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code>str</code></dd>
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string">GET %(request)s HTTP/1.1\r</code>
+<code class="variable-string">Host: %(hostname)s%(port)s\r</code>
+<code class="variable-string">Pragma: no-cache\r</code>
+<code class="variable-string">Cache-control: no-cache\r</code>
+<code class="variable-string">User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">050414 Firefox/1.0.3\r</code>
+<code class="variable-string">Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, applicati</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">on/x-shockwave-flash, */*\r</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="Halberd-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Aug 14 15:09:27 2010
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
