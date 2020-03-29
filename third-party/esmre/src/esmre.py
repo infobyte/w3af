@@ -35,10 +35,10 @@ class InClassState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == "]":
+        if chr(ch) == "]":
             return self.parent_state
             
-        elif ch == "\\":
+        elif chr(ch) == "\\":
             return InBackslashState(self)
         
         else:
@@ -50,7 +50,7 @@ class InBracesState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == "}":
+        if chr(ch) == "}":
             return self.parent_state
         
         else:
@@ -80,35 +80,35 @@ class CollectingState(object):
         self.hints = [""]
     
     def append_to_current_hint(self, ch):
-        self.hints[-1] += ch
+        self.hints[-1] += chr(ch)
     
     def update_hints(self, ch):
-        if ch in "?*{":
+        if chr(ch) in "?*{":
             self.bank_current_hint_and_forget_last_byte()
         
-        elif ch in "+.^$([\\":
+        elif chr(ch) in "+.^$([\\":
             self.bank_current_hint_with_last_byte()
         
-        elif ch == "|":
+        elif chr(ch) == "|":
             self.forget_all_hints()
             
         else:
             self.append_to_current_hint(ch)
     
     def next_state(self, ch):
-        if ch == "(":
+        if chr(ch) == "(":
             return StartOfGroupState(self)
         
-        elif ch == "[":
+        elif chr(ch) == "[":
             return InClassState(self)
         
-        elif ch == "{":
+        elif chr(ch) == "{":
             return InBracesState(self)
             
-        elif ch == "\\":
+        elif chr(ch) == "\\":
             return InBackslashState(self)
             
-        elif ch == "|":
+        elif chr(ch) == "|":
             return self.alternation_state()
             
         else:
@@ -128,7 +128,7 @@ class StartOfGroupState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == "?":
+        if chr(ch) == "?":
             return StartOfExtensionGroupState(self.parent_state)
         else:
             return InGroupState(self.parent_state).process_byte(ch)
@@ -141,14 +141,14 @@ class InGroupState(CollectingState):
         self.had_alternation = False
     
     def update_hints(self, ch):
-        if ch == ")":
+        if chr(ch) == ")":
             if not self.had_alternation:
                 self.parent_state.hints.append(self.hints)
         else:
             CollectingState.update_hints(self, ch)
     
     def next_state(self, ch):
-        if ch == ")":
+        if chr(ch) == ")":
             return self.close_group_state()
         else:
             return CollectingState.next_state(self, ch)
@@ -166,7 +166,7 @@ class StartOfExtensionGroupState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == "P":
+        if chr(ch) == "P":
             return MaybeStartOfNamedGroupState(self.parent_state)
         else:
             return IgnoredGroupState(self.parent_state).process_byte(ch)
@@ -177,7 +177,7 @@ class MaybeStartOfNamedGroupState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == "<":
+        if chr(ch) == "<":
             return InNamedGroupNameState(self.parent_state)
         else:
             return IgnoredGroupState(self.parent_state)
@@ -188,7 +188,7 @@ class InNamedGroupNameState(object):
         self.parent_state = parent_state
     
     def process_byte(self, ch):
-        if ch == ">":
+        if chr(ch) == ">":
             return InGroupState(self.parent_state)
         else:
             return self
