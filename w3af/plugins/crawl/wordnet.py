@@ -176,7 +176,7 @@ class wordnet(CrawlPlugin):
             """
             Compare the lengths of the objects.
             """
-            return cmp(len(i), len(j))
+            return (len(i) > len(j)) - (len(i) < len(j))
 
         result.sort(sort_function)
 
