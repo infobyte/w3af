@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import traceback
 
 from queue import Empty
-from multiprocessing.dummy import Queue, Process
+from multiprocessing.dummy import Process, JoinableQueue
 
 import w3af.core.controllers.output_manager as om
 import w3af.core.data.kb.knowledge_base as kb
@@ -49,7 +49,7 @@ class seed(Process):
         self._w3af_core = w3af_core
 
         # See documentation in the property below
-        self._out_queue = Queue()
+        self._out_queue = JoinableQueue()
 
     def get_name(self):
         return 'Seed'
