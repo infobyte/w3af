@@ -54,7 +54,7 @@ class path_disclosure(GrepPlugin):
         all_signatures = []
 
         for common_directory in get_common_directories():
-            regex_string = '[^A-Za-z0-9\._\-\\/\+~](%s.*?)[^A-Za-z0-9\._\-\\/\+~]'
+            regex_string = r'[^A-Za-z0-9\._\-\\/\+~](%s.*?)[^A-Za-z0-9\._\-\\/\+~]'
             regex_string = regex_string % common_directory
             all_signatures.append(regex_string)
             

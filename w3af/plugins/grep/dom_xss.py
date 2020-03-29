@@ -42,7 +42,7 @@ class dom_xss(GrepPlugin):
                     'eval',
                     'window.execScript')
     
-    JS_FUNCTION_CALLS = [re.compile(js_f + ' *\((.*?)\)', re.IGNORECASE)
+    JS_FUNCTION_CALLS = [re.compile(js_f + r' *\((.*?)\)', re.IGNORECASE)
                          for js_f in JS_FUNCTIONS]
 
     DOM_USER_CONTROLLED = ('document.URL',
@@ -56,7 +56,7 @@ class dom_xss(GrepPlugin):
         GrepPlugin.__init__(self)
 
         # Compile the regular expressions
-        self._script_re = re.compile('< *script *>(.*?)</ *script *>',
+        self._script_re = re.compile(r'< *script *>(.*?)</ *script *>',
                                      re.IGNORECASE | re.DOTALL)
 
     def grep(self, request, response):

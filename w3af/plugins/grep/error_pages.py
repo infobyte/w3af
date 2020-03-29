@@ -135,7 +135,7 @@ class error_pages(GrepPlugin):
         ('<address>(.*?)</address>', 'Apache'),
         ('<HR size="1" noshade="noshade"><h3>(.*?)</h3></body>',
          'Apache Tomcat'),
-        ('<a href="http://www.microsoft.com/ContentRedirect.asp\?prd=iis&sbp=&pver=(.*?)&pid=&ID', 'IIS'),
+        (r'<a href="http://www.microsoft.com/ContentRedirect.asp\?prd=iis&sbp=&pver=(.*?)&pid=&ID', 'IIS'),
 
         # <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:1.1.4322.2300; ASP.NET Version:1.1.4322.2300
         ('<b>Version Information:</b>&nbsp;(.*?)\n', 'ASP .NET')
