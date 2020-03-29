@@ -28,7 +28,7 @@ import sqlite3
 from functools import wraps
 
 from concurrent.futures import Future
-from multiprocessing.dummy import Queue, Process
+from multiprocessing.dummy import JoinableQueue, Process
 
 import w3af.core.controllers.output_manager as om
 
@@ -117,7 +117,7 @@ class SQLiteDBMS(object):
         #
         #   Any dead-lock you might be looking for doesn't seem to be here.
         #
-        in_queue = Queue(250)
+        in_queue = JoinableQueue(250)
         self.sql_executor = SQLiteExecutor(in_queue)
         self.sql_executor.start()
         
