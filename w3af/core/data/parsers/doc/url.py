@@ -195,12 +195,14 @@ class URL(DiskItem):
                  '_encoding',
 
                  # Easy access via properties
-                 'scheme',
-                 'netloc',
-                 'path',
-                 'params',
-                 'querystring',
-                 'fragment',)
+                 # 'scheme',
+                 # 'netloc',
+                 # 'path',
+                 # 'params',
+                 # 'querystring',
+                 # 'fragment',
+                )
+
 
     def __init__(self, data, encoding=DEFAULT_ENCODING):
         """
