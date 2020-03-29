@@ -340,7 +340,7 @@ class Tokenizer(object):
 
     def unget(self):
         self.lookahead += 1
-        if self.lookahead == 4: raise "PANIC: too much lookahead!"
+        if self.lookahead == 4: raise Exception("PANIC: too much lookahead!")
         self.tokenIndex = (self.tokenIndex - 1) & 3
 
     def newSyntaxError(self, m):
