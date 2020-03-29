@@ -92,9 +92,7 @@ class payload_transfer_factory(object):
                 to_test.append(reverse)
 
             # Test the fastest first and return the fastest one...
-            def sort_function(x, y):
-                return (y.get_speed() > x.get_speed()) - (y.get_speed() < x.get_speed())
-            to_test.sort(sort_function)
+            to_test.sort(key=lambda item: item.get_speed())
 
         for method in to_test:
 

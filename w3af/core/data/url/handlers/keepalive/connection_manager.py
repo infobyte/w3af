@@ -124,11 +124,8 @@ class ConnectionManager(object):
         om.out.debug(stats)
 
         # Connection in use time stats
-        def sort_by_time(c1, c2):
-            return (c1.current_request_start > c2.current_request_start) - (c1.current_request_start < c2.current_request_start)
-
         in_use = list(self.get_all_used_for_host_port(host_port))
-        in_use.sort(sort_by_time)
+        in_use.sort(key=lambda item: item.current_request_start)
         top_offenders = in_use[:5]
 
         connection_info = []

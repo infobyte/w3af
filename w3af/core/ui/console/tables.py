@@ -87,7 +87,8 @@ class table(object):
         shifts = [w - mw for mw, w in zip(minLengths, self._widthes)]
         #length = len(shifts)
         borrow = list(zip(self._colsRange, shifts))
-        borrow.sort(lambda a, b: (a[1] > b[1]) - (a[1] < b[1]))
+
+        borrow.sort(lambda item: item[1])
         delta = [0] * self._colsNum
 
         donorIdx = self._colsNum - 1

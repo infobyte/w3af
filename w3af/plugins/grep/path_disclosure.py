@@ -89,7 +89,7 @@ class path_disclosure(GrepPlugin):
 
         # Sort by the longest match, this is needed for filtering out
         # some false positives. Please read the note below.
-        match_list.sort(longest_cmp)
+        match_list.sort(key=lambda item: len(item))
 
         for match in match_list:
             # Avoid duplicated reports
@@ -285,6 +285,3 @@ class path_disclosure(GrepPlugin):
         to know the location of a file inside the remote web server.
         """
 
-
-def longest_cmp(a, b):
-    return (len(b) > len(a)) - (len(b) < len(a))

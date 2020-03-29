@@ -31,11 +31,6 @@ from w3af.core.data.parsers.doc.open_api import OpenAPI
 from w3af.core.data.url.HTTPResponse import HTTPResponse
 
 
-# Order them to be able to easily assert things
-def by_path(fra, frb):
-    return (fra.get_url().url_string > frb.get_url().url_string) - (fra.get_url().url_string < frb.get_url().url_string)
-
-
 class TestOpenAPIMain(unittest.TestCase):
     DATA_PATH = os.path.join(ROOT_PATH, 'core', 'data', 'parsers', 'doc', 'open_api', 'tests', 'data')
 
@@ -143,7 +138,7 @@ class TestOpenAPIMain(unittest.TestCase):
         parser.parse()
         api_calls = parser.get_api_calls()
 
-        api_calls.sort(by_path)
+        api_calls.sort(key=lambda item: item.get_url().url_string)
 
         self.assertEqual(len(api_calls), 4)
 
@@ -229,7 +224,7 @@ class TestOpenAPIMain(unittest.TestCase):
         parser.parse()
         api_calls = parser.get_api_calls()
 
-        api_calls.sort(by_path)
+        api_calls.sort(key=lambda item: item.get_url().url_string)
 
         self.assertEqual(len(api_calls), 2)
 
@@ -344,7 +339,7 @@ class TestOpenAPIMain(unittest.TestCase):
         parser.parse()
         api_calls = parser.get_api_calls()
 
-        api_calls.sort(by_path)
+        api_calls.sort(key=lambda item: item.get_url().url_string)
 
         self.assertEqual(len(api_calls), 4)
 

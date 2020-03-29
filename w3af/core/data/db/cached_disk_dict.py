@@ -90,7 +90,7 @@ class CachedDiskDict(object):
                 Then the method will generate [1, 2].
         """
         items = list(self._access_count.items())
-        items.sort(sort_by_value)
+        items.sort(key=lambda item: item[1])
 
         iterator = min(self._max_in_memory, len(items))
 

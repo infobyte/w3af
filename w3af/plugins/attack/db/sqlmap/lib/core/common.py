@@ -1868,7 +1868,7 @@ def showStaticWords(firstPage, secondPage):
 
     if commonWords:
         commonWords = list(commonWords)
-        commonWords.sort(lambda a, b: (a.lower() > b.lower()) - (a.lower() < b.lower()))
+        commonWords.sort(key=lambda item: item.lower())
 
         for word in commonWords:
             if len(word) > 2:
@@ -2512,7 +2512,7 @@ def findMultipartPostBoundary(post):
             done.add(_)
 
     if candidates:
-        candidates.sort(key=lambda _: _[0], reverse=True)
+        candidates.sort(key=lambda item: item[0], reverse=True)
         retVal = candidates[0][1]
 
     return retVal

@@ -104,8 +104,8 @@ class DocumentParser(object):
         """
         parsed_refs, re_refs = self._parser.get_references()
 
-        parsed_refs.sort(sort_by_url)
-        re_refs.sort(sort_by_url)
+        parsed_refs.sort(key=lambda item: item.url_string)
+        re_refs.sort(key=lambda item: item.url_string)
 
         return parsed_refs, re_refs
 
@@ -178,6 +178,3 @@ class DocumentParser(object):
 def document_parser_factory(http_resp):
     return DocumentParser(http_resp)
 
-
-def sort_by_url(url_a, url_b):
-    return (url_a.url_string > url_b.url_string) - (url_a.url_string < url_b.url_string)

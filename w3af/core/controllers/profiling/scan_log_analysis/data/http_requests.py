@@ -61,11 +61,8 @@ def get_total_http_requests(scan_log_filename, scan):
     from_cache = '%.2f%%' % (cached_responses / total * 100,)
     output.append(ListOutputItem('HTTP responses from cache', from_cache))
 
-    def by_value(a, b):
-        return (b[1] > a[1]) - (b[1] < a[1])
-
     count_list = list(count.items())
-    count_list.sort(by_value)
+    count_list.sort(key=lambda item: item[1])
 
     responses_by_code = {}
 
@@ -76,7 +73,7 @@ def get_total_http_requests(scan_log_filename, scan):
                                  responses_by_code))
 
     methods_list = list(methods.items())
-    methods_list.sort(by_value)
+    methods_list.sort(key=lambda item: item[1])
 
     requests_by_method = {}
 
@@ -87,7 +84,7 @@ def get_total_http_requests(scan_log_filename, scan):
                                  requests_by_method))
 
     urls_list = list(urls.items())
-    urls_list.sort(by_value)
+    urls_list.sort(key=lambda item: item[1])
     urls_list = urls_list[:10]
 
     urls_with_more_requests = {}

@@ -1,5 +1,3 @@
-def sort_by_value(a, b):
-    return (b[1] > a[1]) - (b[1] < a[1])
 
 
 class KeyValueOutput(object):
@@ -22,7 +20,7 @@ class KeyValueOutput(object):
 
         if isinstance(self.values, dict):
             values_list = list(self.values.items())
-            values_list.sort(sort_by_value)
+            values_list.sort(key=lambda item: item[1])
 
             for key, value in values_list:
                 if isinstance(value, list):

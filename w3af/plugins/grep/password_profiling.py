@@ -120,7 +120,7 @@ class password_profiling(GrepPlugin):
 
         # pylint: disable=E1103
         items = list(data.items())
-        items.sort(sort_func)
+        items.sort(key=lambda item: item[1])
 
         items = items[:1000]
 
@@ -220,7 +220,7 @@ class password_profiling(GrepPlugin):
 
         # pylint: disable=E1103
         items = list(profiling_data.items())
-        items.sort(sort_func)
+        items.sort(key=lambda item: item[1])
         items = items[:100]
 
         om.out.information('Password profiling TOP 100:')
@@ -246,6 +246,3 @@ class password_profiling(GrepPlugin):
         and counting the most common words.
         """
 
-
-def sort_func(x_obj, y_obj):
-    return (y_obj[1] > x_obj[1]) - (y_obj[1] < x_obj[1])

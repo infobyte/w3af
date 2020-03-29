@@ -305,11 +305,9 @@ class file_upload(AuditPlugin):
         #
         #   http://target/some/path/with/depth/uploads/{filename}
         #
-        def sort_by_len(a, b):
-            return (len(b.url_string) > len(a.url_string)) - (len(b.url_string) < len(a.url_string))
 
         domain_path_list = list(domain_path_set)
-        domain_path_list.sort(sort_by_len)
+        domain_path_list.sort(key=lambda item: len(item.url_string))
 
         for url in domain_path_list:
             for common_path in self.UPLOAD_PATHS:

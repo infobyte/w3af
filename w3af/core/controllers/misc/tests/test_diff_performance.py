@@ -61,7 +61,7 @@ class TestDiffPerformance(unittest.TestCase):
 
     def _print_result(self, result):
         results = list(result.items())
-        results.sort(lambda a, b: a[1] < b[1])
+        results.sort(key=lambda item: item[1])
 
         print()
 

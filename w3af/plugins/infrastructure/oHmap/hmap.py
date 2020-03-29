@@ -774,7 +774,7 @@ def winnow_ordered_list(ordered_list):
         #print('ordered_list too small to look at')
         return
 
-    ordered_list.sort(lambda a, b: (len(a) > len(b) - (len(a) < len(b))))
+    ordered_list.sort(key=lambda item: len(item))
     #print('sorted order', ordered_list)
 
     index = 0
@@ -1027,7 +1027,7 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
             return -((matches1 > matches2) - (matches1 < matches2))
 
         return (server1 > server2) - (server1 < server2)
-    scores.sort(score_cmp)
+    scores.sort(key=score_cmp)
 
     res = []
     for (server, (matches, mismatches, unknowns)) in scores[:MATCH_COUNT]:
