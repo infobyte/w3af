@@ -26,8 +26,7 @@ detect real servers behind HTTP load balancer devices.
 
 
 import time
-import types
-import rfc822
+from email import utils
 import hashlib
 
 import Halberd.util
@@ -203,7 +202,7 @@ class Clue:
     def _get_date(self, field):
         """Date:"""
         self.info['date'] = field
-        self._remote = time.mktime(rfc822.parsedate(field))
+        self._remote = time.mktime(utils.parsedate(field))
 
     def _get_content_location(self, field):
         """Content-location:"""
