@@ -75,7 +75,7 @@ class list_processes(Payload):
 
         def parse_iis6_log(iis6_log):
             process_list = re.findall(
-                '(?<=OC_ABOUT_TO_COMMIT_QUEUE:[)(.*)', iis6_log, re.MULTILINE)
+                r'(?<=OC_ABOUT_TO_COMMIT_QUEUE:[)(.*)', iis6_log, re.MULTILINE)
             for process in process_list:
                 pid, name = process.split('] ')
                 result[pid] = {'name': name, 'state':
