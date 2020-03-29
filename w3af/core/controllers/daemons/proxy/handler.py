@@ -23,8 +23,8 @@ import threading
 import traceback
 
 from netlib.odict import ODictCaseless
-from libmproxy.controller import Master
-from libmproxy.protocol.http import HTTPResponse as LibMITMProxyHTTPResponse
+from mitmproxy.master import Master
+from mitmproxy.http import HTTPResponse as LibMITMProxyHTTPResponse
 
 from w3af.core.data.parsers.doc.url import URL
 from w3af.core.data.url.HTTPRequest import HTTPRequest

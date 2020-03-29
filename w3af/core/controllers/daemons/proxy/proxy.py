@@ -24,8 +24,9 @@ import time
 import os
 
 from multiprocessing.dummy import Process
-from libmproxy.proxy.server import ProxyServer, ProxyServerError
-from libmproxy.proxy.config import ProxyConfig
+from mitmproxy.proxy.server import ProxyServer
+from mitmproxy.proxy.config import ProxyConfig
+from mitmproxy.exceptions import ServerException
 
 import w3af.core.controllers.output_manager as om
 
@@ -148,7 +149,7 @@ class Proxy(Process):
         except socket.error as se:
             raise ProxyException('Socket error while starting proxy: "%s"'
                                  % se.strerror)
-        except ProxyServerError as pse:
+        except ServerException as pse:
             raise ProxyException('%s' % pse)
         else:
             # This is here to support port == 0, which will bind to the first
