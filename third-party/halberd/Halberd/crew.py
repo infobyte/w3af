@@ -219,7 +219,7 @@ class WorkCrew:
     def _initLocal(self):
         """Initializes conventional (local) scanner threads.
         """
-        for i in xrange(self.task.parallelism):
+        for i in range(self.task.parallelism):
             worker = Scanner(self.state, self.task)
             self.workers.append(worker)
 
@@ -350,9 +350,9 @@ class Scanner(BaseScanner):
 
         try:
             ts, hdrs = client.getHeaders(self.task.addr, self.task.url)
-        except fatal_exceptions, msg:
+        except fatal_exceptions as msg:
             self.state.setError(msg)
-        except clientlib.TimedOut, msg:
+        except clientlib.TimedOut as msg:
             self.state.incMissed()
         else:
             self.state.insertClue(self.makeClue(ts, hdrs))

@@ -77,18 +77,18 @@ class Clue:
 
         @raise TypeError: If headers is neither a string nor a sequence.
         """
-        if isinstance(headers, basestring):
+        if isinstance(headers, str):
             # We parse the server's response into a sequence of name, value
             # tuples instead of a dictionary because with this approach we keep
             # the header's order as sent by the target, This is a relevant
             # piece of information we can't afford to miss.
             self.headers = [tuple(line.split(':', 1)) \
                             for line in headers.splitlines() if line != '']
-        elif isinstance(headers, types.ListType):
+        elif isinstance(headers, list):
             self.headers = headers
         else:
-            raise TypeError, 'Unable to parse headers of type %s' \
-                             % type(headers).__name__
+            raise TypeError('Unable to parse headers of type %s' \
+                             % type(headers).__name__)
 
         # We examine each MIME field and try to find an appropriate handler. If
         # there is none we simply digest the info it provides.

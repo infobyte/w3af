@@ -81,7 +81,7 @@ def load(filename):
         try:
             count, localtime, headers = tup
         except ValueError:
-            raise InvalidFile, 'Cannot unpack fields'
+            raise InvalidFile('Cannot unpack fields')
 
         # Recreate the current clue.
         clue = Clue()
@@ -89,13 +89,13 @@ def load(filename):
             clue._count = int(count)
             clue._local = float(localtime)
         except ValueError:
-            raise InvalidFile, 'Could not convert fields'
+            raise InvalidFile('Could not convert fields')
 
         # This may be risky from a security standpoint.
         clue.headers = eval(headers, {}, {})
-        if not (isinstance(clue.headers, types.ListType) or
-                isinstance(clue.headers, types.TupleType)):
-            raise InvalidFile, 'Wrong clue header field'
+        if not (isinstance(clue.headers, list) or
+                isinstance(clue.headers, tuple)):
+            raise InvalidFile('Wrong clue header field')
         clue.parse(clue.headers)
 
         clues.append(clue)
@@ -149,8 +149,7 @@ class ClueDir:
             os.mkdir(dest)
         else:
             if not shutil.stat.S_ISDIR(st.st_mode):
-                raise InvalidFile, \
-                      '%s already exist and is not a directory' % dest
+                raise InvalidFile('%s already exist and is not a directory' % dest)
 
         return dest
 

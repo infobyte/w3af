@@ -25,7 +25,7 @@
 
 import time
 import socket
-import urlparse
+import urllib.parse
 
 
 table = '________________________________________________0123456789_______ABCDEFGHIJKLMNOPQRSTUVWXYZ______abcdefghijklmnopqrstuvwxyz_____________________________________________________________________________________________________________________________________'
@@ -35,7 +35,7 @@ def _gen_table():
     """Generate translation table.
     """
     tab = ''
-    for c in map(chr, xrange(256)):
+    for c in map(chr, range(256)):
         tab += (c.isalnum() and c) or '_'
 
     return tab
@@ -55,7 +55,7 @@ def hostname(url):
     failure.
     @rtype: C{str}
     """
-    netloc = urlparse.urlparse(url)[1]
+    netloc = urllib.parse.urlparse(url)[1]
     if netloc == '':
         return ''
 
@@ -81,7 +81,7 @@ def addresses(host):
 
 
 if __name__ == '__main__':
-    print "table = '%s'" % _gen_table()
+    print("table = '%s'" % _gen_table())
 
 
 # vim: ts=4 sw=4 et

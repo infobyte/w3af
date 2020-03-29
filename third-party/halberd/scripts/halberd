@@ -155,15 +155,15 @@ def main(argv):
     (opts, args) = parser.parse_args(argv[1:])
 
     if opts.verbose:
-        print version.version.v_gnu
-        print
+        print(version.version.v_gnu)
+        print()
 
     try:
         scanner = scannerFactory(opts, args)
         if scanner is None:
             parser.error('incorrect number of arguments')
         scanner.execute()
-    except Halberd.shell.ScanError, msg:
+    except Halberd.shell.ScanError as msg:
         sys.stderr.write('\n*** %s ***\n' % msg)
     except KeyboardInterrupt:
         sys.stderr.write('\r*** interrupted by the user ***\n')

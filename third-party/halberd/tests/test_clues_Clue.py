@@ -34,22 +34,22 @@ class TestClue(unittest.TestCase):
         pass
 
     def testCount(self):
-        self.failUnlessEqual(self.clue.getCount(), 1)
+        self.assertEqual(self.clue.getCount(), 1)
         self.clue.incCount()
-        self.failUnlessEqual(self.clue.getCount(), 2)
+        self.assertEqual(self.clue.getCount(), 2)
         self.clue.incCount(21)
-        self.failUnlessEqual(self.clue.getCount(), 23)
+        self.assertEqual(self.clue.getCount(), 23)
 
-        self.failUnlessRaises(ValueError, self.clue.incCount, 0)
-        self.failUnlessRaises(ValueError, self.clue.incCount, -7)
+        self.assertRaises(ValueError, self.clue.incCount, 0)
+        self.assertRaises(ValueError, self.clue.incCount, -7)
 
     def testNormalize(self):
         value = '123content-location*23'
-        self.failUnless(Clue.normalize(value) == 'content_location_23')
+        self.assertTrue(Clue.normalize(value) == 'content_location_23')
         value = 'content/location'
-        self.failUnless(Clue.normalize(value) == 'content_location')
+        self.assertTrue(Clue.normalize(value) == 'content_location')
         value = '*content/location123'
-        self.failUnless(Clue.normalize(value) == '_content_location123')
+        self.assertTrue(Clue.normalize(value) == '_content_location123')
 
     def testRecompute(self):
         # Check for invalid digest computations.

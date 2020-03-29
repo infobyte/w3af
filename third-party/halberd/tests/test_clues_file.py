@@ -62,8 +62,8 @@ class TestStorage(unittest.TestCase):
         finally:
             os.unlink(self.filename)
 
-        self.failUnless(len(clues) == 1)
-        self.failUnless(clues[0] == self.clue)
+        self.assertTrue(len(clues) == 1)
+        self.assertTrue(clues[0] == self.clue)
 
 
 if __name__ == '__main__':

@@ -35,7 +35,7 @@ class TestAnalysis(unittest.TestCase):
 
 
     def _hits(self, clues):
-        return sum(map(lambda c: c.getCount(), clues))
+        return sum([c.getCount() for c in clues])
 
     def _getClues(self, filename):
         fname = os.path.join('tests', 'data', filename + '.clu')
@@ -43,16 +43,16 @@ class TestAnalysis(unittest.TestCase):
 
     def analyze(self, filename, expected_raw, expected_analyzed):
         clues = self._getClues(filename)
-        self.failUnless(len(clues) >= expected_raw)
+        self.assertTrue(len(clues) >= expected_raw)
 
         analyzed = analysis.analyze(clues)
         analyzed = analysis.reanalyze(clues, analyzed, self.threshold)
-        self.failUnlessEqual(len(analyzed), expected_analyzed)
+        self.assertEqual(len(analyzed), expected_analyzed)
 
         total_before = self._hits(clues)
         total_after = self._hits(analyzed)
 
-        self.failUnlessEqual(total_before, total_after)
+        self.assertEqual(total_before, total_after)
 
     def testSimple(self):
         self.analyze('agartha', 2, 1)

@@ -30,7 +30,7 @@ This module takes care of reading and writing configuration files.
 
 
 import os
-import ConfigParser
+import configparser
 
 
 default_proxy_port = 8080
@@ -65,7 +65,7 @@ class ConfReader:
         self.__dict = {}
         self.__conf = None
 
-        self.confparser = ConfigParser.SafeConfigParser()
+        self.confparser = configparser.SafeConfigParser()
 
     def open(self, fname):
         """Opens the configuration file.
@@ -78,8 +78,8 @@ class ConfReader:
         self.__conf = open(os.path.expanduser(fname), 'r')
         try:
             self.confparser.readfp(self.__conf, fname)
-        except ConfigParser.MissingSectionHeaderError, msg:
-            raise InvalidConfFile, msg
+        except configparser.MissingSectionHeaderError as msg:
+            raise InvalidConfFile(msg)
 
     def close(self):
         """Release the configuration file's descriptor.
@@ -116,7 +116,7 @@ class ConfReader:
             for name, value in self.confparser.items(section):
                 sec.setdefault(name, value)
 
-        if self.__dict.has_key('proxy'):
+        if 'proxy' in self.__dict:
             proxy_serv_addr = self._getAddr('proxy', default_proxy_port)
 
         keyfile = self.__dict['ssl'].get('keyfile', None)
@@ -135,7 +135,7 @@ class ConfReader:
         @param conf_file: Target file where the default conf. will be written.
         @type conf_file: C{str}
         """
-        assert conf_file and isinstance(conf_file, basestring)
+        assert conf_file and isinstance(conf_file, str)
 
         conf_fp = open(conf_file, 'w')
         conf_fp.write(default_conf)

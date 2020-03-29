@@ -47,8 +47,8 @@ def diff_fields(clues):
     @rtype: C{list}
     """
     def pairs(num):
-        for i in xrange(num):
-            for j in xrange(num):
+        for i in range(num):
+            for j in range(num):
                 if i == j:
                     continue
                 yield (i, j)
@@ -215,13 +215,13 @@ def classify(seq, *classifiers):
     >>> digests = classified.keys()
     >>> digests.sort()  # We sort these so doctest won't fail.
     >>> for digest in digests:
-    ...     print digest
+    ...     print(digest)
     ...     for diff in classified[digest].keys():
-    ...         print ' ', diff
+    ...         print(' ', diff)
     ...         for clue in classified[digest][diff]:
-    ...             if clue is a: print '    a'
-    ...             elif clue is b: print '    b'
-    ...             elif clue is c: print '    c'
+    ...             if clue is a: print('    a')
+    ...             elif clue is b: print('    b')
+    ...             elif clue is c: print('    c')
     ...
     x
       1
@@ -275,7 +275,7 @@ def sections(classified, sects=None):
         sects = []
 
     if isinstance(classified, dict):
-        for key in classified.keys():
+        for key in list(classified.keys()):
             sections(classified[key], sects)
     elif isinstance(classified, list):
         sects.append(classified)
@@ -310,7 +310,7 @@ def slices(start, xs):
     >>> seq = range(20) 
     >>> indices = [5, 10, 15]
     >>> for piece in slices(0, indices):
-    ...     print seq[piece]
+    ...     print(seq[piece])
     [0, 1, 2, 3, 4]
     [5, 6, 7, 8, 9]
     [10, 11, 12, 13, 14]
@@ -436,7 +436,7 @@ def analyze(clues):
 
     cluesbydigest = classify(clues, get_digest)
 
-    for key in cluesbydigest.keys():
+    for key in list(cluesbydigest.keys()):
         for cluster in clusters(cluesbydigest[key]):
             results.append(merge(cluster))
 

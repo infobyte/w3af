@@ -69,7 +69,7 @@ class test(Command):
         runner = unittest.TextTestRunner(verbosity=2)
 
         for module in modules:
-            print "Running tests found in '%s'..." % module
+            print("Running tests found in '%s'..." % module)
             TEST = __import__(module, globals(), locals(), [])
             suite = loader.loadTestsFromModule(TEST)
             runner.run(suite)
