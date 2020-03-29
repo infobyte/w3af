@@ -112,7 +112,7 @@ def sortfunc(x_obj, y_obj):
 
     :return: The answer to: which one is greater?
     """
-    return cmp(y_obj[1], x_obj[1])
+    return (y_obj[1] > x_obj[1]) - (y_obj[1] < x_obj[1])
 
 
 def get_match_rate(variable_name, variable_name_db):

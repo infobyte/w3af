@@ -138,7 +138,7 @@ class Struct(object):
         return " ".join(r)
 
     def __cmp__(self, other):
-        return cmp(self.__dict__, other.__dict__)
+        return (self.__dict__ > other.__dict__) - (self.__dict__ < other.__dict__)
 
 
 class Prefs(object):

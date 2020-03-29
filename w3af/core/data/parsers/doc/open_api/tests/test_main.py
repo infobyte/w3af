@@ -33,7 +33,7 @@ from w3af.core.data.url.HTTPResponse import HTTPResponse
 
 # Order them to be able to easily assert things
 def by_path(fra, frb):
-    return cmp(fra.get_url().url_string, frb.get_url().url_string)
+    return (fra.get_url().url_string > frb.get_url().url_string) - (fra.get_url().url_string < frb.get_url().url_string)
 
 
 class TestOpenAPIMain(unittest.TestCase):

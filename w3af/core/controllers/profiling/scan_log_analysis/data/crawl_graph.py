@@ -25,7 +25,7 @@ def generate_crawl_graph(scan_log_filename, scan):
         print('No web_spider data found!')
 
     def sort_by_len(a, b):
-        return cmp(len(a), len(b))
+        return (len(a) > len(b)) - (len(a) < len(b))
 
     referers = list(data.keys())
     referers.sort(sort_by_len)

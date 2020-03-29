@@ -49,8 +49,8 @@ class xrange(object):
         return hash(self._slice)
 
     def __cmp__(self, other):
-        return (cmp(type(self), type(other)) or
-                cmp(self._slice, other._slice))
+        return ((type(self) > type(other)) - (type(self) < type(other)) or
+                (self._slice> other._slice) - (self._slice < other._slice))
 
     def __repr__(self):
         return '%s(%r, %r, %r)' % (type(self).__name__,

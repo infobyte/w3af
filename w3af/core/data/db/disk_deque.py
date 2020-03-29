@@ -95,8 +95,8 @@ class DiskDeque(object):
 
     def __cmp__(self, other):
         if type(self) != type(other):
-            return cmp(type(self), type(other))
-        return cmp(list(self), list(other))
+            return (type(self) > type(other)) - (type(self) < type(other))
+        return (list(self) > list(other)) - (list(self) < list(other))
 
     def __repr__(self, _track=[]):
         if id(self) in _track:

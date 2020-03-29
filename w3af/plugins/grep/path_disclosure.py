@@ -287,4 +287,4 @@ class path_disclosure(GrepPlugin):
 
 
 def longest_cmp(a, b):
-    return cmp(len(b), len(a))
+    return (len(b) > len(a)) - (len(b) < len(a))

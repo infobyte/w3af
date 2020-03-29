@@ -248,4 +248,4 @@ class password_profiling(GrepPlugin):
 
 
 def sort_func(x_obj, y_obj):
-    return cmp(y_obj[1], x_obj[1])
+    return (y_obj[1] > x_obj[1]) - (y_obj[1] < x_obj[1])

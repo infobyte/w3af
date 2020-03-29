@@ -942,7 +942,7 @@ class Keys(object):
     def __gt__(self, other): return self._main._sequence >  other
     def __ge__(self, other): return self._main._sequence >= other
     # FIXME: do we need __cmp__ as well as rich comparisons?
-    def __cmp__(self, other): return cmp(self._main._sequence, other)
+    def __cmp__(self, other): return (self._main._sequence > other) - (self._main._sequence < other)
 
     def __contains__(self, item): return item in self._main._sequence
     def __len__(self): return len(self._main._sequence)
@@ -1026,7 +1026,7 @@ class Items(object):
     def __ne__(self, other): return list(self._main.items()) != other
     def __gt__(self, other): return list(self._main.items()) >  other
     def __ge__(self, other): return list(self._main.items()) >= other
-    def __cmp__(self, other): return cmp(list(self._main.items()), other)
+    def __cmp__(self, other): return (list(self._main.items()) > other) - (list(self._main.items()) < other)
 
     def __contains__(self, item): return item in list(self._main.items())
     def __len__(self): return len(self._main._sequence) # easier :-)
@@ -1130,7 +1130,7 @@ class Values(object):
     def __ne__(self, other): return list(self._main.values()) != other
     def __gt__(self, other): return list(self._main.values()) >  other
     def __ge__(self, other): return list(self._main.values()) >= other
-    def __cmp__(self, other): return cmp(list(self._main.values()), other)
+    def __cmp__(self, other): return (list(self._main.values()) > other) - (list(self._main.values()) < other)
 
     def __contains__(self, item): return item in list(self._main.values())
     def __len__(self): return len(self._main._sequence) # easier :-)

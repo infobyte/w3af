@@ -62,7 +62,7 @@ def get_total_http_requests(scan_log_filename, scan):
     output.append(ListOutputItem('HTTP responses from cache', from_cache))
 
     def by_value(a, b):
-        return cmp(b[1], a[1])
+        return (b[1] > a[1]) - (b[1] < a[1])
 
     count_list = list(count.items())
     count_list.sort(by_value)

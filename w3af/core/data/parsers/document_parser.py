@@ -180,4 +180,4 @@ def document_parser_factory(http_resp):
 
 
 def sort_by_url(url_a, url_b):
-    return cmp(url_a.url_string, url_b.url_string)
+    return (url_a.url_string > url_b.url_string) - (url_a.url_string < url_b.url_string)

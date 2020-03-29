@@ -58,7 +58,7 @@ def get_plugin_time(scan_log_filename, scan):
     output = ListOutput('plugin_wall_clock_stats')
 
     def sort_by_value(a, b):
-        return cmp(b[1], a[1])
+        return (b[1] > a[1]) - (b[1] < a[1])
 
     for plugin_type in spent_time_by_plugin:
         spent_time_by_plugin_one_type = spent_time_by_plugin[plugin_type]

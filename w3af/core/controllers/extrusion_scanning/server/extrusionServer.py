@@ -164,7 +164,7 @@ class extrusionServer(object):
         # Now get the one that has more probability of being the one... and
         # report the list of ports
         def sortfunc(x, y):
-            return cmp(x[1], y[1])
+            return (x[1] > y[1]) - (x[1] < y[1])
         items = list(possible_hosts.items())
         items.sort(sortfunc)
 

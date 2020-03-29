@@ -64,7 +64,7 @@ class URLNode(object):
         return self.path == other.path
 
     def __cmp__(self, other):
-        return cmp(self.path, other.path)
+        return (self.path > other.path)-(self.path < other.path)
 
 
 class URLTree(object):

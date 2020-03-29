@@ -774,7 +774,7 @@ def winnow_ordered_list(ordered_list):
         #print('ordered_list too small to look at')
         return
 
-    ordered_list.sort(lambda a, b: cmp(len(a), len(b)))
+    ordered_list.sort(lambda a, b: (len(a) > len(b) - (len(a) < len(b))))
     #print('sorted order', ordered_list)
 
     index = 0
@@ -1023,10 +1023,10 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
         (server1, (matches1, mismatches1, unknowns1)) = score1
         (server2, (matches2, mismatches2, unknowns2)) = score2
 
-        if -cmp(matches1, matches2) != 0:
-            return -cmp(matches1, matches2)
+        if -((matches1 > matches2) - (matches1 < matches2)) != 0:
+            return -((matches1 > matches2) - (matches1 < matches2))
 
-        return cmp(server1, server2)
+        return (server1 > server2) - (server1 < server2)
     scores.sort(score_cmp)
 
     res = []
