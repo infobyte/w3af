@@ -36,20 +36,24 @@ class global_redirect(AuditPlugin):
     Find scripts that redirect the browser to any site.
     :author: Andres Riancho (andres.riancho@gmail.com)
     """
+
     TEST_DOMAIN = 'w3af.org'
 
     EXTENDED_PAYLOADS = None
     BASIC_PAYLOADS = {'http://www.%s/' % TEST_DOMAIN,
-                      '//%s' % TEST_DOMAIN}
+                           '//%s' % TEST_DOMAIN}
 
     SCRIPT_RE = re.compile('<script.*?>(.*?)</script>', re.IGNORECASE | re.DOTALL)
     META_URL_RE = re.compile('.*?; *?URL *?= *?(.*)', re.IGNORECASE | re.DOTALL)
 
-    JS_REDIR_GENERIC_FMT = ['window\.location.*?=.*?["\'].*?%s.*?["\']',
-                            '(self|top)\.location.*?=.*?["\'].*?%s.*?["\']',
-                            'window\.location\.(replace|assign)\(["\'].*?%s.*?["\']\)']
-    REDIR_TO_TEST_DOMAIN_JS_RE = [re.compile(r % TEST_DOMAIN) for r in JS_REDIR_GENERIC_FMT]
-    JS_REDIR_RE = [re.compile(r % '') for r in JS_REDIR_GENERIC_FMT]
+    JS_REDIR_GENERIC_FMT = [r'window\.location.*?=.*?["\'].*?%s.*?["\']',
+                                 r'(self|top)\.location.*?=.*?["\'].*?%s.*?["\']',
+                                 r'window\.location\.(replace|assign)\(["\'].*?%s.*?["\']\)']
+
+    def __init__(self):
+        super(global_redirect, self).__init__()
+        self.REDIR_TO_TEST_DOMAIN_JS_RE = [re.compile(r % self.TEST_DOMAIN) for r in self.JS_REDIR_GENERIC_FMT]
+        self.JS_REDIR_RE = [re.compile(r % '') for r in self.JS_REDIR_GENERIC_FMT]
 
     def audit(self, freq, orig_response, debugging_id):
         """
