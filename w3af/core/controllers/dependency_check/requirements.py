@@ -43,7 +43,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
 
                      PIPDependency('lxml', 'lxml', '3.4.4'),
                      PIPDependency('scapy.config', 'scapy', '2.4.0'),
-                     # PIPDependency('guess_language', 'guess_language-spirit', '0.5.3'), # @TODO
+                     PIPDependency('guess_language', 'guess-language-spirit', '0.5.3'),
                      PIPDependency('cluster', 'cluster', '1.1.1b3'),
                      PIPDependency('msgpack', 'msgpack', '0.5.6'),
                      PIPDependency('ntlm', 'python-ntlm3', '1.0.2'),
