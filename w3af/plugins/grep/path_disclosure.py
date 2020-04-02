@@ -158,7 +158,7 @@ class path_disclosure(GrepPlugin):
         return False
 
     def _is_attr_value(self, path_disclosure_string, response):
-        """
+        r"""
         This method was created to remove some false positives.
 
         This method consumes 99% of the CPU usage of the plugin, but there
@@ -275,7 +275,7 @@ class path_disclosure(GrepPlugin):
         """
         :return: A DETAILED description of the plugin functions and features.
         """
-        return """
+        return r"""
         This plugin greps every page for path disclosure vulnerabilities like:
 
             - C:\\www\\files\...
