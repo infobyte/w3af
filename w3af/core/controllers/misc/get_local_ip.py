@@ -39,6 +39,7 @@ def get_local_ip(target=None):
         #   I use port 80, but could use any port
         sock.connect((connect_target, 80))
         local_address = sock.getsockname()[0]
+        sock.close()
     except Exception:
         return None
     else:
