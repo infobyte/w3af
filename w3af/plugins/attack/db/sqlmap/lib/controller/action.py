@@ -5,19 +5,19 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.controller.handler import setHandler
-from lib.core.common import Backend
-from lib.core.common import Format
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import CONTENT_TYPE
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.exception import SqlmapUnsupportedDBMSException
-from lib.core.settings import SUPPORTED_DBMS
-from lib.utils.brute import columnExists
-from lib.utils.brute import tableExists
+from w3af.plugins.attack.db.sqlmap.lib.controller.handler import setHandler
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Format
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CONTENT_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedDBMSException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SUPPORTED_DBMS
+from w3af.plugins.attack.db.sqlmap.lib.utils.brute import columnExists
+from w3af.plugins.attack.db.sqlmap.lib.utils.brute import tableExists
 
 def action():
     """
