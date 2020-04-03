@@ -5,15 +5,15 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.enums import DBMS
-from lib.core.settings import MSSQL_SYSTEM_DBS
-from lib.core.unescaper import unescaper
-from plugins.dbms.mssqlserver.enumeration import Enumeration
-from plugins.dbms.mssqlserver.filesystem import Filesystem
-from plugins.dbms.mssqlserver.fingerprint import Fingerprint
-from plugins.dbms.mssqlserver.syntax import Syntax
-from plugins.dbms.mssqlserver.takeover import Takeover
-from plugins.generic.misc import Miscellaneous
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MSSQL_SYSTEM_DBS
+from w3af.plugins.attack.db.sqlmap.lib.core.unescaper import unescaper
+from w3af.plugins.attack.db.sqlmap.plugins.dbms.mssqlserver.enumeration import Enumeration
+from w3af.plugins.attack.db.sqlmap.plugins.dbms.mssqlserver.filesystem import Filesystem
+from w3af.plugins.attack.db.sqlmap.plugins.dbms.mssqlserver.fingerprint import Fingerprint
+from w3af.plugins.attack.db.sqlmap.plugins.dbms.mssqlserver.syntax import Syntax
+from w3af.plugins.attack.db.sqlmap.plugins.dbms.mssqlserver.takeover import Takeover
+from w3af.plugins.attack.db.sqlmap.plugins.generic.misc import Miscellaneous
 
 
 class MSSQLServerMap(Syntax, Fingerprint, Enumeration, Filesystem, Miscellaneous, Takeover):

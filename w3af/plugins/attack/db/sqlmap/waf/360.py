@@ -7,7 +7,7 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.settings import WAF_ATTACK_VECTORS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import WAF_ATTACK_VECTORS
 
 __product__ = "360 Web Application Firewall (360)"
 
