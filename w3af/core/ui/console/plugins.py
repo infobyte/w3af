@@ -226,26 +226,26 @@ class pluginsTypeMenu(menu):
         #print('list : ' + str(params))
         filter = len(params) > 0 and params[0] or 'all'
 
-        all = list(self._plugins.keys())
+        all_list = list(self._plugins.keys())
         enabled = self._w3af.plugins.get_enabled_plugins(self._name)
 
         if filter == 'all':
-            list = all
+            aux_list = all_list
         elif filter == 'enabled':
-            list = enabled
+            aux_list = enabled
         elif filter == 'disabled':
-            list = [p for p in all if p not in enabled]
+            aux_list = [p for p in all_list if p not in enabled]
         else:
-            list = []
+            aux_list = []
 
-        if len(list) == 0:
+        if len(aux_list) == 0:
             om.out.console('No plugins have status ' + filter)
             return
 
-        list.sort()
+        aux_list.sort()
         table = [['Plugin name', 'Status', 'Conf', 'Description']]
 
-        for plugin_name in list:
+        for plugin_name in aux_list:
             row = []
             plugin = self._w3af.plugins.get_plugin_inst(
                 self._name, plugin_name)
