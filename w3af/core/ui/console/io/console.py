@@ -47,21 +47,25 @@ def sync_with_om(func):
 def write(s):
     if len(s):
         sys.stdout.write(s)
+        sys.stdout.flush()
 
 
 @sync_with_om
 def writeln(s=''):
     sys.stdout.write(s + '\n\r')
+    sys.stdout.flush()
 
 
 @sync_with_om
 def bell():
     sys.stdout.write('\x07')
+    sys.stdout.flush()
 
 
 @sync_with_om
 def backspace():
     sys.stdout.write(KEY_BACKSPACE)
+    sys.stdout.flush()
 
 
 @sync_with_om
