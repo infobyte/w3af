@@ -7,26 +7,26 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.agent import agent
-from lib.core.common import checkFile
-from lib.core.common import dataToStdout
-from lib.core.common import Backend
-from lib.core.common import isStackingAvailable
-from lib.core.common import readInput
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.data import queries
-from lib.core.enums import DBMS
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import EXPECTED
-from lib.core.enums import OS
-from lib.core.common import unArrayizeValue
-from lib.core.exception import SqlmapFilePathException
-from lib.core.exception import SqlmapMissingMandatoryOptionException
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.core.exception import SqlmapUserQuitException
-from lib.core.unescaper import unescaper
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isStackingAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import queries
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapFilePathException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingMandatoryOptionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUserQuitException
+from w3af.plugins.attack.db.sqlmap.lib.core.unescaper import unescaper
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 class UDF:
     """

@@ -7,26 +7,26 @@ See the file 'LICENSE' for copying permission
 
 import time
 
-from extra.safe2bin.safe2bin import safecharencode
-from lib.core.agent import agent
-from lib.core.common import Backend
-from lib.core.common import calculateDeltaSeconds
-from lib.core.common import extractExpectedValue
-from lib.core.common import getCurrentThreadData
-from lib.core.common import getUnicode
-from lib.core.common import hashDBRetrieve
-from lib.core.common import hashDBWrite
-from lib.core.common import isListLike
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.dicts import SQL_STATEMENTS
-from lib.core.enums import CUSTOM_LOGGING
-from lib.core.enums import DBMS
-from lib.core.enums import EXPECTED
-from lib.core.enums import TIMEOUT_STATE
-from lib.core.settings import UNICODE_ENCODING
-from lib.utils.timeout import timeout
+from w3af.plugins.attack.db.sqlmap.extra.safe2bin.safe2bin import safecharencode
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import calculateDeltaSeconds
+from w3af.plugins.attack.db.sqlmap.lib.core.common import extractExpectedValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBRetrieve
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isListLike
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.dicts import SQL_STATEMENTS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CUSTOM_LOGGING
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import TIMEOUT_STATE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.utils.timeout import timeout
 
 def direct(query, content=True):
     select = True

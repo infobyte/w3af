@@ -7,28 +7,28 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from extra.safe2bin.safe2bin import safechardecode
-from lib.core.agent import agent
-from lib.core.bigarray import BigArray
-from lib.core.common import Backend
-from lib.core.common import getUnicode
-from lib.core.common import isNoneValue
-from lib.core.common import isNumPosStrValue
-from lib.core.common import singleTimeWarnMessage
-from lib.core.common import unArrayizeValue
-from lib.core.common import unsafeSQLIdentificatorNaming
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import queries
-from lib.core.dicts import DUMP_REPLACEMENTS
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import EXPECTED
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.settings import MAX_INT
-from lib.core.unescaper import unescaper
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.extra.safe2bin.safe2bin import safechardecode
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.bigarray import BigArray
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNoneValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNumPosStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unsafeSQLIdentificatorNaming
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import queries
+from w3af.plugins.attack.db.sqlmap.lib.core.dicts import DUMP_REPLACEMENTS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_INT
+from w3af.plugins.attack.db.sqlmap.lib.core.unescaper import unescaper
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 def pivotDumpTable(table, colList, count=None, blind=True):
     lengths = {}

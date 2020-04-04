@@ -8,7 +8,7 @@ See the file 'LICENSE' for copying permission
 import logging
 import sys
 
-from lib.core.enums import CUSTOM_LOGGING
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CUSTOM_LOGGING
 
 logging.addLevelName(CUSTOM_LOGGING.PAYLOAD, "PAYLOAD")
 logging.addLevelName(CUSTOM_LOGGING.TRAFFIC_OUT, "TRAFFIC OUT")

@@ -9,12 +9,12 @@ import os
 
 from xml.etree import ElementTree as et
 
-from lib.core.common import getSafeExString
-from lib.core.data import conf
-from lib.core.data import paths
-from lib.core.datatype import AttribDict
-from lib.core.exception import SqlmapInstallationException
-from lib.core.settings import PAYLOAD_XML_FILES
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapInstallationException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PAYLOAD_XML_FILES
 
 def cleanupVals(text, tag):
     if tag in ("clause", "where"):

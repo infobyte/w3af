@@ -8,11 +8,11 @@ See the file 'LICENSE' for copying permission
 import os
 import re
 
-from lib.core.common import singleTimeWarnMessage
-from lib.core.data import kb
-from lib.core.enums import DBMS
-from lib.core.enums import PRIORITY
-from lib.core.settings import IGNORE_SPACE_AFFECTED_KEYWORDS
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IGNORE_SPACE_AFFECTED_KEYWORDS
 
 __priority__ = PRIORITY.HIGHER
 

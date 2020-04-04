@@ -18,9 +18,9 @@ import re
 import io
 import sys
 
-from lib.core.settings import IS_WIN
-from lib.core.settings import UNICODE_ENCODING
-from lib.core.settings import PICKLE_REDUCE_WHITELIST
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PICKLE_REDUCE_WHITELIST
 from functools import reduce
 
 def base64decode(value):

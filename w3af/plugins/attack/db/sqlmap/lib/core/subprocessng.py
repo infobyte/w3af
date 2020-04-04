@@ -11,7 +11,7 @@ import subprocess
 import sys
 import time
 
-from lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
 
 if IS_WIN:
     try:

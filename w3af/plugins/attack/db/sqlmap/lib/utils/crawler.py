@@ -12,28 +12,28 @@ import urllib.parse
 import tempfile
 import time
 
-from lib.core.common import checkSameHost
-from lib.core.common import clearConsoleLine
-from lib.core.common import dataToStdout
-from lib.core.common import findPageForms
-from lib.core.common import getSafeExString
-from lib.core.common import openFile
-from lib.core.common import readInput
-from lib.core.common import safeCSValue
-from lib.core.common import urldecode
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import MKSTEMP_PREFIX
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapSyntaxException
-from lib.core.settings import CRAWL_EXCLUDE_EXTENSIONS
-from lib.core.threads import getCurrentThreadData
-from lib.core.threads import runThreads
-from lib.parse.sitemap import parseSitemap
-from lib.request.connect import Connect as Request
-from thirdparty.beautifulsoup.beautifulsoup import BeautifulSoup
-from thirdparty.oset.pyoset import oset
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkSameHost
+from w3af.plugins.attack.db.sqlmap.lib.core.common import clearConsoleLine
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import findPageForms
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import openFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import safeCSValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import urldecode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import MKSTEMP_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSyntaxException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import CRAWL_EXCLUDE_EXTENSIONS
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import runThreads
+from w3af.plugins.attack.db.sqlmap.lib.parse.sitemap import parseSitemap
+from w3af.plugins.attack.db.sqlmap.lib.request.connect import Connect as Request
+from w3af.plugins.attack.db.sqlmap.thirdparty.beautifulsoup.beautifulsoup import BeautifulSoup
+from w3af.plugins.attack.db.sqlmap.thirdparty.oset.pyoset import oset
 
 def crawl(target):
     try:

@@ -9,38 +9,38 @@ import logging
 import random
 import re
 
-from lib.core.agent import agent
-from lib.core.common import average
-from lib.core.common import Backend
-from lib.core.common import isNullValue
-from lib.core.common import listToStrValue
-from lib.core.common import popValue
-from lib.core.common import pushValue
-from lib.core.common import randomInt
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.common import removeReflectiveValues
-from lib.core.common import singleTimeLogMessage
-from lib.core.common import singleTimeWarnMessage
-from lib.core.common import stdev
-from lib.core.common import wasLastResponseDBMSError
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.dicts import FROM_DUMMY_TABLE
-from lib.core.enums import PAYLOAD
-from lib.core.settings import LIMITED_ROWS_TEST_NUMBER
-from lib.core.settings import UNION_MIN_RESPONSE_CHARS
-from lib.core.settings import UNION_STDEV_COEFF
-from lib.core.settings import MIN_RATIO
-from lib.core.settings import MAX_RATIO
-from lib.core.settings import MIN_STATISTICAL_RANGE
-from lib.core.settings import MIN_UNION_RESPONSES
-from lib.core.settings import NULL
-from lib.core.settings import ORDER_BY_STEP
-from lib.core.unescaper import unescaper
-from lib.request.comparison import comparison
-from lib.request.connect import Connect as Request
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import average
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNullValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import listToStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import popValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pushValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import removeReflectiveValues
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeLogMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import stdev
+from w3af.plugins.attack.db.sqlmap.lib.core.common import wasLastResponseDBMSError
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.dicts import FROM_DUMMY_TABLE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import LIMITED_ROWS_TEST_NUMBER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNION_MIN_RESPONSE_CHARS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNION_STDEV_COEFF
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MIN_RATIO
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_RATIO
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MIN_STATISTICAL_RANGE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MIN_UNION_RESPONSES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import NULL
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ORDER_BY_STEP
+from w3af.plugins.attack.db.sqlmap.lib.core.unescaper import unescaper
+from w3af.plugins.attack.db.sqlmap.lib.request.comparison import comparison
+from w3af.plugins.attack.db.sqlmap.lib.request.connect import Connect as Request
 
 def _findUnionCharCount(comment, place, parameter, value, prefix, suffix, where=PAYLOAD.WHERE.ORIGINAL):
     """

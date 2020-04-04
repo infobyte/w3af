@@ -5,11 +5,11 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import Backend
-from lib.core.common import readInput
-from lib.core.data import logger
-from lib.core.enums import OS
-from lib.core.exception import SqlmapUndefinedMethod
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUndefinedMethod
 
 class Fingerprint:
     """

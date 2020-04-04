@@ -1,6 +1,6 @@
 import re
 
-from utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 
 
 ERRORS_RE = [re.compile('Unhandled exception "(.*?)"'),

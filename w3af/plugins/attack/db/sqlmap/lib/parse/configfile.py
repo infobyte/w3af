@@ -5,19 +5,19 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import checkFile
-from lib.core.common import getSafeExString
-from lib.core.common import getUnicode
-from lib.core.common import openFile
-from lib.core.common import unArrayizeValue
-from lib.core.common import UnicodeRawConfigParser
-from lib.core.data import cmdLineOptions
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.enums import OPTION_TYPE
-from lib.core.exception import SqlmapMissingMandatoryOptionException
-from lib.core.exception import SqlmapSyntaxException
-from lib.core.optiondict import optDict
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import openFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import UnicodeRawConfigParser
+from w3af.plugins.attack.db.sqlmap.lib.core.data import cmdLineOptions
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OPTION_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingMandatoryOptionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSyntaxException
+from w3af.plugins.attack.db.sqlmap.lib.core.optiondict import optDict
 
 config = None
 

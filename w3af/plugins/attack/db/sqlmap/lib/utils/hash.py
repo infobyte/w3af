@@ -8,7 +8,7 @@ See the file 'LICENSE' for copying permission
 try:
     from crypt import crypt
 except ImportError:
-    from thirdparty.fcrypt.fcrypt import crypt
+    from w3af.plugins.attack.db.sqlmap.thirdparty.fcrypt.fcrypt import crypt
 
 _multiprocessing = None
 try:
@@ -42,47 +42,47 @@ from hashlib import sha384
 from hashlib import sha512
 from queue import Queue
 
-from lib.core.common import Backend
-from lib.core.common import checkFile
-from lib.core.common import clearConsoleLine
-from lib.core.common import dataToStdout
-from lib.core.common import getFileItems
-from lib.core.common import getPublicTypeMembers
-from lib.core.common import getSafeExString
-from lib.core.common import getUnicode
-from lib.core.common import hashDBRetrieve
-from lib.core.common import hashDBWrite
-from lib.core.common import normalizeUnicode
-from lib.core.common import paths
-from lib.core.common import readInput
-from lib.core.common import singleTimeLogMessage
-from lib.core.common import singleTimeWarnMessage
-from lib.core.convert import hexdecode
-from lib.core.convert import hexencode
-from lib.core.convert import utf8encode
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import DBMS
-from lib.core.enums import HASH
-from lib.core.enums import MKSTEMP_PREFIX
-from lib.core.exception import SqlmapDataException
-from lib.core.exception import SqlmapUserQuitException
-from lib.core.settings import COMMON_PASSWORD_SUFFIXES
-from lib.core.settings import COMMON_USER_COLUMNS
-from lib.core.settings import DEV_EMAIL_ADDRESS
-from lib.core.settings import DUMMY_USER_PREFIX
-from lib.core.settings import HASH_MOD_ITEM_DISPLAY
-from lib.core.settings import HASH_RECOGNITION_QUIT_THRESHOLD
-from lib.core.settings import IS_WIN
-from lib.core.settings import ITOA64
-from lib.core.settings import NULL
-from lib.core.settings import UNICODE_ENCODING
-from lib.core.settings import ROTATING_CHARS
-from lib.core.wordlist import Wordlist
-from thirdparty.colorama.initialise import init as coloramainit
-from thirdparty.pydes.pyDes import des
-from thirdparty.pydes.pyDes import CBC
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import clearConsoleLine
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getFileItems
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getPublicTypeMembers
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBRetrieve
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizeUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeLogMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexdecode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexencode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import utf8encode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HASH
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import MKSTEMP_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUserQuitException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import COMMON_PASSWORD_SUFFIXES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import COMMON_USER_COLUMNS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DEV_EMAIL_ADDRESS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DUMMY_USER_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HASH_MOD_ITEM_DISPLAY
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HASH_RECOGNITION_QUIT_THRESHOLD
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ITOA64
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import NULL
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ROTATING_CHARS
+from w3af.plugins.attack.db.sqlmap.lib.core.wordlist import Wordlist
+from w3af.plugins.attack.db.sqlmap.thirdparty.colorama.initialise import init as coloramainit
+from w3af.plugins.attack.db.sqlmap.thirdparty.pydes.pyDes import des
+from w3af.plugins.attack.db.sqlmap.thirdparty.pydes.pyDes import CBC
 
 def mysql_passwd(password, uppercase=True):
     """

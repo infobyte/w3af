@@ -5,8 +5,8 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import isDBMSVersionAtLeast
-from plugins.generic.syntax import Syntax as GenericSyntax
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isDBMSVersionAtLeast
+from w3af.plugins.attack.db.sqlmap.plugins.generic.syntax import Syntax as GenericSyntax
 
 class Syntax(GenericSyntax):
     def __init__(self):

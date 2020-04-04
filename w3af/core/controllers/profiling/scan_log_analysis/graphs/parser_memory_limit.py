@@ -1,11 +1,9 @@
 import re
 import plotille
 
-from utils.graph import num_formatter
-from utils.output import KeyValueOutput
-from utils.utils import (get_first_timestamp,
-                         get_last_timestamp,
-                         get_line_epoch)
+from w3af.core.controllers.profiling.scan_log_analysis.utils.graph import num_formatter
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import get_first_timestamp, get_last_timestamp, get_line_epoch
 
 PARSER_PROCESS_MEMORY_LIMIT = re.compile('Using RLIMIT_AS memory usage limit (.*?) MB for new pool process')
 

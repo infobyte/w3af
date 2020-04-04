@@ -5,8 +5,8 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from plugins.generic.takeover import Takeover as GenericTakeover
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.plugins.generic.takeover import Takeover as GenericTakeover
 
 class Takeover(GenericTakeover):
     def __init__(self):

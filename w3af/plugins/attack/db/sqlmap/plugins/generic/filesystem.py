@@ -8,28 +8,28 @@ See the file 'LICENSE' for copying permission
 import os
 import sys
 
-from lib.core.agent import agent
-from lib.core.common import dataToOutFile
-from lib.core.common import Backend
-from lib.core.common import checkFile
-from lib.core.common import decloakToTemp
-from lib.core.common import decodeHexValue
-from lib.core.common import getUnicode
-from lib.core.common import isNumPosStrValue
-from lib.core.common import isListLike
-from lib.core.common import isStackingAvailable
-from lib.core.common import isTechniqueAvailable
-from lib.core.common import readInput
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import DBMS
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import EXPECTED
-from lib.core.enums import PAYLOAD
-from lib.core.exception import SqlmapUndefinedMethod
-from lib.core.settings import UNICODE_ENCODING
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToOutFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import decloakToTemp
+from w3af.plugins.attack.db.sqlmap.lib.core.common import decodeHexValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNumPosStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isListLike
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isStackingAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isTechniqueAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUndefinedMethod
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 class Filesystem:
     """

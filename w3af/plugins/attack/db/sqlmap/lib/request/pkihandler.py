@@ -8,7 +8,7 @@ See the file 'LICENSE' for copying permission
 import http.client
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
 
 class HTTPSPKIAuthHandler(urllib.request.HTTPSHandler):
     def __init__(self, auth_file):

@@ -13,43 +13,43 @@ import shutil
 import tempfile
 import threading
 
-from lib.core.common import Backend
-from lib.core.common import checkFile
-from lib.core.common import dataToDumpFile
-from lib.core.common import dataToStdout
-from lib.core.common import getSafeExString
-from lib.core.common import getUnicode
-from lib.core.common import isListLike
-from lib.core.common import normalizeUnicode
-from lib.core.common import openFile
-from lib.core.common import prioritySortColumns
-from lib.core.common import randomInt
-from lib.core.common import safeCSValue
-from lib.core.common import unicodeencode
-from lib.core.common import unsafeSQLIdentificatorNaming
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.dicts import DUMP_REPLACEMENTS
-from lib.core.enums import CONTENT_STATUS
-from lib.core.enums import CONTENT_TYPE
-from lib.core.enums import DBMS
-from lib.core.enums import DUMP_FORMAT
-from lib.core.exception import SqlmapGenericException
-from lib.core.exception import SqlmapValueException
-from lib.core.exception import SqlmapSystemException
-from lib.core.replication import Replication
-from lib.core.settings import DUMP_FILE_BUFFER_SIZE
-from lib.core.settings import HTML_DUMP_CSS_STYLE
-from lib.core.settings import IS_WIN
-from lib.core.settings import METADB_SUFFIX
-from lib.core.settings import MIN_BINARY_DISK_DUMP_SIZE
-from lib.core.settings import TRIM_STDOUT_DUMP_SIZE
-from lib.core.settings import UNICODE_ENCODING
-from lib.core.settings import WINDOWS_RESERVED_NAMES
-from thirdparty.magic import magic
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToDumpFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isListLike
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizeUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import openFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import prioritySortColumns
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.common import safeCSValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unicodeencode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unsafeSQLIdentificatorNaming
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.dicts import DUMP_REPLACEMENTS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CONTENT_STATUS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CONTENT_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DUMP_FORMAT
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapGenericException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapValueException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSystemException
+from w3af.plugins.attack.db.sqlmap.lib.core.replication import Replication
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DUMP_FILE_BUFFER_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HTML_DUMP_CSS_STYLE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import METADB_SUFFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MIN_BINARY_DISK_DUMP_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import TRIM_STDOUT_DUMP_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import WINDOWS_RESERVED_NAMES
+from w3af.plugins.attack.db.sqlmap.thirdparty.magic import magic
 
-from extra.safe2bin.safe2bin import safechardecode
+from w3af.plugins.attack.db.sqlmap.extra.safe2bin.safe2bin import safechardecode
 
 class Dump(object):
     """

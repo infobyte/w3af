@@ -8,9 +8,9 @@ See the file 'LICENSE' for copying permission
 import os
 import zipfile
 
-from lib.core.common import getSafeExString
-from lib.core.exception import SqlmapDataException
-from lib.core.exception import SqlmapInstallationException
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapInstallationException
 
 class Wordlist(object):
     """

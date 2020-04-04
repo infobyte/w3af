@@ -83,7 +83,7 @@ def getch(buf=None):
             return getch()
         else:
             return getch(buf)
-    elif len(ch) and ord(ch) in CTRL_CODES:
+    elif len(ch) == 1 and ord(ch) in CTRL_CODES:
         result = '^' + chr(ord(ch) + 64)
     else:
         result = ch

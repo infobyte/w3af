@@ -1,7 +1,7 @@
 import re
 import os
 
-from utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 
 XML_OUTPUT_SIZE = re.compile('The XML output file size is (.*?) bytes.')
 

@@ -5,14 +5,14 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import Backend
-from lib.core.common import randomInt
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.dicts import FROM_DUMMY_TABLE
-from lib.core.exception import SqlmapNotVulnerableException
-from lib.techniques.dns.use import dnsUse
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.dicts import FROM_DUMMY_TABLE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNotVulnerableException
+from w3af.plugins.attack.db.sqlmap.lib.techniques.dns.use import dnsUse
 
 
 def dnsTest(payload):

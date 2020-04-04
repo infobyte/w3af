@@ -8,12 +8,12 @@ See the file 'LICENSE' for copying permission
 import http.client
 import re
 
-from lib.core.common import readInput
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.exception import SqlmapSyntaxException
-from lib.request.connect import Connect as Request
-from thirdparty.oset.pyoset import oset
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSyntaxException
+from w3af.plugins.attack.db.sqlmap.lib.request.connect import Connect as Request
+from w3af.plugins.attack.db.sqlmap.thirdparty.oset.pyoset import oset
 
 abortedFlag = None
 

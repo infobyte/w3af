@@ -9,10 +9,10 @@ import codecs
 import os
 import cProfile
 
-from lib.core.common import getUnicode
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
 
 def profile(profileOutputFile=None, dotOutputFile=None, imageOutputFile=None):
     """

@@ -29,7 +29,7 @@ import sys
 import urllib.request, urllib.parse, urllib.error
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
 
 
 class Callable:

@@ -18,14 +18,14 @@ import warnings
 warnings.filterwarnings(action="ignore", message=".*was already imported", category=UserWarning)
 warnings.filterwarnings(action="ignore", category=DeprecationWarning)
 
-from sqlmap import modulePath
-from lib.core.common import setPaths
-from lib.core.data import logger
-from lib.core.settings import RESTAPI_DEFAULT_ADAPTER
-from lib.core.settings import RESTAPI_DEFAULT_ADDRESS
-from lib.core.settings import RESTAPI_DEFAULT_PORT
-from lib.utils.api import client
-from lib.utils.api import server
+from w3af.plugins.attack.db.sqlmap.sqlmap import modulePath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import setPaths
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_ADAPTER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_ADDRESS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_PORT
+from w3af.plugins.attack.db.sqlmap.lib.utils.api import client
+from w3af.plugins.attack.db.sqlmap.lib.utils.api import server
 
 def main():
     """

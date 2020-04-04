@@ -5,8 +5,8 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.datatype import AttribDict
-from lib.core.log import LOGGER
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.log import LOGGER
 
 # sqlmap paths
 paths = AttribDict()

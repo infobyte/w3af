@@ -8,8 +8,8 @@ See the file 'LICENSE' for copying permission
 import random
 import re
 
-from lib.core.data import kb
-from lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
 
 __priority__ = PRIORITY.NORMAL
 

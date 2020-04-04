@@ -7,8 +7,8 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.enums import HTTP_HEADER
-from lib.core.settings import WAF_ATTACK_VECTORS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import WAF_ATTACK_VECTORS
 
 __product__ = "Barracuda Web Application Firewall (Barracuda Networks)"
 

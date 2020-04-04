@@ -54,6 +54,7 @@ def get_net_iface():
         interfaces = [b"eth0", b"eth1", b"eth2", b"wlan0", b"wlan1",
                       b"wifi0", b"ath0", b"ath1", b"ppp0"]
         for ifname in interfaces:
+            s = None
             try:
                 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                 interface_ip = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
@@ -63,7 +64,12 @@ def get_net_iface():
             except IOError:
                 pass
             else:
+                # closing opened socket
+                s.close()
                 if internet_ip == interface_ip:
                     break
+            finally:
+                if s:
+                    s.close()
 
     return ifname

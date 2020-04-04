@@ -7,27 +7,27 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.common import extractRegexResult
-from lib.core.common import getFilteredPageContent
-from lib.core.common import listToStrValue
-from lib.core.common import removeDynamicContent
-from lib.core.common import wasLastResponseDBMSError
-from lib.core.common import wasLastResponseHTTPError
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.settings import DEFAULT_PAGE_ENCODING
-from lib.core.settings import DIFF_TOLERANCE
-from lib.core.settings import HTML_TITLE_REGEX
-from lib.core.settings import MIN_RATIO
-from lib.core.settings import MAX_DIFFLIB_SEQUENCE_LENGTH
-from lib.core.settings import MAX_RATIO
-from lib.core.settings import REFLECTED_VALUE_MARKER
-from lib.core.settings import LOWER_RATIO_BOUND
-from lib.core.settings import UPPER_RATIO_BOUND
-from lib.core.settings import URI_HTTP_HEADER
-from lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.core.common import extractRegexResult
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getFilteredPageContent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import listToStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import removeDynamicContent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import wasLastResponseDBMSError
+from w3af.plugins.attack.db.sqlmap.lib.core.common import wasLastResponseHTTPError
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DEFAULT_PAGE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DIFF_TOLERANCE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HTML_TITLE_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MIN_RATIO
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_DIFFLIB_SEQUENCE_LENGTH
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_RATIO
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import REFLECTED_VALUE_MARKER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import LOWER_RATIO_BOUND
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UPPER_RATIO_BOUND
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import URI_HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
 
 def comparison(page, headers, code=None, getRatioValue=False, pageLength=None):
     _ = _adjust(_comparison(page, headers, code, getRatioValue, pageLength), getRatioValue)

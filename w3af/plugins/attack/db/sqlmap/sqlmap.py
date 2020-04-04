@@ -33,37 +33,37 @@ import warnings
 warnings.filterwarnings(action="ignore", message=".*was already imported", category=UserWarning)
 warnings.filterwarnings(action="ignore", category=DeprecationWarning)
 
-from lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
 
 try:
-    from lib.core.common import banner
-    from lib.core.common import checkIntegrity
-    from lib.core.common import createGithubIssue
-    from lib.core.common import dataToStdout
-    from lib.core.common import getSafeExString
-    from lib.core.common import getUnicode
-    from lib.core.common import maskSensitiveData
-    from lib.core.common import openFile
-    from lib.core.common import setPaths
-    from lib.core.common import weAreFrozen
-    from lib.core.data import cmdLineOptions
-    from lib.core.data import conf
-    from lib.core.data import kb
-    from lib.core.common import unhandledExceptionMessage
-    from lib.core.common import MKSTEMP_PREFIX
-    from lib.core.exception import SqlmapBaseException
-    from lib.core.exception import SqlmapShellQuitException
-    from lib.core.exception import SqlmapSilentQuitException
-    from lib.core.exception import SqlmapUserQuitException
-    from lib.core.option import initOptions
-    from lib.core.option import init
-    from lib.core.settings import GIT_PAGE
-    from lib.core.settings import IS_WIN
-    from lib.core.settings import LEGAL_DISCLAIMER
-    from lib.core.settings import THREAD_FINALIZATION_TIMEOUT
-    from lib.core.settings import UNICODE_ENCODING
-    from lib.core.settings import VERSION
-    from lib.parse.cmdline import cmdLineParser
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import banner
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import checkIntegrity
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import createGithubIssue
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import maskSensitiveData
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import openFile
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import setPaths
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import weAreFrozen
+    from w3af.plugins.attack.db.sqlmap.lib.core.data import cmdLineOptions
+    from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+    from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import unhandledExceptionMessage
+    from w3af.plugins.attack.db.sqlmap.lib.core.common import MKSTEMP_PREFIX
+    from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapBaseException
+    from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapShellQuitException
+    from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSilentQuitException
+    from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUserQuitException
+    from w3af.plugins.attack.db.sqlmap.lib.core.option import initOptions
+    from w3af.plugins.attack.db.sqlmap.lib.core.option import init
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import GIT_PAGE
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import LEGAL_DISCLAIMER
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import THREAD_FINALIZATION_TIMEOUT
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+    from w3af.plugins.attack.db.sqlmap.lib.core.settings import VERSION
+    from w3af.plugins.attack.db.sqlmap.lib.parse.cmdline import cmdLineParser
 except KeyboardInterrupt:
     errMsg = "user aborted"
     logger.error(errMsg)
@@ -125,8 +125,8 @@ def main():
 
         if conf.get("api"):
             # heavy imports
-            from lib.utils.api import StdDbOut
-            from lib.utils.api import setRestAPILog
+            from w3af.plugins.attack.db.sqlmap.lib.utils.api import StdDbOut
+            from w3af.plugins.attack.db.sqlmap.lib.utils.api import setRestAPILog
 
             # Overwrite system standard output and standard error to write
             # to an IPC database
@@ -142,16 +142,16 @@ def main():
 
         # Postponed imports (faster start)
         if conf.profile:
-            from lib.core.profiling import profile
+            from w3af.plugins.attack.db.sqlmap.lib.core.profiling import profile
             profile()
         elif conf.smokeTest:
-            from lib.core.testing import smokeTest
+            from w3af.plugins.attack.db.sqlmap.lib.core.testing import smokeTest
             smokeTest()
         elif conf.liveTest:
-            from lib.core.testing import liveTest
+            from w3af.plugins.attack.db.sqlmap.lib.core.testing import liveTest
             liveTest()
         else:
-            from lib.controller.controller import start
+            from w3af.plugins.attack.db.sqlmap.lib.controller.controller import start
             try:
                 start()
             except _thread.error as ex:

@@ -5,23 +5,23 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.enums import DBMS
-from lib.core.enums import OS
-from lib.core.enums import POST_HINT
-from lib.core.settings import BLANK
-from lib.core.settings import NULL
-from lib.core.settings import MSSQL_ALIASES
-from lib.core.settings import MYSQL_ALIASES
-from lib.core.settings import PGSQL_ALIASES
-from lib.core.settings import ORACLE_ALIASES
-from lib.core.settings import SQLITE_ALIASES
-from lib.core.settings import ACCESS_ALIASES
-from lib.core.settings import FIREBIRD_ALIASES
-from lib.core.settings import MAXDB_ALIASES
-from lib.core.settings import SYBASE_ALIASES
-from lib.core.settings import DB2_ALIASES
-from lib.core.settings import HSQLDB_ALIASES
-from lib.core.settings import INFORMIX_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import POST_HINT
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BLANK
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import NULL
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MSSQL_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MYSQL_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PGSQL_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ORACLE_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SQLITE_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ACCESS_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import FIREBIRD_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAXDB_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SYBASE_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DB2_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HSQLDB_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import INFORMIX_ALIASES
 
 FIREBIRD_TYPES = {
     261: "BLOB",

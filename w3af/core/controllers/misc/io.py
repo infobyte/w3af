@@ -21,7 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 from io import StringIO
 
 
-class NamedStringIO(StringIO, str):
+# class NamedStringIO(StringIO, str):
+class NamedStringIO(StringIO):
     """
     A file-like string.
     """

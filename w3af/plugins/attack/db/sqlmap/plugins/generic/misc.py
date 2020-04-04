@@ -8,25 +8,25 @@ See the file 'LICENSE' for copying permission
 import ntpath
 import re
 
-from lib.core.common import Backend
-from lib.core.common import hashDBWrite
-from lib.core.common import isStackingAvailable
-from lib.core.common import normalizePath
-from lib.core.common import ntToPosixSlashes
-from lib.core.common import posixToNtSlashes
-from lib.core.common import readInput
-from lib.core.common import singleTimeDebugMessage
-from lib.core.common import unArrayizeValue
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import queries
-from lib.core.enums import DBMS
-from lib.core.enums import HASHDB_KEYS
-from lib.core.enums import OS
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isStackingAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizePath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import ntToPosixSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import posixToNtSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeDebugMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import queries
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HASHDB_KEYS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 class Miscellaneous:
     """

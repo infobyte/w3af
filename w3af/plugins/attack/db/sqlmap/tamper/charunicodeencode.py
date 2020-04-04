@@ -8,8 +8,8 @@ See the file 'LICENSE' for copying permission
 import os
 import string
 
-from lib.core.enums import PRIORITY
-from lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
 
 __priority__ = PRIORITY.LOWEST
 

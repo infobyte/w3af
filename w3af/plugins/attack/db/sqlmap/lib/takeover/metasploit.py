@@ -14,37 +14,37 @@ import time
 
 from subprocess import PIPE
 
-from extra.cloak.cloak import cloak
-from extra.cloak.cloak import decloak
-from lib.core.common import dataToStdout
-from lib.core.common import Backend
-from lib.core.common import getLocalIP
-from lib.core.common import getRemoteIP
-from lib.core.common import getUnicode
-from lib.core.common import normalizePath
-from lib.core.common import ntToPosixSlashes
-from lib.core.common import pollProcess
-from lib.core.common import randomRange
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import DBMS
-from lib.core.enums import OS
-from lib.core.exception import SqlmapDataException
-from lib.core.exception import SqlmapFilePathException
-from lib.core.exception import SqlmapGenericException
-from lib.core.settings import IS_WIN
-from lib.core.settings import METASPLOIT_SESSION_TIMEOUT
-from lib.core.settings import SHELLCODEEXEC_RANDOM_STRING_MARKER
-from lib.core.settings import UNICODE_ENCODING
-from lib.core.subprocessng import blockingReadFromFD
-from lib.core.subprocessng import blockingWriteToFD
-from lib.core.subprocessng import Popen as execute
-from lib.core.subprocessng import send_all
-from lib.core.subprocessng import recv_some
+from w3af.plugins.attack.db.sqlmap.extra.cloak.cloak import cloak
+from w3af.plugins.attack.db.sqlmap.extra.cloak.cloak import decloak
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getLocalIP
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getRemoteIP
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizePath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import ntToPosixSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pollProcess
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomRange
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapFilePathException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapGenericException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import METASPLOIT_SESSION_TIMEOUT
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SHELLCODEEXEC_RANDOM_STRING_MARKER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import blockingReadFromFD
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import blockingWriteToFD
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import Popen as execute
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import send_all
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import recv_some
 
 if IS_WIN:
     import msvcrt

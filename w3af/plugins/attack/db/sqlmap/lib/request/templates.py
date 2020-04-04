@@ -5,8 +5,8 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.data import kb
-from lib.request.connect import Connect as Request
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.request.connect import Connect as Request
 
 def getPageTemplate(payload, place):
     retVal = (kb.originalPage, kb.errorIsNone)

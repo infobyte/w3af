@@ -9,10 +9,10 @@ import re
 
 from xml.sax.handler import ContentHandler
 
-from lib.core.common import parseXmlFile
-from lib.core.data import kb
-from lib.core.data import paths
-from lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.core.common import parseXmlFile
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
 
 class HTMLHandler(ContentHandler):
     """

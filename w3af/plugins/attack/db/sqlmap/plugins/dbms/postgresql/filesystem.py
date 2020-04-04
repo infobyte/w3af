@@ -7,12 +7,12 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.common import randomInt
-from lib.core.data import logger
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.core.settings import LOBLKSIZE
-from lib.request import inject
-from plugins.generic.filesystem import Filesystem as GenericFilesystem
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import LOBLKSIZE
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
+from w3af.plugins.attack.db.sqlmap.plugins.generic.filesystem import Filesystem as GenericFilesystem
 
 class Filesystem(GenericFilesystem):
     def __init__(self):

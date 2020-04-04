@@ -7,7 +7,7 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.exception import SqlmapUndefinedMethod
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUndefinedMethod
 
 class Syntax:
     """

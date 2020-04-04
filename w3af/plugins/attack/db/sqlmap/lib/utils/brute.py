@@ -7,33 +7,33 @@ See the file 'LICENSE' for copying permission
 
 import time
 
-from lib.core.common import clearConsoleLine
-from lib.core.common import dataToStdout
-from lib.core.common import filterListValue
-from lib.core.common import getFileItems
-from lib.core.common import Backend
-from lib.core.common import getPageWordSet
-from lib.core.common import hashDBWrite
-from lib.core.common import randomInt
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.common import safeStringFormat
-from lib.core.common import safeSQLIdentificatorNaming
-from lib.core.common import unsafeSQLIdentificatorNaming
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import DBMS
-from lib.core.enums import HASHDB_KEYS
-from lib.core.enums import PAYLOAD
-from lib.core.exception import SqlmapDataException
-from lib.core.exception import SqlmapMissingMandatoryOptionException
-from lib.core.settings import BRUTE_COLUMN_EXISTS_TEMPLATE
-from lib.core.settings import BRUTE_TABLE_EXISTS_TEMPLATE
-from lib.core.settings import METADB_SUFFIX
-from lib.core.threads import getCurrentThreadData
-from lib.core.threads import runThreads
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.common import clearConsoleLine
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import filterListValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getFileItems
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getPageWordSet
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import safeStringFormat
+from w3af.plugins.attack.db.sqlmap.lib.core.common import safeSQLIdentificatorNaming
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unsafeSQLIdentificatorNaming
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HASHDB_KEYS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingMandatoryOptionException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BRUTE_COLUMN_EXISTS_TEMPLATE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BRUTE_TABLE_EXISTS_TEMPLATE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import METADB_SUFFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import runThreads
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 def _addPageTextWords():
     wordsList = []

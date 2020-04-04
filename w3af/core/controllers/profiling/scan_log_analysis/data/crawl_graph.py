@@ -1,6 +1,6 @@
 import re
 
-from utils.utils import get_path
+from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import get_path
 
 WEBSPIDER_FOUND_LINK = re.compile('\[web_spider\] Found new link "(.*?)" at "(.*?)"')
 

@@ -5,9 +5,9 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.data import logger
-from lib.core.settings import IS_WIN
-from lib.core.settings import PLATFORM
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PLATFORM
 
 _readline = None
 

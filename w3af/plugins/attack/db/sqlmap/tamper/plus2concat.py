@@ -7,8 +7,8 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.common import zeroDepthSearch
-from lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.common import zeroDepthSearch
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
 
 __priority__ = PRIORITY.HIGHEST
 

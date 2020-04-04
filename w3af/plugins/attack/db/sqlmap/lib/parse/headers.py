@@ -8,10 +8,10 @@ See the file 'LICENSE' for copying permission
 import itertools
 import os
 
-from lib.core.common import parseXmlFile
-from lib.core.data import kb
-from lib.core.data import paths
-from lib.parse.handler import FingerprintHandler
+from w3af.plugins.attack.db.sqlmap.lib.core.common import parseXmlFile
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.parse.handler import FingerprintHandler
 
 
 def headersParser(headers):

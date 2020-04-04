@@ -11,8 +11,8 @@ import shutil
 import stat
 import string
 
-from lib.core.common import getSafeExString
-from lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
 
 def purge(directory):
     """

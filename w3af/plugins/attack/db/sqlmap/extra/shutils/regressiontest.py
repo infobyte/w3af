@@ -18,7 +18,7 @@ from email.mime.text import MIMEText
 
 sys.path.append(os.path.normpath("%s/../../" % os.path.dirname(inspect.getfile(inspect.currentframe()))))
 
-from lib.core.revision import getRevisionNumber
+from w3af.plugins.attack.db.sqlmap.lib.core.revision import getRevisionNumber
 
 START_TIME = time.strftime("%H:%M:%S %d-%m-%Y", time.gmtime())
 SQLMAP_HOME = "/opt/sqlmap"

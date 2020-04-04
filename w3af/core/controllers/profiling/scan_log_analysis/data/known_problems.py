@@ -1,4 +1,4 @@
-from utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 
 
 def get_known_problems(scan_log_filename, scan):

@@ -7,10 +7,10 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.common import randomStr
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.enums import REGISTRY_OPERATION
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import REGISTRY_OPERATION
 
 class Registry:
     """

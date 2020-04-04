@@ -7,16 +7,16 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.common import Backend
-from lib.core.common import Format
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import DBMS
-from lib.core.session import setDbms
-from lib.core.settings import ORACLE_ALIASES
-from lib.request import inject
-from plugins.generic.fingerprint import Fingerprint as GenericFingerprint
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Format
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.session import setDbms
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import ORACLE_ALIASES
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
+from w3af.plugins.attack.db.sqlmap.plugins.generic.fingerprint import Fingerprint as GenericFingerprint
 
 class Fingerprint(GenericFingerprint):
     def __init__(self):

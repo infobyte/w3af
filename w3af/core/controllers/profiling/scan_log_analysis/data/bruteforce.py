@@ -1,6 +1,6 @@
 import re
 
-from utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 
 
 FINISHED_BRUTEFORCE = [re.compile('Finished bruteforcing ".*?" \(spent (.*?)\)'),

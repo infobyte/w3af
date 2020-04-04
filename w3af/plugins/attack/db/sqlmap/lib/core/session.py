@@ -7,14 +7,14 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.common import Backend
-from lib.core.common import Format
-from lib.core.common import hashDBWrite
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import HASHDB_KEYS
-from lib.core.enums import OS
-from lib.core.settings import SUPPORTED_DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Format
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HASHDB_KEYS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SUPPORTED_DBMS
 
 def setDbms(dbms):
     """

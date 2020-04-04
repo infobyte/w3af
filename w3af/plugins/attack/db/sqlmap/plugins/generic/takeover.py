@@ -7,27 +7,27 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.common import Backend
-from lib.core.common import isStackingAvailable
-from lib.core.common import readInput
-from lib.core.common import runningAsAdmin
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.enums import DBMS
-from lib.core.enums import OS
-from lib.core.exception import SqlmapFilePathException
-from lib.core.exception import SqlmapMissingDependence
-from lib.core.exception import SqlmapMissingMandatoryOptionException
-from lib.core.exception import SqlmapMissingPrivileges
-from lib.core.exception import SqlmapNotVulnerableException
-from lib.core.exception import SqlmapUndefinedMethod
-from lib.core.exception import SqlmapUnsupportedDBMSException
-from lib.takeover.abstraction import Abstraction
-from lib.takeover.icmpsh import ICMPsh
-from lib.takeover.metasploit import Metasploit
-from lib.takeover.registry import Registry
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isStackingAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import runningAsAdmin
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapFilePathException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingDependence
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingMandatoryOptionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapMissingPrivileges
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNotVulnerableException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUndefinedMethod
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedDBMSException
+from w3af.plugins.attack.db.sqlmap.lib.takeover.abstraction import Abstraction
+from w3af.plugins.attack.db.sqlmap.lib.takeover.icmpsh import ICMPsh
+from w3af.plugins.attack.db.sqlmap.lib.takeover.metasploit import Metasploit
+from w3af.plugins.attack.db.sqlmap.lib.takeover.registry import Registry
 
-from plugins.generic.misc import Miscellaneous
+from w3af.plugins.attack.db.sqlmap.plugins.generic.misc import Miscellaneous
 
 class Takeover(Abstraction, Metasploit, ICMPsh, Registry, Miscellaneous):
     """

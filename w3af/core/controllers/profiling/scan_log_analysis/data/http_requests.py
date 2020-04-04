@@ -1,7 +1,7 @@
 import re
 
-from utils.utils import get_path
-from utils.output import ListOutput, ListOutputItem
+from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import get_path
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import ListOutput, ListOutputItem
 
 HTTP_METHOD_URL_RE = re.compile('\] (.*?) (.*?) (with data: ".*?" )?returned HTTP code')
 HTTP_CODE_RE = re.compile('returned HTTP code "(.*?)"')

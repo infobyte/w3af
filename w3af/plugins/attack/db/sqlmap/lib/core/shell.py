@@ -8,12 +8,12 @@ See the file 'LICENSE' for copying permission
 import atexit
 import os
 
-from lib.core import readlineng as readline
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import AUTOCOMPLETE_TYPE
-from lib.core.enums import OS
-from lib.core.settings import MAX_HISTORY_LENGTH
+from w3af.plugins.attack.db.sqlmap.lib.core import readlineng as readline
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import AUTOCOMPLETE_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_HISTORY_LENGTH
 
 try:
     import rlcompleter

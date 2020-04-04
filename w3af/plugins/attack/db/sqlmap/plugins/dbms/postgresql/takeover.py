@@ -7,18 +7,18 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.common import Backend
-from lib.core.common import checkFile
-from lib.core.common import decloakToTemp
-from lib.core.common import randomStr
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import OS
-from lib.core.exception import SqlmapSystemException
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.request import inject
-from plugins.generic.takeover import Takeover as GenericTakeover
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import decloakToTemp
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSystemException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
+from w3af.plugins.attack.db.sqlmap.plugins.generic.takeover import Takeover as GenericTakeover
 
 class Takeover(GenericTakeover):
     def __init__(self):

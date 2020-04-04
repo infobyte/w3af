@@ -13,10 +13,10 @@ import string
 import sys
 import types
 
-from lib.core.datatype import AttribDict
-from lib.core.enums import DBMS
-from lib.core.enums import DBMS_DIRECTORY_NAME
-from lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS_DIRECTORY_NAME
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
 
 # sqlmap version (<major>.<minor>.<month>.<monthly commit>)
 VERSION = "1.1.11.39"

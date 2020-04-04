@@ -5,7 +5,7 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.settings import WAF_ATTACK_VECTORS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import WAF_ATTACK_VECTORS
 
 __product__ = "UTM Web Protection (Sophos)"
 

@@ -15,26 +15,26 @@ import tempfile
 import time
 import traceback
 
-from extra.beep.beep import beep
-from lib.controller.controller import start
-from lib.core.common import clearConsoleLine
-from lib.core.common import dataToStdout
-from lib.core.common import getUnicode
-from lib.core.common import randomStr
-from lib.core.common import readXmlFile
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import MKSTEMP_PREFIX
-from lib.core.exception import SqlmapBaseException
-from lib.core.exception import SqlmapNotVulnerableException
-from lib.core.log import LOGGER_HANDLER
-from lib.core.option import init
-from lib.core.option import initOptions
-from lib.core.option import setVerbosity
-from lib.core.optiondict import optDict
-from lib.core.settings import UNICODE_ENCODING
-from lib.parse.cmdline import cmdLineParser
+from w3af.plugins.attack.db.sqlmap.extra.beep.beep import beep
+from w3af.plugins.attack.db.sqlmap.lib.controller.controller import start
+from w3af.plugins.attack.db.sqlmap.lib.core.common import clearConsoleLine
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readXmlFile
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import MKSTEMP_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapBaseException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNotVulnerableException
+from w3af.plugins.attack.db.sqlmap.lib.core.log import LOGGER_HANDLER
+from w3af.plugins.attack.db.sqlmap.lib.core.option import init
+from w3af.plugins.attack.db.sqlmap.lib.core.option import initOptions
+from w3af.plugins.attack.db.sqlmap.lib.core.option import setVerbosity
+from w3af.plugins.attack.db.sqlmap.lib.core.optiondict import optDict
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.parse.cmdline import cmdLineParser
 
 class Failures(object):
     failedItems = None

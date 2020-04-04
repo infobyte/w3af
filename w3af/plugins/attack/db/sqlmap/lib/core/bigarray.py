@@ -16,10 +16,10 @@ import sys
 import tempfile
 import zlib
 
-from lib.core.enums import MKSTEMP_PREFIX
-from lib.core.exception import SqlmapSystemException
-from lib.core.settings import BIGARRAY_CHUNK_SIZE
-from lib.core.settings import BIGARRAY_COMPRESS_LEVEL
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import MKSTEMP_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSystemException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BIGARRAY_CHUNK_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BIGARRAY_COMPRESS_LEVEL
 
 DEFAULT_SIZE_OF = sys.getsizeof(object())
 

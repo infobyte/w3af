@@ -7,13 +7,13 @@ See the file 'LICENSE' for copying permission
 
 import sqlite3
 
-from extra.safe2bin.safe2bin import safechardecode
-from lib.core.common import getSafeExString
-from lib.core.common import unsafeSQLIdentificatorNaming
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapGenericException
-from lib.core.exception import SqlmapValueException
-from lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.extra.safe2bin.safe2bin import safechardecode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unsafeSQLIdentificatorNaming
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapGenericException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapValueException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
 
 class Replication(object):
     """

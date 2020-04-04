@@ -7,11 +7,11 @@ See the file 'LICENSE' for copying permission
 
 import binascii
 
-from lib.core.common import Backend
-from lib.core.data import logger
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.request import inject
-from plugins.generic.takeover import Takeover as GenericTakeover
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
+from w3af.plugins.attack.db.sqlmap.plugins.generic.takeover import Takeover as GenericTakeover
 
 class Takeover(GenericTakeover):
     def __init__(self):

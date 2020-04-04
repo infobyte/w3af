@@ -12,44 +12,44 @@ import io
 import tempfile
 import urllib.parse
 
-from extra.cloak.cloak import decloak
-from lib.core.agent import agent
-from lib.core.common import arrayizeValue
-from lib.core.common import Backend
-from lib.core.common import extractRegexResult
-from lib.core.common import getAutoDirectories
-from lib.core.common import getManualDirectories
-from lib.core.common import getPublicTypeMembers
-from lib.core.common import getSQLSnippet
-from lib.core.common import getUnicode
-from lib.core.common import ntToPosixSlashes
-from lib.core.common import isTechniqueAvailable
-from lib.core.common import isWindowsDriveLetterPath
-from lib.core.common import normalizePath
-from lib.core.common import parseFilePaths
-from lib.core.common import posixToNtSlashes
-from lib.core.common import randomInt
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.common import singleTimeWarnMessage
-from lib.core.convert import hexencode
-from lib.core.convert import utf8encode
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.enums import DBMS
-from lib.core.enums import HTTP_HEADER
-from lib.core.enums import OS
-from lib.core.enums import PAYLOAD
-from lib.core.enums import PLACE
-from lib.core.enums import WEB_API
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.settings import BACKDOOR_RUN_CMD_TIMEOUT
-from lib.core.settings import EVENTVALIDATION_REGEX
-from lib.core.settings import VIEWSTATE_REGEX
-from lib.request.connect import Connect as Request
-from thirdparty.oset.pyoset import oset
+from w3af.plugins.attack.db.sqlmap.extra.cloak.cloak import decloak
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import arrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import extractRegexResult
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getAutoDirectories
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getManualDirectories
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getPublicTypeMembers
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSQLSnippet
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import ntToPosixSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isTechniqueAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isWindowsDriveLetterPath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizePath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import parseFilePaths
+from w3af.plugins.attack.db.sqlmap.lib.core.common import posixToNtSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomInt
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexencode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import utf8encode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import OS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PLACE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import WEB_API
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BACKDOOR_RUN_CMD_TIMEOUT
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import EVENTVALIDATION_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import VIEWSTATE_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.request.connect import Connect as Request
+from w3af.plugins.attack.db.sqlmap.thirdparty.oset.pyoset import oset
 
 
 class Web:

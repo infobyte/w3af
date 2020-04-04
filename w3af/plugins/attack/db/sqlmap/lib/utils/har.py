@@ -13,8 +13,8 @@ import re
 import io
 import time
 
-from lib.core.bigarray import BigArray
-from lib.core.settings import VERSION
+from w3af.plugins.attack.db.sqlmap.lib.core.bigarray import BigArray
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import VERSION
 
 # Reference: https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HAR/Overview.html
 #            http://www.softwareishard.com/har/viewer/

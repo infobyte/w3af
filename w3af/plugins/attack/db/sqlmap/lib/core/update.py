@@ -11,15 +11,15 @@ import re
 import subprocess
 import time
 
-from lib.core.common import dataToStdout
-from lib.core.common import getSafeExString
-from lib.core.common import pollProcess
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.revision import getRevisionNumber
-from lib.core.settings import GIT_REPOSITORY
-from lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pollProcess
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.revision import getRevisionNumber
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import GIT_REPOSITORY
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
 
 def update():
     if not conf.updateAll:

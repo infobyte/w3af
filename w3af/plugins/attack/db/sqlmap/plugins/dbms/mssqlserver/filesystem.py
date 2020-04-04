@@ -8,24 +8,24 @@ See the file 'LICENSE' for copying permission
 import ntpath
 import os
 
-from lib.core.common import getLimitRange
-from lib.core.common import isNumPosStrValue
-from lib.core.common import isTechniqueAvailable
-from lib.core.common import posixToNtSlashes
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.convert import base64encode
-from lib.core.convert import hexencode
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import EXPECTED
-from lib.core.enums import PAYLOAD
-from lib.core.exception import SqlmapNoneDataException
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getLimitRange
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNumPosStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isTechniqueAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import posixToNtSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import base64encode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexencode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
-from plugins.generic.filesystem import Filesystem as GenericFilesystem
+from w3af.plugins.attack.db.sqlmap.plugins.generic.filesystem import Filesystem as GenericFilesystem
 
 class Filesystem(GenericFilesystem):
     def __init__(self):

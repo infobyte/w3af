@@ -5,10 +5,10 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import Backend
-from lib.core.data import conf
-from lib.core.datatype import AttribDict
-from lib.core.settings import EXCLUDE_UNESCAPE
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import EXCLUDE_UNESCAPE
 
 class Unescaper(AttribDict):
     def escape(self, expression, quote=True, dbms=None):

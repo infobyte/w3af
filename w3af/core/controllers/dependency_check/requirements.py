@@ -25,6 +25,7 @@ CORE = 1
 GUI = 2
 
 
+
 CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('github', 'PyGithub', '1.21.0'),
                      PIPDependency('git.util', 'GitPython', '3.1.0'),
@@ -109,8 +110,9 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('pycairo', 'pycairo', '1.19.1'),
                      PIPDependency('PyGObject', 'PyGObject', '3.36.0'),
 
-                     ]
+                     PIPDependency('plotille', 'plotille', '3.7'),
 
+                     ]
 GUI_PIP_EXTRAS = [PIPDependency('xdot', 'xdot', '0.6')]
 
 GUI_PIP_PACKAGES = CORE_PIP_PACKAGES[:]

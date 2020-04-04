@@ -8,7 +8,7 @@ See the file 'LICENSE' for copying permission
 import urllib.request, urllib.parse, urllib.error
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
 
 class HTTPRangeHandler(urllib.request.BaseHandler):
     """

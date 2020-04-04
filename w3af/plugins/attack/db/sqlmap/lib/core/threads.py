@@ -11,17 +11,17 @@ import threading
 import time
 import traceback
 
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.datatype import AttribDict
-from lib.core.enums import PAYLOAD
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapThreadException
-from lib.core.exception import SqlmapUserQuitException
-from lib.core.exception import SqlmapValueException
-from lib.core.settings import MAX_NUMBER_OF_THREADS
-from lib.core.settings import PYVERSION
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapThreadException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUserQuitException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapValueException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_NUMBER_OF_THREADS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PYVERSION
 
 shared = AttribDict()
 

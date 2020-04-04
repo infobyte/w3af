@@ -5,7 +5,7 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
 
 __priority__ = PRIORITY.HIGHEST
 

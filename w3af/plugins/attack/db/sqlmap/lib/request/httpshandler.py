@@ -11,11 +11,11 @@ import re
 import socket
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.common import getSafeExString
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.exception import SqlmapConnectionException
-from lib.core.settings import PYVERSION
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PYVERSION
 
 ssl = None
 try:

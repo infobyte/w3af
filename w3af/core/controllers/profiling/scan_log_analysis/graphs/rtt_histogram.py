@@ -1,7 +1,7 @@
 import re
 import plotille
 
-from utils.graph import num_formatter
+from w3af.core.controllers.profiling.scan_log_analysis.utils.graph import num_formatter
 
 
 RTT_RE = re.compile('\(.*?rtt=(.*?),.*\)')

@@ -13,39 +13,40 @@ import io
 import struct
 import zlib
 
-from lib.core.common import Backend
-from lib.core.common import extractErrorMessage
-from lib.core.common import extractRegexResult
-from lib.core.common import getPublicTypeMembers
-from lib.core.common import getUnicode
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.common import resetCookieJar
-from lib.core.common import singleTimeLogMessage
-from lib.core.common import singleTimeWarnMessage
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.decorators import cachedmethod
-from lib.core.enums import DBMS
-from lib.core.enums import HTTP_HEADER
-from lib.core.enums import PLACE
-from lib.core.exception import SqlmapCompressionException
-from lib.core.settings import BLOCKED_IP_REGEX
-from lib.core.settings import DEFAULT_COOKIE_DELIMITER
-from lib.core.settings import DEV_EMAIL_ADDRESS
-from lib.core.settings import EVENTVALIDATION_REGEX
-from lib.core.settings import MAX_CONNECTION_TOTAL_SIZE
-from lib.core.settings import META_CHARSET_REGEX
-from lib.core.settings import PARSE_HEADERS_LIMIT
-from lib.core.settings import SELECT_FROM_TABLE_REGEX
-from lib.core.settings import UNICODE_ENCODING
-from lib.core.settings import VIEWSTATE_REGEX
-from lib.parse.headers import headersParser
-from lib.parse.html import htmlParser
-from lib.utils.htmlentities import htmlEntities
-from thirdparty.chardet import detect
-from thirdparty.odict.odict import OrderedDict
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import extractErrorMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import extractRegexResult
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getPublicTypeMembers
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import resetCookieJar
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeLogMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.decorators import cachedmethod
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PLACE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapCompressionException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BLOCKED_IP_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DEFAULT_COOKIE_DELIMITER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DEV_EMAIL_ADDRESS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import EVENTVALIDATION_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_CONNECTION_TOTAL_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import META_CHARSET_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import PARSE_HEADERS_LIMIT
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import SELECT_FROM_TABLE_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import VIEWSTATE_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.parse.headers import headersParser
+from w3af.plugins.attack.db.sqlmap.lib.parse.html import htmlParser
+from w3af.plugins.attack.db.sqlmap.lib.utils.htmlentities import htmlEntities
+from w3af.plugins.attack.db.sqlmap.thirdparty.chardet import detect
+from w3af.plugins.attack.db.sqlmap.thirdparty.odict.odict import OrderedDict
+
 
 def forgeHeaders(items=None, base=None):
     """

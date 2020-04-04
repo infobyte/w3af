@@ -1,7 +1,7 @@
 import plotille
 
-from utils.graph import num_formatter
-from utils.utils import get_line_epoch, InvalidTimeStamp
+from w3af.core.controllers.profiling.scan_log_analysis.utils.graph import num_formatter
+from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import InvalidTimeStamp, get_line_epoch
 
 NOT_FOUND_REQUEST = 'Received response for 404 URL'
 

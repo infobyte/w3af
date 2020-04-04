@@ -5,23 +5,23 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.common import isNumPosStrValue
-from lib.core.common import isTechniqueAvailable
-from lib.core.common import popValue
-from lib.core.common import pushValue
-from lib.core.common import randomStr
-from lib.core.common import singleTimeWarnMessage
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import EXPECTED
-from lib.core.enums import PAYLOAD
-from lib.core.enums import PLACE
-from lib.core.exception import SqlmapNoneDataException
-from lib.request import inject
-from lib.techniques.union.use import unionUse
-from plugins.generic.filesystem import Filesystem as GenericFilesystem
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNumPosStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isTechniqueAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import popValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pushValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import singleTimeWarnMessage
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PLACE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapNoneDataException
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.techniques.union.use import unionUse
+from w3af.plugins.attack.db.sqlmap.plugins.generic.filesystem import Filesystem as GenericFilesystem
 
 class Filesystem(GenericFilesystem):
     def __init__(self):

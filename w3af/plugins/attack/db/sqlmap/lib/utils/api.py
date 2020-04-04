@@ -19,41 +19,40 @@ import tempfile
 import time
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.common import dataToStdout
-from lib.core.common import getSafeExString
-from lib.core.common import saveConfig
-from lib.core.common import unArrayizeValue
-from lib.core.convert import base64encode
-from lib.core.convert import hexencode
-from lib.core.convert import dejsonize
-from lib.core.convert import jsonize
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import paths
-from lib.core.data import logger
-from lib.core.datatype import AttribDict
-from lib.core.defaults import _defaults
-from lib.core.enums import CONTENT_STATUS
-from lib.core.enums import MKSTEMP_PREFIX
-from lib.core.enums import PART_RUN_CONTENT_TYPES
-from lib.core.exception import SqlmapConnectionException
-from lib.core.log import LOGGER_HANDLER
-from lib.core.optiondict import optDict
-from lib.core.settings import RESTAPI_DEFAULT_ADAPTER
-from lib.core.settings import IS_WIN
-from lib.core.settings import RESTAPI_DEFAULT_ADDRESS
-from lib.core.settings import RESTAPI_DEFAULT_PORT
-from lib.core.subprocessng import Popen
-from lib.parse.cmdline import cmdLineParser
-from thirdparty.bottle.bottle import abort
-from thirdparty.bottle.bottle import error as return_error
-from thirdparty.bottle.bottle import get
-from thirdparty.bottle.bottle import hook
-from thirdparty.bottle.bottle import post
-from thirdparty.bottle.bottle import request
-from thirdparty.bottle.bottle import response
-from thirdparty.bottle.bottle import run
-from thirdparty.bottle.bottle import server_names
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import saveConfig
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import base64encode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexencode
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import dejsonize
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import jsonize
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.datatype import AttribDict
+from w3af.plugins.attack.db.sqlmap.lib.core.defaults import _defaults
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CONTENT_STATUS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import MKSTEMP_PREFIX
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PART_RUN_CONTENT_TYPES
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.log import LOGGER_HANDLER
+from w3af.plugins.attack.db.sqlmap.lib.core.optiondict import optDict
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_ADAPTER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_ADDRESS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import RESTAPI_DEFAULT_PORT
+from w3af.plugins.attack.db.sqlmap.lib.core.subprocessng import Popen
+from w3af.plugins.attack.db.sqlmap.lib.parse.cmdline import cmdLineParser
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import error as return_error
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import get
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import hook
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import post
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import request
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import response
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import run
+from w3af.plugins.attack.db.sqlmap.thirdparty.bottle.bottle import server_names
 
 # Global data storage
 class DataStore(object):

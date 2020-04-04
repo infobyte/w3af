@@ -7,10 +7,10 @@ See the file 'LICENSE' for copying permission
 
 import os
 
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.exception import SqlmapFilePathException
-from lib.core.exception import SqlmapUndefinedMethod
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapFilePathException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUndefinedMethod
 
 class Connector:
     """

@@ -9,13 +9,13 @@ import re
 
 from xml.sax.handler import ContentHandler
 
-from lib.core.common import Backend
-from lib.core.common import parseXmlFile
-from lib.core.common import sanitizeStr
-from lib.core.data import kb
-from lib.core.data import paths
-from lib.core.enums import DBMS
-from lib.parse.handler import FingerprintHandler
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import parseXmlFile
+from w3af.plugins.attack.db.sqlmap.lib.core.common import sanitizeStr
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.parse.handler import FingerprintHandler
 
 class MSSQLBannerHandler(ContentHandler):
     """

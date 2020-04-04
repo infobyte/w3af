@@ -5,33 +5,33 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from lib.core.agent import agent
-from lib.core.common import Backend
-from lib.core.common import flattenValue
-from lib.core.common import getLimitRange
-from lib.core.common import getSQLSnippet
-from lib.core.common import hashDBWrite
-from lib.core.common import isListLike
-from lib.core.common import isNoneValue
-from lib.core.common import isNumPosStrValue
-from lib.core.common import isTechniqueAvailable
-from lib.core.common import pushValue
-from lib.core.common import popValue
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.common import wasLastResponseDelayed
-from lib.core.convert import hexencode
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import CHARSET_TYPE
-from lib.core.enums import DBMS
-from lib.core.enums import EXPECTED
-from lib.core.enums import HASHDB_KEYS
-from lib.core.enums import PAYLOAD
-from lib.core.exception import SqlmapUnsupportedFeatureException
-from lib.core.threads import getCurrentThreadData
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.lib.core.agent import agent
+from w3af.plugins.attack.db.sqlmap.lib.core.common import Backend
+from w3af.plugins.attack.db.sqlmap.lib.core.common import flattenValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getLimitRange
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSQLSnippet
+from w3af.plugins.attack.db.sqlmap.lib.core.common import hashDBWrite
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isListLike
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNoneValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isNumPosStrValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import isTechniqueAvailable
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pushValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import popValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import wasLastResponseDelayed
+from w3af.plugins.attack.db.sqlmap.lib.core.convert import hexencode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CHARSET_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import EXPECTED
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HASHDB_KEYS
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PAYLOAD
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUnsupportedFeatureException
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 class XP_cmdshell:
     """

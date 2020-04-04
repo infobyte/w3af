@@ -1,6 +1,6 @@
 import re
 
-from utils.output import ListOutput, ListOutputItem
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import ListOutput, ListOutputItem
 
 
 NEW_URL_FOUND = re.compile('New URL found by (.*?) plugin')

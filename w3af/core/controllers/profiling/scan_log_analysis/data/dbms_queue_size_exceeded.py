@@ -1,4 +1,4 @@
-from utils.output import KeyValueOutput
+from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 
 
 SQLITE_MAX_REACHED = 'The SQLiteExecutor.in_queue length has reached its max'

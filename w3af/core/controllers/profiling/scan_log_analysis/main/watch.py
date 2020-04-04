@@ -1,7 +1,7 @@
 import sys
 import time
 
-from utils.utils import clear_screen
+from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import clear_screen
 from .main import *
 
 

@@ -10,17 +10,17 @@ import re
 import socket
 import time
 
-from extra.icmpsh.icmpsh_m import main as icmpshmaster
-from lib.core.common import getLocalIP
-from lib.core.common import getRemoteIP
-from lib.core.common import normalizePath
-from lib.core.common import ntToPosixSlashes
-from lib.core.common import randomStr
-from lib.core.common import readInput
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.data import paths
-from lib.core.exception import SqlmapDataException
+from w3af.plugins.attack.db.sqlmap.extra.icmpsh.icmpsh_m import main as icmpshmaster
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getLocalIP
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getRemoteIP
+from w3af.plugins.attack.db.sqlmap.lib.core.common import normalizePath
+from w3af.plugins.attack.db.sqlmap.lib.core.common import ntToPosixSlashes
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import paths
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapDataException
 
 class ICMPsh:
     """

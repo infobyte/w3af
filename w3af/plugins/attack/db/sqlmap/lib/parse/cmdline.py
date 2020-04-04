@@ -15,27 +15,27 @@ from optparse import OptionGroup
 from optparse import OptionParser
 from optparse import SUPPRESS_HELP
 
-from lib.core.common import checkDeprecatedOptions
-from lib.core.common import checkSystemEncoding
-from lib.core.common import dataToStdout
-from lib.core.common import expandMnemonics
-from lib.core.common import getUnicode
-from lib.core.data import cmdLineOptions
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.defaults import defaults
-from lib.core.enums import AUTOCOMPLETE_TYPE
-from lib.core.exception import SqlmapShellQuitException
-from lib.core.exception import SqlmapSyntaxException
-from lib.core.settings import BASIC_HELP_ITEMS
-from lib.core.settings import DUMMY_URL
-from lib.core.settings import IS_WIN
-from lib.core.settings import MAX_HELP_OPTION_LENGTH
-from lib.core.settings import VERSION_STRING
-from lib.core.shell import autoCompletion
-from lib.core.shell import clearHistory
-from lib.core.shell import loadHistory
-from lib.core.shell import saveHistory
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkDeprecatedOptions
+from w3af.plugins.attack.db.sqlmap.lib.core.common import checkSystemEncoding
+from w3af.plugins.attack.db.sqlmap.lib.core.common import dataToStdout
+from w3af.plugins.attack.db.sqlmap.lib.core.common import expandMnemonics
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import cmdLineOptions
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.defaults import defaults
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import AUTOCOMPLETE_TYPE
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapShellQuitException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapSyntaxException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BASIC_HELP_ITEMS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DUMMY_URL
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import IS_WIN
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_HELP_OPTION_LENGTH
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import VERSION_STRING
+from w3af.plugins.attack.db.sqlmap.lib.core.shell import autoCompletion
+from w3af.plugins.attack.db.sqlmap.lib.core.shell import clearHistory
+from w3af.plugins.attack.db.sqlmap.lib.core.shell import loadHistory
+from w3af.plugins.attack.db.sqlmap.lib.core.shell import saveHistory
 
 def cmdLineParser(argv=None):
     """

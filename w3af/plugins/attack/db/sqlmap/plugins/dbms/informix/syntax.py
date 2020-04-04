@@ -7,8 +7,8 @@ See the file 'LICENSE' for copying permission
 
 import re
 
-from lib.core.common import randomStr
-from plugins.generic.syntax import Syntax as GenericSyntax
+from w3af.plugins.attack.db.sqlmap.lib.core.common import randomStr
+from w3af.plugins.attack.db.sqlmap.plugins.generic.syntax import Syntax as GenericSyntax
 
 class Syntax(GenericSyntax):
     def __init__(self):

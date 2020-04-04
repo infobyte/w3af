@@ -7,8 +7,8 @@ See the file 'LICENSE' for copying permission
 
 import base64
 
-from lib.core.enums import PRIORITY
-from lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import PRIORITY
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
 
 __priority__ = PRIORITY.LOWEST
 

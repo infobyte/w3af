@@ -13,26 +13,26 @@ import urllib.parse
 
 from io import StringIO
 
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.common import getHostHeader
-from lib.core.common import getUnicode
-from lib.core.common import logHTTPTraffic
-from lib.core.common import readInput
-from lib.core.enums import CUSTOM_LOGGING
-from lib.core.enums import HTTP_HEADER
-from lib.core.enums import HTTPMETHOD
-from lib.core.enums import REDIRECTION
-from lib.core.exception import SqlmapConnectionException
-from lib.core.settings import DEFAULT_COOKIE_DELIMITER
-from lib.core.settings import MAX_CONNECTION_CHUNK_SIZE
-from lib.core.settings import MAX_CONNECTION_TOTAL_SIZE
-from lib.core.settings import MAX_SINGLE_URL_REDIRECTIONS
-from lib.core.settings import MAX_TOTAL_REDIRECTIONS
-from lib.core.threads import getCurrentThreadData
-from lib.request.basic import decodePage
-from lib.request.basic import parseResponse
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getHostHeader
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import logHTTPTraffic
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CUSTOM_LOGGING
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTPMETHOD
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import REDIRECTION
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DEFAULT_COOKIE_DELIMITER
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_CONNECTION_CHUNK_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_CONNECTION_TOTAL_SIZE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_SINGLE_URL_REDIRECTIONS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import MAX_TOTAL_REDIRECTIONS
+from w3af.plugins.attack.db.sqlmap.lib.core.threads import getCurrentThreadData
+from w3af.plugins.attack.db.sqlmap.lib.request.basic import decodePage
+from w3af.plugins.attack.db.sqlmap.lib.request.basic import parseResponse
 
 class SmartRedirectHandler(urllib.request.HTTPRedirectHandler):
     def _get_header_redirect(self, headers):

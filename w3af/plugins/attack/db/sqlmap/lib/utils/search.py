@@ -11,29 +11,29 @@ import socket
 import urllib.request, urllib.parse, urllib.error
 import urllib.request, urllib.error, urllib.parse
 
-from lib.core.common import getSafeExString
-from lib.core.common import getUnicode
-from lib.core.common import popValue
-from lib.core.common import pushValue
-from lib.core.common import readInput
-from lib.core.common import urlencode
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.enums import CUSTOM_LOGGING
-from lib.core.enums import HTTP_HEADER
-from lib.core.enums import REDIRECTION
-from lib.core.exception import SqlmapBaseException
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapUserQuitException
-from lib.core.settings import BING_REGEX
-from lib.core.settings import DUMMY_SEARCH_USER_AGENT
-from lib.core.settings import DUCKDUCKGO_REGEX
-from lib.core.settings import GOOGLE_REGEX
-from lib.core.settings import HTTP_ACCEPT_ENCODING_HEADER_VALUE
-from lib.core.settings import UNICODE_ENCODING
-from lib.request.basic import decodePage
-from thirdparty.socks import socks
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getSafeExString
+from w3af.plugins.attack.db.sqlmap.lib.core.common import getUnicode
+from w3af.plugins.attack.db.sqlmap.lib.core.common import popValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import pushValue
+from w3af.plugins.attack.db.sqlmap.lib.core.common import readInput
+from w3af.plugins.attack.db.sqlmap.lib.core.common import urlencode
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import CUSTOM_LOGGING
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import HTTP_HEADER
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import REDIRECTION
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapBaseException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapUserQuitException
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import BING_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DUMMY_SEARCH_USER_AGENT
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import DUCKDUCKGO_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import GOOGLE_REGEX
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HTTP_ACCEPT_ENCODING_HEADER_VALUE
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import UNICODE_ENCODING
+from w3af.plugins.attack.db.sqlmap.lib.request.basic import decodePage
+from w3af.plugins.attack.db.sqlmap.thirdparty.socks import socks
 
 
 def _search(dork):

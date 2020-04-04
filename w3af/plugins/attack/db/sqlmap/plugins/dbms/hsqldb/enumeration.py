@@ -5,15 +5,15 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-from plugins.generic.enumeration import Enumeration as GenericEnumeration
-from lib.core.data import conf
-from lib.core.data import kb
-from lib.core.data import logger
-from lib.core.data import queries
-from lib.core.common import unArrayizeValue
-from lib.core.enums import DBMS
-from lib.core.settings import HSQLDB_DEFAULT_SCHEMA
-from lib.request import inject
+from w3af.plugins.attack.db.sqlmap.plugins.generic.enumeration import Enumeration as GenericEnumeration
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import kb
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.data import queries
+from w3af.plugins.attack.db.sqlmap.lib.core.common import unArrayizeValue
+from w3af.plugins.attack.db.sqlmap.lib.core.enums import DBMS
+from w3af.plugins.attack.db.sqlmap.lib.core.settings import HSQLDB_DEFAULT_SCHEMA
+from w3af.plugins.attack.db.sqlmap.lib.request import inject
 
 class Enumeration(GenericEnumeration):
     def __init__(self):

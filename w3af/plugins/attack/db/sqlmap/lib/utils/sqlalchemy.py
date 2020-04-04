@@ -28,11 +28,11 @@ try:
 except ImportError:
     pass
 
-from lib.core.data import conf
-from lib.core.data import logger
-from lib.core.exception import SqlmapConnectionException
-from lib.core.exception import SqlmapFilePathException
-from plugins.generic.connector import Connector as GenericConnector
+from w3af.plugins.attack.db.sqlmap.lib.core.data import conf
+from w3af.plugins.attack.db.sqlmap.lib.core.data import logger
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapConnectionException
+from w3af.plugins.attack.db.sqlmap.lib.core.exception import SqlmapFilePathException
+from w3af.plugins.attack.db.sqlmap.plugins.generic.connector import Connector as GenericConnector
 
 class SQLAlchemy(GenericConnector):
     def __init__(self, dialect=None):

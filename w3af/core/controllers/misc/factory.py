@@ -62,12 +62,14 @@ def factory(module_name, *args):
         __import__(module_name)
     except SyntaxError:
         # Useful for development
+        print(traceback.format_exc())
         raise
-    except ImportError:
+    except ImportError as ex:
         # Useful for development and users which failed to install all
         # dependencies
         #
         # https://github.com/andresriancho/w3af/issues/9688
+        print(traceback.format_exc())
         msg = ('It seems that your Python installation does not have all the'
                ' modules required by the w3af framework. For more information'
                ' about how to install and debug dependency issues please browse'
@@ -77,8 +79,9 @@ def factory(module_name, *args):
         # Raise so the user sees the whole traceback
         raise
     except Exception as e:
-        msg = 'There was an error while importing %s: "%s".'
-        raise BaseFrameworkException(msg % (module_name, e))
+        print(traceback.format_exc())
+        msg = 'There was an error while importing %s: "%s".' % (module_name, e)
+        raise BaseFrameworkException(msg)
 
     # Now that we have the module imported get the class and instance
     class_name = module_name.split('.')[-1]
