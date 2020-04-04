@@ -54,7 +54,7 @@ class profile(object):
         # w3af needs the value as it is
         optionxform = lambda opt: opt
 
-        self._config = configparser.ConfigParser()
+        self._config = configparser.RawConfigParser()
         # Set the new optionxform function
         self._config.optionxform = optionxform
 
@@ -118,7 +118,7 @@ class profile(object):
                 profile_path_file = os.path.join(profile_path, profile_file)
 
                 with codecs.open(profile_path_file, "rb", UTF8) as fp:
-                    config = configparser.ConfigParser()
+                    config = configparser.RawConfigParser()
                     try:
                         config.readfp(fp)
                     except:
