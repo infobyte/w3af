@@ -342,7 +342,7 @@ class Url(object):
         self.item = item
         self.url = url
         if highlight is None:
-            highlight = set([item])
+            highlight = {item}
         self.highlight = highlight
 
 
@@ -353,7 +353,7 @@ class Jump(object):
         self.x = x
         self.y = y
         if highlight is None:
-            highlight = set([item])
+            highlight = {item}
         self.highlight = highlight
 
 
@@ -439,9 +439,9 @@ class Edge(Element):
 
     def get_jump(self, x, y):
         if self.is_inside_begin(x, y):
-            return Jump(self, self.dst.x, self.dst.y, highlight=set([self, self.dst]))
+            return Jump(self, self.dst.x, self.dst.y, highlight={self, self.dst})
         if self.is_inside_end(x, y):
-            return Jump(self, self.src.x, self.src.y, highlight=set([self, self.src]))
+            return Jump(self, self.src.x, self.src.y, highlight={self, self.src})
         return None
 
     def __repr__(self):

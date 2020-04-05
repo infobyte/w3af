@@ -124,7 +124,7 @@ class TestOutputManager(unittest.TestCase):
         om.manager._output_plugin_instances = [plugin, ]
         om_action = getattr(om.out, action)
         # This one will be ignored at the output manager level
-        om_action(msg, False, ignore_plugins=set(['fake']))
+        om_action(msg, False, ignore_plugins={'fake'})
         # This one will make it and we'll assert it below
         om_action(msg, False)
         

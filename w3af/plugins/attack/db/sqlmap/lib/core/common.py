@@ -770,7 +770,7 @@ def getManualDirectories():
             checkFile(listPath)
             directories = getFileItems(listPath)
         elif choice == '4':
-            targets = set([conf.hostname])
+            targets = {conf.hostname}
             _ = conf.hostname.split('.')
 
             if _[0] == "www":
@@ -3430,7 +3430,7 @@ def intersect(valueA, valueB, lowerCase=False):
     """
     Returns intersection of the array-ized values
 
-    >>> intersect([1, 2, 3], set([1,3]))
+    >>> intersect([1, 2, 3], {1, 3})
     [1, 3]
     """
 

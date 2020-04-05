@@ -49,6 +49,6 @@ class TestUpdateURLs(unittest.TestCase):
 
         result = kb.kb.get_all_known_urls()
         self.assertEqual(len(result), 2)
-        expected_set = set(["http://w3af.org/", "http://w3af.org/blog/"])
+        expected_set = {"http://w3af.org/", "http://w3af.org/blog/"}
         self.assertEqual(expected_set,
                          set([u.url_string for u in result]))

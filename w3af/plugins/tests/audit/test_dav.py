@@ -51,8 +51,8 @@ class TestDav(PluginTest):
                           set([v.get_name() for v in vulns])
                           )
 
-        self.assertEqual(set(['PUT', 'PROPFIND']),
-                          set([v.get_method() for v in vulns]))
+        self.assertEqual({'PUT', 'PROPFIND'},
+                         set([v.get_method() for v in vulns]))
 
         self.assertTrue(all([self.target_vuln_all == str(
             v.get_url().get_domain_path()) for v in vulns]))

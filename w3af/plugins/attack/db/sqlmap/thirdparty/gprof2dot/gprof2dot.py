@@ -1094,7 +1094,7 @@ class CallgrindParser(LineParser):
             self.parse_cost_line_def() or \
             self.parse_cost_summary()
 
-    _detail_keys = set(('cmd', 'pid', 'thread', 'part'))
+    _detail_keys = {'cmd', 'pid', 'thread', 'part'}
 
     def parse_part_detail(self):
         return self.parse_keys(self._detail_keys)

@@ -48,12 +48,6 @@ class TestGTKOutput(unittest.TestCase):
 
         self.gtk_output.vulnerability('ignores')
 
-        EXPECTED = set([
-            ('console', '1'),
-            ('information', '2'),
-            ('vulnerability', '3'),
-            ('debug', ''), # Note that this empty string is correct
-            ('error', '5'), ]
-        )
+        EXPECTED = {('console', '1'), ('information', '2'), ('vulnerability', '3'), ('debug', ''), ('error', '5')}
 
         self.assertEqual(set(messages), EXPECTED)

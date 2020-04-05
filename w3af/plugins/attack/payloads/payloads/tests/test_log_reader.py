@@ -25,12 +25,7 @@ from w3af.plugins.attack.payloads.payload_handler import exec_payload
 
 class test_log_reader(PayloadTestHelper):
 
-    EXPECTED_RESULT = set(['/var/log/wtmp',
-                           '/var/log/dpkg.log',
-                           # The permissions changed and now we can't read it
-                           # '/var/log/apt/term.log', 
-                           '/var/log/boot.log',
-                           '/var/log/faillog'])
+    EXPECTED_RESULT = {'/var/log/wtmp', '/var/log/dpkg.log', '/var/log/boot.log', '/var/log/faillog'}
 
     @attr('ci_fails')
     def test_log_reader(self):

@@ -45,7 +45,7 @@ class TestWordpressEnumerateUsers(PluginTest):
 
         infos = self.kb.get('wordpress_enumerate_users', 'users')
 
-        EXPECTED = set(['admin', 'andres'])
+        EXPECTED = {'admin', 'andres'}
 
         self.assertEqual(len(infos), len(EXPECTED), infos)
 

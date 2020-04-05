@@ -74,7 +74,7 @@ class TestPayloadHandler(unittest.TestCase):
         shell = FakeExecShell()
         runnable = runnable_payloads(shell)
 
-        EXCEPTIONS = set(['portscan', ])
+        EXCEPTIONS = {'portscan'}
         all_payloads = get_payload_list()
         all_but_exceptions = set(all_payloads) - EXCEPTIONS
 

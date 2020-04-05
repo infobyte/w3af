@@ -25,7 +25,7 @@ from w3af.plugins.attack.payloads.payload_handler import exec_payload
 
 class test_mail_config_files(PayloadTestHelper):
 
-    EXPECTED_RESULT = set(['/etc/postfix/main.cf', '/etc/postfix/master.cf'])
+    EXPECTED_RESULT = {'/etc/postfix/main.cf', '/etc/postfix/master.cf'}
 
     @attr('ci_fails')
     def test_mail_config_files(self):

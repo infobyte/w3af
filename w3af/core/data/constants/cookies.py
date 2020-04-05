@@ -21,11 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 import operator
 
-GENERIC_COOKIES = set(['JServSessionID',
-                       'JWSESSIONID',
-                       'SESSID',
-                       'SESSION',
-                       'session_id'])
+GENERIC_COOKIES = {'JServSessionID', 'JWSESSIONID', 'SESSID', 'SESSION', 'session_id'}
 
 
 COOKIE_FINGERPRINT = (
