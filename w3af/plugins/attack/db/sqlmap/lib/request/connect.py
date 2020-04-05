@@ -5,8 +5,8 @@ Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
+import ast
 import binascii
-import compiler
 import http.client
 import json
 import keyword
@@ -1057,7 +1057,8 @@ class Connect(object):
 
             while True:
                 try:
-                    compiler.parse(unicodeencode(conf.evalCode.replace(';', '\n')))
+
+                    ast.parse(unicodeencode(conf.evalCode.replace(';', '\n')))
                 except SyntaxError as ex:
                     if ex.text:
                         original = replacement = ex.text.strip()
