@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """
 import xml.sax
-import cgi
+import html
 import base64
 
 from xml.sax.handler import ContentHandler
@@ -134,7 +134,7 @@ class XmlRpcWriteHandler(ContentHandler):
             if self._fuzzed_parameters[self._fuzzable_index][0] == 'base64':
                 enc_val = base64.b64encode(modified_value)
             else:
-                enc_val = cgi.escape(modified_value).encode('ascii',
+                enc_val = html.escape(modified_value).encode('ascii',
                                                             'xmlcharrefreplace')
 
             self.fuzzed_xml_string += enc_val

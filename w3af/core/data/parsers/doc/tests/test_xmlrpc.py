@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 import unittest
 import xml.sax
-import cgi
+import html
 
 from w3af.core.data.parsers.doc.xmlrpc import XmlRpcReadHandler, XmlRpcWriteHandler
 
@@ -79,7 +79,7 @@ class TestXMLRPC(unittest.TestCase):
 
         handler = XmlRpcWriteHandler(data_container)
 
-        fuzzed = XML_WITH_FUZZABLE.replace('Foo bar', cgi.escape(payload))
+        fuzzed = XML_WITH_FUZZABLE.replace('Foo bar', html.escape(payload))
 
         xml.sax.parseString(XML_WITH_FUZZABLE, handler)
         self.assertEqual(handler.fuzzed_xml_string, fuzzed)
