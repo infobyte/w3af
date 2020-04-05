@@ -20,7 +20,7 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 """
 
-import mimetools
+from email import generator
 import mimetypes
 import os
 import stat
@@ -53,7 +53,7 @@ class MultipartPostHandler(urllib.request.BaseHandler):
 
             try:
                 for(key, value) in list(data.items()):
-                    if isinstance(value, file) or hasattr(value, "file") or isinstance(value, io.StringIO):
+                    if isinstance(value, io.IOBase) or hasattr(value, "file") or isinstance(value, io.StringIO):
                         v_files.append((key, value))
                     else:
                         v_vars.append((key, value))
@@ -75,7 +75,7 @@ class MultipartPostHandler(urllib.request.BaseHandler):
 
     def multipart_encode(vars, files, boundary=None, buf=None):
         if boundary is None:
-            boundary = mimetools.choose_boundary()
+            boundary = generator._make_boundary()
 
         if buf is None:
             buf = ""
@@ -87,7 +87,7 @@ class MultipartPostHandler(urllib.request.BaseHandler):
                 buf += "\r\n\r\n" + value + "\r\n"
 
         for (key, fd) in files:
-            file_size = os.fstat(fd.fileno())[stat.ST_SIZE] if isinstance(fd, file) else fd.len
+            file_size = os.fstat(fd.fileno())[stat.ST_SIZE] if isinstance(fd, io.IOBase) else fd.len
             filename = fd.name.split("/")[-1] if "/" in fd.name else fd.name.split("\\")[-1]
             try:
                 contenttype = mimetypes.guess_type(filename)[0] or "application/octet-stream"
