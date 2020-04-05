@@ -120,7 +120,7 @@ class profile(object):
                 with codecs.open(profile_path_file, "rb", UTF8) as fp:
                     config = configparser.RawConfigParser()
                     try:
-                        config.readfp(fp)
+                        config.read_file(fp)
                     except:
                         # Any errors simply break name detection
                         continue

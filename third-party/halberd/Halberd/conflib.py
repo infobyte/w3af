@@ -77,7 +77,7 @@ class ConfReader:
         """
         self.__conf = open(os.path.expanduser(fname), 'r')
         try:
-            self.confparser.readfp(self.__conf, fname)
+            self.confparser.read_file(self.__conf, fname)
         except configparser.MissingSectionHeaderError as msg:
             raise InvalidConfFile(msg)
 
