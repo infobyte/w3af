@@ -937,7 +937,7 @@ def _setTamperingFunctions():
             priority = PRIORITY.NORMAL if not hasattr(module, "__priority__") else module.__priority__
 
             for name, function in inspect.getmembers(module, inspect.isfunction):
-                if name == "tamper" and inspect.getargspec(function).args and inspect.getargspec(function).keywords == "kwargs":
+                if name == "tamper" and inspect.getfullargspec(function).args and inspect.getfullargspec(function).keywords == "kwargs":
                     found = True
                     kb.tamperFunctions.append(function)
                     function.__name__ = module.__name__
