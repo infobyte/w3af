@@ -875,7 +875,7 @@ class URL(DiskItem):
             errors=PERCENT_ENCODE
         )
 
-        return urlstr.replace(b' ', b'%20')
+        return urlstr.decode().replace(' ', '%20')
 
     def __unicode__(self):
         """
