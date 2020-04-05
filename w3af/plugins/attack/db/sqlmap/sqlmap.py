@@ -184,7 +184,7 @@ def main():
         raise SystemExit
 
     except KeyboardInterrupt:
-        print
+        print()
 
         errMsg = "user aborted"
         try:
@@ -193,7 +193,7 @@ def main():
             pass
 
     except EOFError:
-        print
+        print()
         errMsg = "exit"
 
         try:
@@ -205,7 +205,7 @@ def main():
         pass
 
     except:
-        print
+        print()
         errMsg = unhandledExceptionMessage()
         excMsg = traceback.format_exc()
         valid = checkIntegrity()
@@ -216,13 +216,13 @@ def main():
                 errMsg += "You should retrieve the latest development version from official GitHub "
                 errMsg += "repository at '%s'" % GIT_PAGE
                 logger.critical(errMsg)
-                print
+                print()
                 dataToStdout(excMsg)
                 raise SystemExit
 
             elif any(_ in excMsg for _ in ("tamper/", "waf/")):
                 logger.critical(errMsg)
-                print
+                print()
                 dataToStdout(excMsg)
                 raise SystemExit
 

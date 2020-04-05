@@ -53,7 +53,7 @@ class iis_root_directory(Payload):
         result = []
         for k, v in api_result.items():
             k = k.replace('_', ' ')
-            print
+            print()
             result.append(k.title() + " : " + v)
         if result == []:
             result.append('IIS root directory not found.')

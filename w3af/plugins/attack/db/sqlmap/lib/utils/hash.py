@@ -1050,7 +1050,7 @@ def dictionaryAttack(attack_dict):
                         _bruteProcessVariantA(attack_info, hash_regex, suffix, retVal, 0, 1, kb.wordlists, custom_wordlist, conf.api)
 
                 except KeyboardInterrupt:
-                    print
+                    print()
                     processException = True
                     warnMsg = "user aborted during dictionary-based attack phase (Ctrl+C was pressed)"
                     logger.warn(warnMsg)
@@ -1144,7 +1144,7 @@ def dictionaryAttack(attack_dict):
                             found = found_.value
 
                     except KeyboardInterrupt:
-                        print
+                        print()
                         processException = True
                         warnMsg = "user aborted during dictionary-based attack phase (Ctrl+C was pressed)"
                         logger.warn(warnMsg)
