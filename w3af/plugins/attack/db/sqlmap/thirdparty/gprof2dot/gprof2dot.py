@@ -2063,8 +2063,8 @@ class PstatsParser:
         try:
             self.stats = pstats.Stats(*filename)
         except ValueError:
-            import hotshot.stats
-            self.stats = hotshot.stats.load(filename[0])
+            import pstats
+            self.stats = pstats.Stats(filename[0])
         self.profile = Profile()
         self.function_ids = {}
 
