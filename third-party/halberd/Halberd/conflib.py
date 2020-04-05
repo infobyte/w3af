@@ -65,7 +65,7 @@ class ConfReader:
         self.__dict = {}
         self.__conf = None
 
-        self.confparser = configparser.SafeConfigParser()
+        self.confparser = configparser.ConfigParser()
 
     def open(self, fname):
         """Opens the configuration file.
