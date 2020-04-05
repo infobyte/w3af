@@ -641,10 +641,10 @@ class HTTPTransaction(CachedXMLNode):
         request, response = req_history.load_from_file(self._id)
 
         data = request.get_data() or ''
-        b64_encoded_request_body = base64.encodestring(smart_str_ignore(data))
+        b64_encoded_request_body = base64.encodebytes(smart_str_ignore(data))
 
         body = response.get_body() or ''
-        b64_encoded_response_body = base64.encodestring(smart_str_ignore(body))
+        b64_encoded_response_body = base64.encodebytes(smart_str_ignore(body))
 
         context = {'id': self._id,
                    'request': {'status': request.get_request_line().strip(),
