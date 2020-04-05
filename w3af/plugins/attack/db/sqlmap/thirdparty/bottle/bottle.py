@@ -952,7 +952,7 @@ class Bottle(object):
             response.bind()
             self.trigger_hook('before_request')
             out = _inner_handle()
-            return out;
+            return out
         finally:
             if isinstance(out, HTTPResponse):
                 out.apply(response)

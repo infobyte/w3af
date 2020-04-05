@@ -1967,8 +1967,8 @@ class DotWindow(gtk.Window):
         find_toolitem.add(self.textentry)
 
         self.textentry.set_activates_default(True)
-        self.textentry.connect ("activate", self.textentry_activate, self.textentry);
-        self.textentry.connect ("changed", self.textentry_changed, self.textentry);
+        self.textentry.connect("activate", self.textentry_activate, self.textentry)
+        self.textentry.connect("changed", self.textentry_changed, self.textentry)
 
         self.show_all()
 
@@ -1996,7 +1996,7 @@ class DotWindow(gtk.Window):
         dot_widget = self.widget        
         if not entry_text:
             dot_widget.set_highlight(None)
-            return;
+            return
 
         found_items = self.find_text(entry_text)
         dot_widget.set_highlight(found_items)
