@@ -142,10 +142,10 @@ class cross_domain_js(GrepPlugin):
             return
 
         secure_js_domains = set()
-        secure_js_domains_fh = open(secure_js_file)
+        with open(secure_js_file) as secure_js_domains_fh:
 
-        for domain in secure_js_domains_fh:
-            secure_js_domains.add(domain.strip())
+            for domain in secure_js_domains_fh:
+                secure_js_domains.add(domain.strip())
 
         self._secure_domain_multi_in = MultiIn(secure_js_domains)
 
