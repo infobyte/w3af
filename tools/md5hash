@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 from __future__ import print_function
 
-import md5
+from hashlib import md5
 import sys
 import getopt
 
