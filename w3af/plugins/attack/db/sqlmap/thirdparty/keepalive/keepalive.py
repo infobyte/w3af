@@ -506,7 +506,7 @@ def error_handler(url):
     keepalive_handler.close_all()
 
 def continuity(url):
-    import md5
+    from hashlib import md5
     format = '%25s: %s'
 
     # first fetch the file with the normal http handler
