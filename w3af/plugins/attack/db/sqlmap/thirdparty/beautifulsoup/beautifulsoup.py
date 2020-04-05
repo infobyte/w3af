@@ -1252,7 +1252,7 @@ class BeautifulStoneSoup(Tag, SGMLParser):
                     currentData = ' '
             self.currentData = []
             if self.parseOnlyThese and len(self.tagStack) <= 1 and \
-                   (not self.parseOnlyThese.text or \
+                   (not self.parseOnlyThese.text or
                     not self.parseOnlyThese.search(currentData)):
                 return
             o = containerClass(currentData)
@@ -1974,7 +1974,7 @@ class UnicodeDammit:
                     90,244,245,246,247,248,249,48,49,50,51,52,53,54,55,56,57,
                     250,251,252,253,254,255)
             import string
-            c.EBCDIC_TO_ASCII_MAP = string.maketrans( \
+            c.EBCDIC_TO_ASCII_MAP = string.maketrans(
             ''.join(map(chr, range(256))), ''.join(map(chr, emap)))
         return s.translate(c.EBCDIC_TO_ASCII_MAP)
 

@@ -79,8 +79,8 @@ class test_http_vs_https_dist(unittest.TestCase):
 
             plugininst.discover(fuzz_req, None)
 
-        result = ('Routes to target "host.tld" using ports 80 and 4444 are different:\n'\
-                  '  TCP trace to host.tld:80\n    0 192.168.1.1\n    1 200.200.0.0\n    2 207.46.47.14\n'\
+        result = ('Routes to target "host.tld" using ports 80 and 4444 are different:\n'
+                  '  TCP trace to host.tld:80\n    0 192.168.1.1\n    1 200.200.0.0\n    2 207.46.47.14\n'
                   '  TCP trace to host.tld:4444\n    0 192.168.1.1\n    1 200.115.195.33\n    2 207.46.47.14')
         om.out.information.assert_called_once_with(result)
 
@@ -146,8 +146,8 @@ class test_http_vs_https_dist(unittest.TestCase):
 
             plugininst.discover(fuzz_req, None)
 
-        result = ('Routes to target "host.tld" using ports 80 and 443 are different:\n'\
-                  '  TCP trace to host.tld:80\n    0 192.168.1.1\n    1 200.200.0.0\n    2 207.46.47.14\n'\
+        result = ('Routes to target "host.tld" using ports 80 and 443 are different:\n'
+                  '  TCP trace to host.tld:80\n    0 192.168.1.1\n    1 200.200.0.0\n    2 207.46.47.14\n'
                   '  TCP trace to host.tld:443\n    0 192.168.1.1\n    1 200.115.195.33\n    2 207.46.47.14')
         om.out.information.assert_called_once_with(result)
 

@@ -50,7 +50,7 @@ def cmdLineParser(argv=None):
     # Reference: https://stackoverflow.com/a/4012683 (Note: previously used "...sys.getfilesystemencoding() or UNICODE_ENCODING")
     _ = getUnicode(os.path.basename(argv[0]), encoding=sys.stdin.encoding)
 
-    usage = "%s%s [options]" % ("python " if not IS_WIN else "", \
+    usage = "%s%s [options]" % ("python " if not IS_WIN else "",
             "\"%s\"" % _ if " " in _ else _)
 
     parser = OptionParser(usage=usage)
@@ -976,8 +976,8 @@ def cmdLineParser(argv=None):
         if args.dummy:
             args.url = args.url or DUMMY_URL
 
-        if not any((args.direct, args.url, args.logFile, args.bulkFile, args.googleDork, args.configFile, \
-            args.requestFile, args.updateAll, args.smokeTest, args.liveTest, args.wizard, args.dependencies, \
+        if not any((args.direct, args.url, args.logFile, args.bulkFile, args.googleDork, args.configFile,
+            args.requestFile, args.updateAll, args.smokeTest, args.liveTest, args.wizard, args.dependencies,
             args.purgeOutput, args.sitemapUrl)):
             errMsg = "missing a mandatory option (-d, -u, -l, -m, -r, -g, -c, -x, --wizard, --update, --purge-output or --dependencies), "
             errMsg += "use -h for basic or -hh for advanced help\n"

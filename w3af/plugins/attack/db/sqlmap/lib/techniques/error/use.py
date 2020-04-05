@@ -131,11 +131,11 @@ def _oneShotErrorUse(expression, field=None, chunkTest=False):
 
                 # Parse the returned page to get the exact error-based
                 # SQL injection output
-                output = reduce(lambda x, y: x if x is not None else y, (\
-                        extractRegexResult(check, page), \
-                        extractRegexResult(check, threadData.lastHTTPError[2] if wasLastResponseHTTPError() else None), \
-                        extractRegexResult(check, listToStrValue((headers[header] for header in headers if header.lower() != HTTP_HEADER.URI.lower()) if headers else None)), \
-                        extractRegexResult(check, threadData.lastRedirectMsg[1] if threadData.lastRedirectMsg and threadData.lastRedirectMsg[0] == threadData.lastRequestUID else None)), \
+                output = reduce(lambda x, y: x if x is not None else y, (
+                        extractRegexResult(check, page),
+                        extractRegexResult(check, threadData.lastHTTPError[2] if wasLastResponseHTTPError() else None),
+                        extractRegexResult(check, listToStrValue((headers[header] for header in headers if header.lower() != HTTP_HEADER.URI.lower()) if headers else None)),
+                        extractRegexResult(check, threadData.lastRedirectMsg[1] if threadData.lastRedirectMsg and threadData.lastRedirectMsg[0] == threadData.lastRequestUID else None)),
                         None)
 
                 if output is not None:
@@ -306,10 +306,10 @@ def errorUse(expression, dump=False):
     # entry at a time
     # NOTE: we assume that only queries that get data from a table can
     # return multiple entries
-    if (dump and (conf.limitStart or conf.limitStop)) or (" FROM " in \
-       expression.upper() and ((Backend.getIdentifiedDbms() not in FROM_DUMMY_TABLE) \
-       or (Backend.getIdentifiedDbms() in FROM_DUMMY_TABLE and not \
-       expression.upper().endswith(FROM_DUMMY_TABLE[Backend.getIdentifiedDbms()]))) \
+    if (dump and (conf.limitStart or conf.limitStop)) or (" FROM " in
+       expression.upper() and ((Backend.getIdentifiedDbms() not in FROM_DUMMY_TABLE)
+       or (Backend.getIdentifiedDbms() in FROM_DUMMY_TABLE and not
+       expression.upper().endswith(FROM_DUMMY_TABLE[Backend.getIdentifiedDbms()])))
        and ("(CASE" not in expression.upper() or ("(CASE" in expression.upper() and "WHEN use" in expression))) \
        and not re.search(SQL_SCALAR_REGEX, expression, re.I):
         expression, limitCond, topLimit, startLimit, stopLimit = agent.limitCondition(expression, dump)

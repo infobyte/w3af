@@ -108,7 +108,7 @@ setup(
     packages = ['Halberd', 'Halberd.clues'],
     package_dir = {'Halberd': 'Halberd'},
     scripts = [D('scripts', 'halberd')],
-    data_files = [(D('man', 'man1'), \
+    data_files = [(D('man', 'man1'),
                   [D('man', 'man1', 'halberd.1')])],
     classifiers = classifiers.splitlines(),
     cmdclass = {'test': test},

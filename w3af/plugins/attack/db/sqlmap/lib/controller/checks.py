@@ -142,7 +142,7 @@ def checkSqlInjection(place, parameter, value):
                 # error message, simple heuristic check or via DBMS-specific
                 # payload), ask the user to limit the tests to the fingerprinted
                 # DBMS
-                if kb.reduceTests is None and not conf.testFilter and (intersect(Backend.getErrorParsedDBMSes(), \
+                if kb.reduceTests is None and not conf.testFilter and (intersect(Backend.getErrorParsedDBMSes(),
                    SUPPORTED_DBMS, True) or kb.heuristicDbms or injection.dbms):
                     msg = "it looks like the back-end DBMS is '%s'. " % (Format.getErrorParsedDBMSes() or kb.heuristicDbms or injection.dbms)
                     msg += "Do you want to skip test payloads specific for other DBMSes? [Y/n]"
@@ -153,7 +153,7 @@ def checkSqlInjection(place, parameter, value):
             # payload), ask the user to extend the tests to all DBMS-specific,
             # regardless of --level and --risk values provided
             if kb.extendTests is None and not conf.testFilter and (conf.level < 5 or conf.risk < 3) \
-               and (intersect(Backend.getErrorParsedDBMSes(), SUPPORTED_DBMS, True) or \
+               and (intersect(Backend.getErrorParsedDBMSes(), SUPPORTED_DBMS, True) or
                kb.heuristicDbms or injection.dbms):
                 msg = "for the remaining tests, do you want to include all tests "
                 msg += "for '%s' extending provided " % (Format.getErrorParsedDBMSes() or kb.heuristicDbms or injection.dbms)

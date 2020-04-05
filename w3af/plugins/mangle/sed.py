@@ -164,7 +164,7 @@ class sed(ManglePlugin):
              ' for the string User and replace it with NotLuser.\n'
              '\n'
              '    - sb/[fF]orm/form\n'
-             '      This will make sed search in the re[s]ponse [b]ody for'\
+             '      This will make sed search in the re[s]ponse [b]ody for'
              ' the strings form or Form and replace it with form.\n'
              '\n'
              'Multiple expressions can be specified separated by commas.')

@@ -295,8 +295,8 @@ class Agent(object):
             return
 
         _ = (
-                ("[DELIMITER_START]", kb.chars.start), ("[DELIMITER_STOP]", kb.chars.stop),\
-                ("[AT_REPLACE]", kb.chars.at), ("[SPACE_REPLACE]", kb.chars.space), ("[DOLLAR_REPLACE]", kb.chars.dollar),\
+                ("[DELIMITER_START]", kb.chars.start), ("[DELIMITER_STOP]", kb.chars.stop),
+                ("[AT_REPLACE]", kb.chars.at), ("[SPACE_REPLACE]", kb.chars.space), ("[DOLLAR_REPLACE]", kb.chars.dollar),
                 ("[HASH_REPLACE]", kb.chars.hash_), ("[GENERIC_SQL_COMMENT]", GENERIC_SQL_COMMENT)
             )
         payload = reduce(lambda x, y: x.replace(y[0], y[1]), _, payload)

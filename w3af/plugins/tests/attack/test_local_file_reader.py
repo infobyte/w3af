@@ -25,7 +25,7 @@ from w3af.core.controllers.ci.moth import get_moth_http
 
 class TestFileReadShell(ReadExploitTest):
 
-    target_url = get_moth_http('/audit/local_file_read/'\
+    target_url = get_moth_http('/audit/local_file_read/'
                                'local_file_read.py?file=section.txt')
     _run_configs = {
         'cfg': {

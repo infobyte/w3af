@@ -90,10 +90,10 @@ def _oneShotUnionUse(expression, unpack=True, limited=False):
             # Parse the returned page to get the exact UNION-based
             # SQL injection output
             def _(regex):
-                return reduce(lambda x, y: x if x is not None else y, (\
-                        extractRegexResult(regex, removeReflectiveValues(page, payload), re.DOTALL | re.IGNORECASE), \
-                        extractRegexResult(regex, removeReflectiveValues(listToStrValue(headers.headers \
-                        if headers else None), payload, True), re.DOTALL | re.IGNORECASE)), \
+                return reduce(lambda x, y: x if x is not None else y, (
+                        extractRegexResult(regex, removeReflectiveValues(page, payload), re.DOTALL | re.IGNORECASE),
+                        extractRegexResult(regex, removeReflectiveValues(listToStrValue(headers.headers
+                        if headers else None), payload, True), re.DOTALL | re.IGNORECASE)),
                         None)
 
             # Automatically patching last char trimming cases
@@ -237,11 +237,11 @@ def unionUse(expression, unpack=True, dump=False):
     # SQL limiting the query output one entry at a time
     # NOTE: we assume that only queries that get data from a table can
     # return multiple entries
-    if value is None and (kb.injection.data[PAYLOAD.TECHNIQUE.UNION].where == PAYLOAD.WHERE.NEGATIVE or \
-       kb.forcePartialUnion or \
+    if value is None and (kb.injection.data[PAYLOAD.TECHNIQUE.UNION].where == PAYLOAD.WHERE.NEGATIVE or
+       kb.forcePartialUnion or
        (dump and (conf.limitStart or conf.limitStop)) or "LIMIT " in expression.upper()) and \
-       " FROM " in expression.upper() and ((Backend.getIdentifiedDbms() \
-       not in FROM_DUMMY_TABLE) or (Backend.getIdentifiedDbms() in FROM_DUMMY_TABLE \
+       " FROM " in expression.upper() and ((Backend.getIdentifiedDbms()
+       not in FROM_DUMMY_TABLE) or (Backend.getIdentifiedDbms() in FROM_DUMMY_TABLE
        and not expression.upper().endswith(FROM_DUMMY_TABLE[Backend.getIdentifiedDbms()]))) \
        and not re.search(SQL_SCALAR_REGEX, expression, re.I):
         expression, limitCond, topLimit, startLimit, stopLimit = agent.limitCondition(expression, dump)

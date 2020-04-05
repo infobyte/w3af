@@ -188,8 +188,8 @@ def _unionPosition(comment, place, parameter, prefix, suffix, count, where=PAYLO
 
             # Perform the request
             page, headers, _ = Request.queryPage(payload, place=place, content=True, raise404=False)
-            content = "%s%s".lower() % (removeReflectiveValues(page, payload) or "", \
-                removeReflectiveValues(listToStrValue(headers.headers if headers else None), \
+            content = "%s%s".lower() % (removeReflectiveValues(page, payload) or "",
+                removeReflectiveValues(listToStrValue(headers.headers if headers else None),
                 payload, True) or "")
 
             if content and phrase in content:
@@ -223,8 +223,8 @@ def _unionPosition(comment, place, parameter, prefix, suffix, count, where=PAYLO
 
                         # Perform the request
                         page, headers, _ = Request.queryPage(payload, place=place, content=True, raise404=False)
-                        content = "%s%s".lower() % (removeReflectiveValues(page, payload) or "", \
-                            removeReflectiveValues(listToStrValue(headers.headers if headers else None), \
+                        content = "%s%s".lower() % (removeReflectiveValues(page, payload) or "",
+                            removeReflectiveValues(listToStrValue(headers.headers if headers else None),
                             payload, True) or "")
                         if content.count(phrase) > 0 and content.count(phrase) < LIMITED_ROWS_TEST_NUMBER:
                             warnMsg = "output with limited number of rows detected. Switching to partial mode"
