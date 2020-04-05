@@ -23,9 +23,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 from __future__ import print_function
 
-import sha
+import hashlib
 import sys
 import getopt
+
 
 def usage():
     print('w3af - sha1 hash calculator')
@@ -35,7 +36,8 @@ def usage():
     print('    -e  String to be hashed.')
     print('')
     print('Example: sha1hash -e makeHash')
-    
+
+
 def main():
     
     try:
@@ -53,11 +55,11 @@ def main():
             sys.exit()
 
     if encode is None:
-            usage()
-            sys.exit()
+        usage()
+        sys.exit()
 
-    print( sha.new(encode).hexdigest() )
-        
+    print(hashlib.sha1.new(encode).hexdigest())
+
+
 if __name__ == "__main__":
     main()
-  
