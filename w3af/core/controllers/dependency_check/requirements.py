@@ -112,6 +112,9 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
 
                      PIPDependency('plotille', 'plotille', '3.7'),
 
+                     PIPDependency('distro', 'distro', '1.5.0'),
+                     PIPDependency('nose', 'nose', '1.3.7'),
+
                      ]
 GUI_PIP_EXTRAS = [PIPDependency('xdot', 'xdot', '0.6')]
 
