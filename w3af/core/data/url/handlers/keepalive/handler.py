@@ -121,7 +121,7 @@ class KeepAliveHandler(object):
         """
         Called by handler's url_open method.
         """
-        host = req.get_host()
+        host = req.host
         if not host:
             raise urllib.error.URLError('no host given')
 
@@ -430,7 +430,7 @@ class HTTPHandler(KeepAliveHandler, urllib.request.HTTPHandler):
         return self.do_open(req)
 
     def get_connection(self, request):
-        return HTTPConnection(request.get_host(), timeout=request.get_timeout())
+        return HTTPConnection(request.host, timeout=request.get_timeout())
 
 
 class HTTPSHandler(KeepAliveHandler, urllib.request.HTTPSHandler):
@@ -460,7 +460,7 @@ class HTTPSHandler(KeepAliveHandler, urllib.request.HTTPSHandler):
                                         proxy_port,
                                         timeout=request.get_timeout())
         else:
-            return HTTPSConnection(request.get_host(),
+            return HTTPSConnection(request.host,
                                    timeout=request.get_timeout())
 
 

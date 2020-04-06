@@ -206,8 +206,8 @@ class TestConnectionMgr(unittest.TestCase):
         # Get connection
         def conn_factory(request):
             mock = Mock()
-            mock.host = request.get_host()
-            mock.host_port = request.get_host()
+            mock.host = request.host
+            mock.host_port = request.host
             return mock
 
         conn_1 = self.cm.get_available_connection(self.request, conn_factory)
