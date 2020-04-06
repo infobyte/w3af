@@ -417,7 +417,7 @@ class RequestPart(RequestResponsePart):
 
     def get_both_texts(self):
         head = self._obj.dump_request_head()
-        data = str(self._obj.get_data()) if self._obj.get_data() else '' 
+        data = str(self._obj.data) if self._obj.data else ''
         return head, data
 
     def show_raw(self, head, body):

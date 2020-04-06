@@ -42,7 +42,7 @@ class RequestMixIn(object):
                  by the RFC, and the POST-data (potentially) holding raw bytes
                  such as an image content.
         """
-        data = self.get_data() or ''
+        data = self.data or ''
 
         request_head = self.dump_request_head(ignore_headers=ignore_headers)
         request_head = request_head.encode('utf-8')

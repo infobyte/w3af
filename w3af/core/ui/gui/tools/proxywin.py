@@ -351,7 +351,7 @@ class ProxiedRequests(entries.RememberingWindow):
             return
 
         headers = request.dump_request_head()
-        data = request.get_data()
+        data = request.data
 
         if data:
             data = str(data)

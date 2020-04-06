@@ -640,7 +640,7 @@ class HTTPTransaction(CachedXMLNode):
         # HTTP transaction
         request, response = req_history.load_from_file(self._id)
 
-        data = request.get_data() or ''
+        data = request.data or ''
         b64_encoded_request_body = base64.encodebytes(smart_str_ignore(data))
 
         body = response.get_body() or ''

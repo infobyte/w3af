@@ -17,7 +17,7 @@ def gen_hash(request):
                               safe_str(req.get_full_url()),
                               headers_1,
                               headers_2,
-                              safe_str(req.get_data() or ''))
+                              safe_str(req.data or ''))
 
     return hashlib.md5(the_str).hexdigest()
 

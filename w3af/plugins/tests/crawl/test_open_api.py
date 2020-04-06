@@ -92,7 +92,7 @@ class TestOpenAPIFindAllEndpointsWithAuth(PluginTest):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '')
+        self.assertEqual(fuzzable_request.data, '')
 
         #
         # Assertions on call #2
@@ -105,7 +105,7 @@ class TestOpenAPIFindAllEndpointsWithAuth(PluginTest):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '')
+        self.assertEqual(fuzzable_request.data, '')
 
 
 class HeaderAuthenticatedMockResponse(MockResponse):
@@ -218,7 +218,7 @@ class TestOpenAPINestedModelSpec(PluginTest):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
         vulns = self.kb.get('sqli', 'sqli')
         self.assertEqual(len(vulns), 2)

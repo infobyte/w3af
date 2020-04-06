@@ -45,7 +45,7 @@ class MultipartPostHandler(urllib.request.BaseHandler):
     handler_order = urllib.request.HTTPHandler.handler_order - 10 # needs to run first
 
     def http_request(self, request):
-        data = request.get_data()
+        data = request.data
 
         if isinstance(data, dict):
             v_files = []

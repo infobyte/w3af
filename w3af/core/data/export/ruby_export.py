@@ -48,8 +48,8 @@ def ruby_export(request_string):
     res += 'url = URI.parse("' + ruby_escape_string(
         http_request.get_uri().url_string) + '")\n'
 
-    if http_request.get_data() != '\n' and http_request.get_data():
-        escaped_data = ruby_escape_string(str(http_request.get_data()))
+    if http_request.data != '\n' and http_request.data:
+        escaped_data = ruby_escape_string(str(http_request.data))
         res += 'data = "' + escaped_data + '"\n'
     else:
         res += 'data = nil\n'

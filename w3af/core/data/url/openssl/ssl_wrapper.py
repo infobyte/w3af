@@ -179,7 +179,7 @@ class SSLSocket(object):
             if ext_name != 'subjectAltName':
                 continue
 
-            ext_dat = ext.get_data()
+            ext_dat = ext.data
             decoded_dat = der_decoder(ext_dat, asn1Spec=general_names)
 
             for name in decoded_dat:

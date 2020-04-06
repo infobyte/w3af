@@ -41,14 +41,14 @@ class TestHttpRequestParser(unittest.TestCase):
 
         self.assertIsInstance(fr, FuzzableRequest)
         self.assertEqual(fr.get_method(), 'POST')
-        self.assertEqual(fr.get_data(), post_data)
+        self.assertEqual(fr.data, post_data)
 
     def test_qs(self):
         fr = http_request_parser('GET http://www.w3af.com/ HTTP/1.0', '')
 
         self.assertIsInstance(fr, FuzzableRequest)
         self.assertEqual(fr.get_method(), 'GET')
-        self.assertEqual(fr.get_data(), '')
+        self.assertEqual(fr.data, '')
 
     def test_invalid_url(self):
         self.assertRaises(BaseFrameworkException,
@@ -68,7 +68,7 @@ class TestHttpRequestParser(unittest.TestCase):
 
         self.assertEqual(fr.get_headers(), exp_headers)
         self.assertEqual(fr.get_url().get_domain(), 'www.w3af.org')
-        self.assertEqual(fr.get_data(), '')
+        self.assertEqual(fr.data, '')
 
     def test_simple_GET_relative(self):
         http_request = 'GET / HTTP/1.1\n' \
@@ -80,7 +80,7 @@ class TestHttpRequestParser(unittest.TestCase):
 
         self.assertEqual(fr.get_headers(), exp_headers)
         self.assertEqual(fr.get_url().get_domain(), 'www.w3af.org')
-        self.assertEqual(fr.get_data(), '')
+        self.assertEqual(fr.data, '')
 
     def test_POST_repeated(self):
         request_head = 'POST http://www.w3af.org/ HTTP/1.1\n' \
@@ -98,7 +98,7 @@ class TestHttpRequestParser(unittest.TestCase):
                                ('Foo', 'spam, eggs')])
 
         self.assertEqual(fr.get_headers(), exp_headers)
-        self.assertEqual(fr.get_data(), post_data)
+        self.assertEqual(fr.data, post_data)
 
     def test_check_version_syntax(self):
         self.assertTrue(check_version_syntax('HTTP/1.0'))

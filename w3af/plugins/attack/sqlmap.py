@@ -112,7 +112,7 @@ class sqlmap(AttackPlugin):
 
             self._sqlmap = None
 
-            post_data = mutant.get_data() or None
+            post_data = mutant.data or None
             target = Target(mutant.get_uri(), post_data)
 
             try:

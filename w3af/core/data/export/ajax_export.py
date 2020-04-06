@@ -108,7 +108,7 @@ make the request fail */
         res += ajax_escape_string(header_value) + '");\n'
 
     # And finally the post data (if any)
-    if http_request.get_data() and http_request.get_data() != '\n':
+    if http_request.data and http_request.data != '\n':
         res += 'var post_data = (<r><![CDATA[' + str(
             http_request.get_data()) + ']]></r>).toString();\n'
         res += 'xmlhttp.send(post_data);\n'

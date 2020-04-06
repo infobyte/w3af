@@ -184,8 +184,8 @@ class HttpHeadersView(RememberingVPaned):
             self.startLine = obj.get_request_line()
             self._update_headers_tab(obj.get_headers())
             data = ''
-            if obj.get_data():
-                data = str(obj.get_data())
+            if obj.data:
+                data = str(obj.data)
             self._raw.set_text(data)
         else:
             self.startLine = obj.get_status_line()

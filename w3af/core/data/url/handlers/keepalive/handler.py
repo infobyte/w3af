@@ -348,7 +348,7 @@ class KeepAliveHandler(object):
         if not req.has_header('Connection'):
             conn.putheader('Connection', 'keep-alive')
 
-        data = req.get_data()
+        data = req.data
         if data is not None:
             data = str(data)
 

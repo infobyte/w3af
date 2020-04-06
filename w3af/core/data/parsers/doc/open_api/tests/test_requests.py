@@ -94,7 +94,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
     def test_simple_int_param_in_qs(self):
         specification_as_string = IntParamQueryString().get_specification()
@@ -122,7 +122,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '')
+        self.assertEqual(fuzzable_request.data, '')
 
         #
         # Assertions on call #2
@@ -138,7 +138,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '')
+        self.assertEqual(fuzzable_request.data, '')
 
     def test_simple_int_param_in_path(self):
         specification_as_string = IntParamPath().get_specification()
@@ -231,7 +231,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'POST')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '{"pet": {"count": 42}}')
+        self.assertEqual(fuzzable_request.data, '{"pet": {"count": 42}}')
 
     def test_model_with_int_param_json_example_value(self):
         specification_as_string = IntParamWithExampleJson().get_specification()
@@ -255,7 +255,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'POST')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), '{"pet": {"count": 666999}}')
+        self.assertEqual(fuzzable_request.data, '{"pet": {"count": 666999}}')
 
     def test_no_model_json_object_complex_nested_in_body(self):
         specification_as_string = ComplexDereferencedNestedModel().get_specification()
@@ -284,7 +284,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'POST')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
     def test_array_with_model_items_param_in_json(self):
         specification_as_string = ArrayModelItems().get_specification()
@@ -310,7 +310,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'POST')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
     def test_model_param_nested_allOf_in_json(self):
         specification_as_string = NestedModel().get_specification()
@@ -338,7 +338,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
     def test_dereferenced_pet_store(self):
         # See: dereferenced_pet_store.json , which was generated using
@@ -366,7 +366,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
         #
         # Assertions on call #2
@@ -383,7 +383,7 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'GET')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)
 
         #
         # Assertions on call #3
@@ -404,4 +404,4 @@ class TestRequests(unittest.TestCase):
         self.assertEqual(fuzzable_request.get_method(), 'POST')
         self.assertEqual(fuzzable_request.get_uri().url_string, e_url)
         self.assertEqual(fuzzable_request.get_headers(), e_headers)
-        self.assertEqual(fuzzable_request.get_data(), e_data)
+        self.assertEqual(fuzzable_request.data, e_data)

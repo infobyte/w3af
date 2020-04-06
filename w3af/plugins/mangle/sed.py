@@ -55,7 +55,7 @@ class sed(ManglePlugin):
         :param request: This is the request to mangle.
         :return: A mangled version of the request.
         """
-        data = request.get_data()
+        data = request.data
         for regex, string in self._manglers['q']['b']:
             data = regex.sub(string, data)
 

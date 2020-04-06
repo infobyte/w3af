@@ -64,7 +64,7 @@ class digit_sum(CrawlPlugin):
         """
         # If the fuzzable request sends post-data in any way, we don't want to
         # start fuzzing the URL, it simply doesn't make any sense.
-        if fuzzable_request.get_data() or fuzzable_request.get_method() != 'GET':
+        if fuzzable_request.data or fuzzable_request.get_method() != 'GET':
             return
 
         url = fuzzable_request.get_url()

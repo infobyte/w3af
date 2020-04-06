@@ -46,7 +46,7 @@ def html_export(request_string):
                                          .url_string, True)
     res += '" method="' + html.escape(http_request.get_method(), True) + '">\n'
 
-    if http_request.get_data() and http_request.get_data() != '\n':
+    if http_request.data and http_request.data != '\n':
         post_data = http_request.get_raw_data()
 
         for token in post_data.iter_tokens():

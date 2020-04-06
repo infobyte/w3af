@@ -289,7 +289,7 @@ class TestFuzzableRequest(unittest.TestCase):
         self.assertEqual(fr, fr_copy)
         self.assertEqual(fr.get_uri(), fr_copy.get_uri())
         self.assertEqual(fr.get_headers(), fr_copy.get_headers())
-        self.assertEqual(fr.get_data(), fr_copy.get_data())
+        self.assertEqual(fr.data, fr_copy.get_data())
 
         self.assertIsNot(fr, fr_copy)
         self.assertIsNot(fr.get_querystring(), fr_copy.get_querystring())
