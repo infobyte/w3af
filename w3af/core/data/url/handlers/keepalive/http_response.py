@@ -46,7 +46,7 @@ class HTTPResponse(http.client.HTTPResponse):
     # Both readline and readlines have been stolen with almost no
     # modification from socket.py
 
-    def __init__(self, sock, debuglevel=0, strict=0, method=None):
+    def __init__(self, sock, debuglevel=0, method=None):
         http.client.HTTPResponse.__init__(self, sock=sock, debuglevel=debuglevel, method=method)
         self.fileno = sock.fileno
         self.code = None
