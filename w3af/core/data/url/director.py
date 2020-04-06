@@ -39,6 +39,36 @@ class CustomOpenerDirector(OpenerDirector):
 
         return response
 
+    def _open(self, req, data=None):
+        result = self._call_chain(self.handle_open, 'default',
+                                  'default_open', req)
+        if result:
+            return result
+
+        protocol = req.type
+        try:
+            result = self._call_chain(self.handle_open, protocol, protocol + '_open', req)
+        except Exception as ex:
+            print(ex)
+            raise ex
+
+        if result:
+            return result
+
+        return self._call_chain(self.handle_open, 'unknown',
+                                'unknown_open', req)
+
+    def _call_chain(self, chain, kind, meth_name, *args):
+        # Handlers raise an exception if no one else should try to handle
+        # the request, or return None if they can't but another handler
+        # could.  Otherwise, they return the response.
+        handlers = chain.get(kind, ())
+        for handler in handlers:
+            func = getattr(handler, meth_name)
+            result = func(*args)
+            if result is not None:
+                return result
+
 
 def build_opener(director_klass, handlers):
     """Create an opener object from a list of handlers.
