@@ -62,8 +62,7 @@ class _HTTPConnection(http.client.HTTPConnection, UniqueID):
     def __init__(self, host, port=None, strict=None,
                  timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
         UniqueID.__init__(self)
-        http.client.HTTPConnection.__init__(self, host, port, strict,
-                                        timeout=timeout)
+        http.client.HTTPConnection.__init__(self, host, port=port, timeout=timeout)
         self.is_fresh = True
         self.host_port = '%s:%s' % (self.host, self.port)
 
