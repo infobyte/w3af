@@ -1184,7 +1184,7 @@ class ExtendedUrllib(object):
 
             # Before sending it again we update the timeout, which could have
             # changed because of the error we just found
-            host = req.get_host()
+            host = req.host
             req.set_timeout(self.get_timeout(host))
 
             return self.send(req, grep=grep)
