@@ -48,7 +48,7 @@ class URLParameterHandler(urllib.request.BaseHandler):
                                   method=req.get_method(),
                                   data=req.data,
                                   headers=req.get_headers(),
-                                  origin_req_host=req.get_origin_req_host(),
+                                  origin_req_host=req.origin_req_host,
                                   unverifiable=req.is_unverifiable(),
                                   retries=req.retries_left,
                                   cookies=req.cookies,

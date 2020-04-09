@@ -67,7 +67,7 @@ class SmartRedirectHandler(urllib.request.HTTPRedirectHandler):
 
     def _redirect_request(self, req, fp, code, msg, headers, newurl):
         newurl = newurl.replace(' ', '%20')
-        return urllib.request.Request(newurl, data=req.data, headers=req.headers, origin_req_host=req.get_origin_req_host())
+        return urllib.request.Request(newurl, data=req.data, headers=req.headers, origin_req_host=req.origin_req_host)
 
     def http_error_302(self, req, fp, code, msg, headers):
         start = time.time()

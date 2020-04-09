@@ -63,7 +63,7 @@ class HTTP30XHandler(urllib.request.HTTPRedirectHandler):
 
         new_request = HTTPRequest(new_url_obj,
                                   headers=new_headers,
-                                  origin_req_host=request.get_origin_req_host(),
+                                  origin_req_host=request.origin_req_host,
                                   method=method,
                                   timeout=request.timeout,
                                   unverifiable=True,
