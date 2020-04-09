@@ -91,9 +91,9 @@ class HTTP30XHandler(urllib.request.HTTPRedirectHandler):
         # (so probably same goes for URI). Use first header
         #
         if LOCATION in headers:
-            new_url_raw = headers.getheaders(LOCATION)[0]
+            new_url_raw = headers.get(LOCATION)
         elif URI in headers:
-            new_url_raw = headers.getheaders(URI)[0]
+            new_url_raw = headers.get(URI)
         else:
             # There is no location or uri headers
             # Return the original response and continue
