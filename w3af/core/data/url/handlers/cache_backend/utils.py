@@ -19,7 +19,7 @@ def gen_hash(request):
                               headers_2,
                               safe_str(req.data or ''))
 
-    return hashlib.md5(the_str).hexdigest()
+    return hashlib.md5(the_str.encode('utf-8')).hexdigest()
 
 
 def safe_str(obj):
