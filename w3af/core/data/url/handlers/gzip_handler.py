@@ -113,7 +113,9 @@ class HTTPGzipProcessor(urllib.request.BaseHandler):
         :return: True if the HTTP response contains headers that indicate the
                  content is compressed and this handler should decompress it
         """
-        for enc_hdr in response.info().getheaders('Content-encoding'):
+        resp = response.info()
+        content = response._get_headers(resp, 'Content-encoding')
+        for enc_hdr in content:
             if 'gzip' in enc_hdr:
                 return True
 

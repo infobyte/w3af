@@ -5,6 +5,8 @@ try:
 except ImportError:
     from io import StringIO
 
+from email import parser
+
 from .utils import debug
 from w3af.core.data.constants.response_codes import NO_CONTENT
 from w3af.core.data.kb.config import cf
@@ -124,6 +126,27 @@ class HTTPResponse(http.client.HTTPResponse):
 
         return s
 
+    def parse_headers(self, fp,  _class=http.client.HTTPMessage):
+        """Parses only RFC2822 headers from a file pointer.
+        email Parser wants to see strings rather than bytes.
+        But a TextIOWrapper around self.rfile would buffer too many bytes
+        from the stream, bytes which we later need to read as bytes.
+        So we read the correct bytes here, as bytes, for email Parser
+        to parse.
+        """
+        headers = []
+        while True:
+            line = fp.readline(http.client._MAXLINE + 1)
+            if len(line) > http.client._MAXLINE:
+                raise http.client.LineTooLong("header line")
+            headers.append(line)
+            if len(headers) > http.client._MAXHEADERS:
+                raise http.client.HTTPException("got more than %d headers" % http.client._MAXHEADERS)
+            if line in (b'\r\n', b'\n', b''):
+                break
+        hstring = bytes(b'').join(headers).decode('iso-8859-1')
+        return parser.Parser(_class=_class).parsestr(hstring)
+
     def begin(self):
         if self.msg is not None:
             # we've already started reading the response
@@ -160,19 +183,20 @@ class HTTPResponse(http.client.HTTPResponse):
             self.length = None
             self.chunked = 0
             self.will_close = 1
-            self.msg = http.client.HTTPMessage(StringIO())
+            self.msg = http.client.HTTPMessage()
             return
 
-        self.msg = http.client.HTTPMessage(self.fp, 0)
+        self.msg = self.parse_headers(self.fp)
         if self.debuglevel > 0:
-            for hdr in self.msg.headers:
+            for hdr in self.msg._headers:
                 print("header:", hdr,)
 
         # don't let the msg keep an fp
         self.msg.fp = None
 
         # are we using the chunked-style of transfer encoding?
-        tr_enc = self.msg.getheader('transfer-encoding')
+        # tr_enc = self.msg.getheader('transfer-encoding')
+        tr_enc = self._get_header(self.msg, 'transfer-encoding')
         if tr_enc and tr_enc.lower() == "chunked":
             self.chunked = 1
             self.chunk_left = None
@@ -210,6 +234,22 @@ class HTTPResponse(http.client.HTTPResponse):
            self.length is None:
             self.will_close = 1
 
+    def _get_header(self, msg, header):
+        """
+        Get the header by key from a HTTPResponse
+        """
+        value = [v[1] for i, v in enumerate(msg._headers) if v[0].lower() == header.lower()]
+        if len(value):
+            return value[0]
+        else:
+            return None
+
+    def _get_headers(self, msg, header):
+        """
+        Get the multiple header values by key from a HTTPResponse
+        """
+        return [v[1] for i, v in enumerate(msg._headers) if v[0].lower() == header.lower()]
+
     def _get_content_length(self):
         """
         Some very strange sites will return two content-length headers. By
@@ -222,7 +262,7 @@ class HTTPResponse(http.client.HTTPResponse):
 
         :return: The content length (as integer)
         """
-        length = self.msg.getheader('content-length')
+        length = self._get_header(self.msg, 'content-length')
 
         if length is None:
             # This is a response where there is no content-length header,
@@ -276,7 +316,7 @@ class HTTPResponse(http.client.HTTPResponse):
                 self._rbuf = self._rbuf[amt:]
                 return s
         else:
-            s = self._rbuf + self._multiread
+            s = self._rbuf + self._multiread.decode()
             self._rbuf = ''
             return s
 
@@ -329,14 +369,14 @@ class HTTPResponse(http.client.HTTPResponse):
         Overriding to add "max" support
         http://tools.ietf.org/id/draft-thomson-hybi-http-timeout-01.html#p-max
         """
-        keep_alive = self.msg.getheader('keep-alive')
+        keep_alive = self._get_header(self.msg, 'keep-alive')
 
         if keep_alive and keep_alive.lower().endswith('max=1'):
             # We close right before the "max" deadline
             debug('will_close = True due to max=1')
             return True
 
-        conn = self.msg.getheader('connection')
+        conn = self._get_header(self.msg, 'connection')
 
         # Is the remote end saying we need to keep the connection open?
         if conn and 'keep-alive' in conn.lower():
@@ -355,7 +395,7 @@ class HTTPResponse(http.client.HTTPResponse):
             return False
 
         # Proxy-Connection is a netscape hack.
-        pconn = self.msg.getheader('proxy-connection')
+        pconn = self._get_header(self.msg, 'proxy-connection')
         if pconn and 'keep-alive' in pconn.lower():
             return False
 
