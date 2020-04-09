@@ -575,6 +575,10 @@ class HTTPResponse(DiskItem):
     def get_alias(self):
         return self._alias
 
+    def info_str(self):
+        ret_value = [(key, self._info[key]) for key in self._info]
+        return str(ret_value).strip('[]')
+
     def info(self):
         return self._info
 

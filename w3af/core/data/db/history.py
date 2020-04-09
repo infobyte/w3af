@@ -449,7 +449,7 @@ class HistoryItem(object):
                   resp.get_code(),
                   self.tag,
                   int(self.mark),
-                  str(resp.info()),
+                  str(resp.info_str()),
                   resp.get_wait_time(),
                   resp.get_msg(),
                   resp.content_type,
