@@ -199,7 +199,7 @@ class Headers(NonRepeatKeyValueContainer):
         if header_str_unicode:
             header_str_unicode += '\r\n'
 
-        return header_str_unicode.encode('utf-8')
+        return header_str_unicode
 
     def __unicode__(self):
         """
