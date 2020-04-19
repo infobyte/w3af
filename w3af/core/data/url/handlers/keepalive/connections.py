@@ -60,7 +60,7 @@ class UniqueID(object):
 class _HTTPConnection(http.client.HTTPConnection, UniqueID):
 
     def __init__(self, host, port=None, strict=None,
-                 timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
+                 timeout=socket.getdefaulttimeout()):
         UniqueID.__init__(self)
         http.client.HTTPConnection.__init__(self, host, port=port, timeout=timeout)
         self.is_fresh = True
@@ -84,7 +84,7 @@ class _HTTPConnection(http.client.HTTPConnection, UniqueID):
             self._tunnel()
 
 
-def create_connection(address, timeout=socket._GLOBAL_DEFAULT_TIMEOUT,
+def create_connection(address, timeout=socket.getdefaulttimeout(),
                       source_address=None):
     """
     Extends socket.create_connection with the socket options to apply before
@@ -103,7 +103,7 @@ def create_connection(address, timeout=socket._GLOBAL_DEFAULT_TIMEOUT,
             # https://github.com/andresriancho/w3af/issues/11359
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-            if timeout is not socket._GLOBAL_DEFAULT_TIMEOUT:
+            if timeout is not socket.getdefaulttimeout():
                 sock.settimeout(timeout)
             if source_address:
                 sock.bind(source_address)
@@ -130,7 +130,7 @@ class ProxyHTTPConnection(_HTTPConnection):
     _ports = {'http': 80, 'https': 443}
 
     def __init__(self, host, port=None, strict=None,
-                 timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
+                 timeout=socket.getdefaulttimeout()):
         _HTTPConnection.__init__(self, host, port, strict, timeout=timeout)
         self._real_host = None
         self._real_port = None
@@ -293,7 +293,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection, SSLNegotiatorConnection):
     response_class = HTTPResponse
 
     def __init__(self, host, port=None, key_file=None, cert_file=None,
-                 strict=None, timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
+                 strict=None, timeout=socket.getdefaulttimeout()):
         UniqueID.__init__(self)
         ProxyHTTPConnection.__init__(self, host, port, strict=strict,
                                      timeout=timeout)
@@ -319,7 +319,7 @@ class HTTPConnection(_HTTPConnection):
     response_class = HTTPResponse
 
     def __init__(self, host, port=None, strict=None,
-                 timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
+                 timeout=socket.getdefaulttimeout()):
         _HTTPConnection.__init__(self, host,
                                  port=port,
                                  strict=strict,
