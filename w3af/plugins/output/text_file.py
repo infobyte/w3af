@@ -136,6 +136,8 @@ class text_file(OutputPlugin):
         try:
             self._http.write(msg)
         except Exception as e:
+            if self._http:
+                self._http.close()
             self._http = None
             msg = ('An exception was raised while trying to write to the output'
                    ' file "%s", error: "%s". Disabling output to this file.')
