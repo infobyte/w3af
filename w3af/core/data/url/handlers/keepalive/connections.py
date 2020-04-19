@@ -332,7 +332,8 @@ class HTTPSConnection(SSLNegotiatorConnection):
     response_class = HTTPResponse
 
     def __init__(self, host, port=None, key_file=None, cert_file=None,
-                 strict=None, timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
+                 strict=None, timeout=socket.getdefaulttimeout()):
+
         SSLNegotiatorConnection.__init__(self, host, port, key_file, cert_file,
                                          strict, timeout=timeout)
         self.is_fresh = True
