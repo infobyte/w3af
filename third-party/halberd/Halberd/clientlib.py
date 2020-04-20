@@ -32,6 +32,7 @@
 import time
 import socket
 import urllib.parse
+import ssl
 
 from itertools import takewhile
 
@@ -310,7 +311,7 @@ class HTTPSClient(HTTPClient):
 
         self._recv = None
         self._sslsock = None
-        self._timeout_exceptions.append(socket.sslerror)
+        self._timeout_exceptions.append(ssl.SSLError)
 
         # Path to an SSL key file and certificate.
         self.keyfile = None
@@ -328,7 +329,7 @@ class HTTPSClient(HTTPClient):
         HTTPClient._connect(self, addr)
         try:
             self._sslsock = socket.ssl(self._sock, self.keyfile, self.certfile)
-        except socket.sslerror as msg:
+        except ssl.SSLError as msg:
             raise HTTPSError(msg)
 
         self._recv = self._sslsock.read

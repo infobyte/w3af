@@ -412,7 +412,7 @@ def get_exception_reason(error):
     if isinstance(error, OpenSSL.SSL.ZeroReturnError):
         return 'OpenSSL Error: OpenSSL.SSL.ZeroReturnError'
 
-    if isinstance(error, (ssl.SSLError, socket.sslerror)):
+    if isinstance(error, ssl.SSLError):
         socket_reason = get_socket_exception_reason(error)
         if socket_reason:
             return 'SSL Error: %s' % socket_reason

@@ -137,7 +137,7 @@ class request(object):
             except KeyboardInterrupt as e:
                 raise e
 
-            except socket.sslerror as ssl_err:
+            except ssl.SSLError as ssl_err:
                 # When the remote server has no more data to send
                 # It simply closes the remote connection, which raises:
                 # (6, 'TLS/SSL connection has been closed')
