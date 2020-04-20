@@ -32,9 +32,12 @@ import urllib.request, urllib.error, urllib.parse
 import http.client
 import OpenSSL
 import threading
+import re
 
 from email.base64mime import header_encode
-from http.client import _is_legal_header_name, _is_illegal_header_value
+
+_is_legal_header_name = re.compile(r'\A[^:\s][^:\r\n]*\Z').match
+_is_illegal_header_value = re.compile(r'\n(?![ \t])|\r(?![ \t\n])').search
 
 from .utils import debug, error, to_utf8_raw
 from .connection_manager import ConnectionManager
