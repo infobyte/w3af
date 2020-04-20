@@ -52,8 +52,17 @@ class UniqueID(object):
 
     def __str__(self):
         # Only makes sense when DEBUG is True
-        timeout = None if self.timeout is socket._GLOBAL_DEFAULT_TIMEOUT else self.timeout
-        args = (self.__class__.__name__, self.id, self.req_count, timeout)
+        timeout = None if self.timeout is socket.getdefaulttimeout() else self.timeout
+        # @TODO horrible fix
+        try:
+            aux_id = self.id
+        except AttributeError:
+            aux_id = None
+        try:
+            req_count = self.req_count
+        except AttributeError:
+            req_count = None
+        args = (self.__class__.__name__, aux_id, req_count, timeout)
         return '<%s(id:%s, req_count:%s, timeout:%s)>' % args
 
 
@@ -213,9 +222,11 @@ class SSLNegotiatorConnection(http.client.HTTPSConnection, UniqueID):
         https://github.com/andresriancho/w3af/issues/5802
         https://gist.github.com/flandr/74be22d1c3d7c1dfefdd
     """
-    def __init__(self, *args, **kwargs):
-        UniqueID.__init__(self)
-        http.client.HTTPSConnection.__init__(self, *args, **kwargs)
+    def __init__(self, host, port, key_file, cert_file, strict, timeout):
+        super(UniqueID, self).__init__()
+        super(http.client.HTTPSConnection, self).__init__(host=host, port=port, timeout=timeout)
+        if cert_file:
+            ssl.SSLContext.load_cert_chain(cert_file, keyfile=key_file)
         self.host_port = '%s:%s' % (self.host, self.port)
 
     def connect(self):
