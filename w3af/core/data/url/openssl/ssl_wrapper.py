@@ -13,6 +13,7 @@ IANAL but I believe that the guys from ssl-sni made a mistake at changing the
 license (basically they can't). So I'm choosing to use the original Apache
 License, Version 2.0 for this file.
 """
+import io
 import ssl
 import time
 import socket
@@ -78,18 +79,47 @@ class SSLSocket(object):
         except AttributeError:
             return getattr(self.sock, name)
 
-    def makefile(self, mode):
-        """
-        We need to use socket._fileobject Because SSL.Connection
-        doesn't have a 'dup'. Not exactly sure WHY this is, but
-        this is backed up by comments in socket.py and SSL/connection.c
+    def makefile(self, mode="r", buffering=None, *,
+                 encoding=None, errors=None, newline=None):
+        """makefile(...) -> an I/O stream connected to the socket
 
-        Since httplib.HTTPSResponse/HTTPConnection depend on the
-        socket being duplicated when they close it, we refcount the
-        socket object and don't actually close until its count is 0.
+        The arguments are as for io.open() after the filename, except the only
+        supported mode values are 'r' (default), 'w' and 'b'.
         """
+        # XXX refactor to share code?
+        if not set(mode) <= {"r", "w", "b"}:
+            raise ValueError("invalid mode %r (only r, w, b allowed)" % (mode,))
+        writing = "w" in mode
+        reading = "r" in mode or not writing
+        assert reading or writing
+        binary = "b" in mode
+        rawmode = ""
+        if reading:
+            rawmode += "r"
+        if writing:
+            rawmode += "w"
+        raw = socket.SocketIO(self, rawmode)
         self.close_refcount += 1
-        return socket.SocketIO(self.sock, mode)
+        if buffering is None:
+            buffering = -1
+        if buffering < 0:
+            buffering = io.DEFAULT_BUFFER_SIZE
+        if buffering == 0:
+            if not binary:
+                raise ValueError("unbuffered streams must be binary")
+            return raw
+        if reading and writing:
+            buffer = io.BufferedRWPair(raw, raw, buffering)
+        elif reading:
+            buffer = io.BufferedReader(raw, buffering)
+        else:
+            assert writing
+            buffer = io.BufferedWriter(raw, buffering)
+        if binary:
+            return buffer
+        text = io.TextIOWrapper(buffer, encoding, errors, newline)
+        text.mode = mode
+        return text
 
     def close(self):
         if self.closed:
