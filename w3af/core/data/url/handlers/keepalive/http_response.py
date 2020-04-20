@@ -93,7 +93,7 @@ class HTTPResponse(http.client.HTTPResponse):
 
         max_file_size = cf.get('max_file_size') or None
         if max_file_size:
-            if self.length > max_file_size:
+            if self.length is not None and self.length > max_file_size:
                 self.status = NO_CONTENT
                 self.reason = 'No Content'  # Reason-Phrase
                 self.close()
