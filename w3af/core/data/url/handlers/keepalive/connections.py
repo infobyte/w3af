@@ -223,10 +223,8 @@ class SSLNegotiatorConnection(http.client.HTTPSConnection, UniqueID):
         https://gist.github.com/flandr/74be22d1c3d7c1dfefdd
     """
     def __init__(self, host, port, key_file, cert_file, strict, timeout):
-        super(UniqueID, self).__init__()
-        super(http.client.HTTPSConnection, self).__init__(host=host, port=port, timeout=timeout)
-        if cert_file:
-            ssl.SSLContext.load_cert_chain(cert_file, keyfile=key_file)
+        UniqueID.__init__(self)
+        http.client.HTTPSConnection.__init__(self, host=host, port=port, timeout=timeout, cert_file=cert_file, key_file=key_file)
         self.host_port = '%s:%s' % (self.host, self.port)
 
     def connect(self):
