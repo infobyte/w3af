@@ -49,7 +49,7 @@ class HTTPResponse(http.client.HTTPResponse):
     # modification from socket.py
 
     def __init__(self, sock, debuglevel=0, method=None):
-        super(http.client.HTTPResponse).__init__(sock=sock, debuglevel=debuglevel, method=method)
+        http.client.HTTPResponse.__init__(self, sock=sock, debuglevel=debuglevel, method=method)
         self.fileno = sock.fileno
         self.code = None
         self._rbuf = ''
