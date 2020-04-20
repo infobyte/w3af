@@ -366,7 +366,8 @@ class retirejs(GrepPlugin):
             return dict()
 
         try:
-            file_contents = open(json_file.name).read()
+            with open(json_file.name) as f:
+                file_contents = f.read()
         except Exception:
             msg = 'Failed to read retirejs output file at %s'
             om.out.debug(msg % json_file.name)
