@@ -78,7 +78,7 @@ class SSLSocket(object):
         except AttributeError:
             return getattr(self.sock, name)
 
-    def makefile(self, mode, bufsize):
+    def makefile(self, mode):
         """
         We need to use socket._fileobject Because SSL.Connection
         doesn't have a 'dup'. Not exactly sure WHY this is, but
@@ -89,7 +89,7 @@ class SSLSocket(object):
         socket object and don't actually close until its count is 0.
         """
         self.close_refcount += 1
-        return socket._fileobject(self, mode, bufsize, close=True)
+        return socket.SocketIO(self.sock, mode)
 
     def close(self):
         if self.closed:
