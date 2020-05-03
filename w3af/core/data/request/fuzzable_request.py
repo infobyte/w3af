@@ -321,7 +321,7 @@ class FuzzableRequest(RequestMixIn, DiskItem):
 
     def get_hash(self):
         raw_http_request = self.dump()
-        return hashlib.md5(raw_http_request).hexdigest()
+        return hashlib.md5(raw_http_request.encode()).hexdigest()
 
     def __hash__(self):
         return hash(str(self.get_uri()) + self.get_data())
