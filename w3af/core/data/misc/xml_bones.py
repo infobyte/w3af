@@ -57,7 +57,6 @@ def get_xml_bones(document):
                               remove_comments=True,
                               remove_pis=True)
 
-    document = smart_str_ignore(document, encoding=DEFAULT_ENCODING)
     etree.parse(StringIO(document), parser)
 
     # pylint: disable=E1101
