@@ -313,9 +313,9 @@ class ThreadStateObserver(StrategyObserver):
                 try:
                     arg_repr = repr(arg)
                 except UnicodeEncodeError:
-                    arg_str = smart_str_ignore(arg)
+                    arg_str = arg
                 else:
-                    arg_str = smart_str_ignore(arg_repr)
+                    arg_str = arg_repr
 
                 if len(arg_str) > 80:
                     arg_str = arg_str[:80] + "...'"
@@ -385,7 +385,7 @@ class ThreadStateObserver(StrategyObserver):
         om.out.debug(message)
 
     def clean_function_name(self, function_name):
-        if self.DISCOVER_WORKER_RE.search(function_name):
+        if self.DISCOVER_WORKER_RE.search(function_name.decode()):
             return '_discover_worker'
 
-        return function_name
+        return function_name.decode()
