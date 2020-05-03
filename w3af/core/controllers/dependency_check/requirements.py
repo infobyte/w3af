@@ -36,7 +36,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('tblib', 'tblib', '0.2.0'),
                      PIPDependency('pdfminer', 'pdfminer', '20191125'),
                      # PIPDependency('concurrent.futures', 'futures', '3.2.0'), # @TODO
-                     PIPDependency('OpenSSL', 'pyOpenSSL', '19.0.0'),
+                     PIPDependency('OpenSSL', 'pyOpenSSL', '19.1.0'),
                      PIPDependency('ndg', 'ndg-httpsclient', '0.4.0'),
 
                      # We need 0.1.8 because of mitmproxy
@@ -65,7 +65,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('termcolor', 'termcolor', '1.1.0'),
 
                      # We "outsource" the HTTP proxy feature to mitmproxy
-                     PIPDependency('mitmproxy', 'mitmproxy', '5.0.1'),
+                     PIPDependency('mitmproxy', 'mitmproxy', '5.1.1'),
 
                      # https://gist.github.com/andresriancho/cf2fa1ce239b30f37bd9
                      # PIPDependency('ruamel.ordereddict', 'ruamel.ordereddict', '0.4.14'), # @TODO
