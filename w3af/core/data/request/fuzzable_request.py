@@ -347,7 +347,7 @@ class FuzzableRequest(RequestMixIn, DiskItem):
             output = long_fmt % (self.get_method(), self.get_url(),
                                  dc_type, jparams)
 
-        return output.encode(DEFAULT_ENCODING)
+        return output
 
     def __unicode__(self):
         return str(self).decode(encoding=DEFAULT_ENCODING, errors='ignore')
