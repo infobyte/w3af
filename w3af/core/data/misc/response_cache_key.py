@@ -69,9 +69,9 @@ def get_response_cache_key(http_response,
     # Calculate the hash using all the captured information
     #
     key = ''.join([str(http_response.get_code()),
-                   smart_str_ignore(normalized_path),
+                   normalized_path,
                    str(headers),
-                   smart_str_ignore(body)])
+                   body])
 
     return quick_hash(key)
 
