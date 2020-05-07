@@ -201,6 +201,21 @@ class HTTPResponse(DiskItem):
                    binary_response=binary_response)
 
     @classmethod
+    def convert(cls, data):
+        if isinstance(data, bytes):
+            return data.decode()
+        if isinstance(data, (str, int)):
+            return str(data)
+        if isinstance(data, dict):
+            return dict(map(cls.convert, data.items()))
+        if isinstance(data, tuple):
+            return tuple(map(cls.convert, data))
+        if isinstance(data, list):
+            return list(map(cls.convert, data))
+        if isinstance(data, set):
+            return set(map(cls.convert, data))
+
+    @classmethod
     def from_dict(cls, unserialized_dict):
         """
         * msgpack is MUCH faster than cPickle,
@@ -210,15 +225,17 @@ class HTTPResponse(DiskItem):
         
         :param unserialized_dict: A dict just as returned by to_dict()
         """
-        code = unserialized_dict['code']
-        msg = unserialized_dict['msg']
-        headers = unserialized_dict['headers']
-        body = unserialized_dict['body']
-        charset = unserialized_dict['charset']
-        _time = unserialized_dict['time']
-        _id = unserialized_dict['id']
-        url = URL(unserialized_dict['uri'])
-        debugging_id = unserialized_dict['debugging_id']
+        udict = cls.convert(unserialized_dict)
+
+        code = udict['code']
+        msg = udict['msg']
+        headers = udict['headers']
+        body = udict['body']
+        charset = udict['charset']
+        _time = udict['time']
+        _id = udict['id']
+        url = URL(udict['uri'])
+        debugging_id = udict['debugging_id']
 
         headers_inst = Headers(list(headers.items()))
 
@@ -309,7 +326,7 @@ class HTTPResponse(DiskItem):
         self._code = code
 
     def get_code(self):
-        return self._code
+        return int(self._code)
 
     @staticmethod
     def _quick_hash(text):
@@ -620,9 +637,12 @@ class HTTPResponse(DiskItem):
         # Only try to decode <str> strings. Skip <unicode> strings
         if type(raw_body) is str:
             _body = raw_body
+            """
             assert charset is not None, ("HTTPResponse objects containing "
                                          "unicode body must have an associated "
                                          "charset")
+            """
+
         elif content_type is None:
             _body = raw_body
             charset = DEFAULT_CHARSET
@@ -673,7 +693,7 @@ class HTTPResponse(DiskItem):
             charset = charset_mo.groups()[0].lower().strip()
         else:
             # Continue with the body's meta tag
-            charset_mo = CHARSET_META_RE.search(raw_body, re.IGNORECASE)
+            charset_mo = CHARSET_META_RE.search(raw_body if raw_body else "", re.IGNORECASE)
             if charset_mo:
                 charset = charset_mo.groups()[0].lower().strip()
             else:
@@ -823,3 +843,18 @@ class HTTPResponse(DiskItem):
     def __setstate__(self, state):
         [setattr(self, k, v) for k, v in state.items()]
         self._body_lock = threading.RLock()
+
+    @classmethod
+    def convert(cls, data):
+        if isinstance(data, bytes):
+            return data.decode()
+        if isinstance(data, (str, int)):
+            return str(data)
+        if isinstance(data, dict):
+            return dict(map(cls.convert, data.items()))
+        if isinstance(data, tuple):
+            return tuple(map(cls.convert, data))
+        if isinstance(data, list):
+            return list(map(cls.convert, data))
+        if isinstance(data, set):
+            return set(map(cls.convert, data))
