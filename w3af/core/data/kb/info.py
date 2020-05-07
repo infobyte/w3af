@@ -544,6 +544,8 @@ class Info(dict):
             self._id = _id
         elif isinstance(_id, int):
             self._id = [_id, ]
+        elif isinstance(_id, str) and _id.isdigit():
+            self._id = [int(_id), ]
         else:
             msg = 'IDs need to be lists of int or int not %s'
             raise TypeError(msg % type(_id))
