@@ -82,8 +82,9 @@ class ria_enumerator(CrawlPlugin):
         """
         # Google Gears
         for ext in extensions:
-            for word in open(wordlist):
+            with open(wordlist) as f:
 
+                word = f.readline().replace("\n", '')
                 manifest_url = base_url.url_join(word.strip() + ext)
                 yield manifest_url
 
