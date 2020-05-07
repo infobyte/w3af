@@ -256,7 +256,7 @@ class retirejs(GrepPlugin):
                                                  suffix='.js',
                                                  delete=False,
                                                  dir=get_temp_dir())
-        check_file.write('')
+        check_file.write(b'')
         check_file.close()
 
         output_file = tempfile.NamedTemporaryFile(prefix='retirejs-output-',
