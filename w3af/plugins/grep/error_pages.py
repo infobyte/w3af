@@ -261,7 +261,8 @@ class error_pages(GrepPlugin):
         """
         if 400 < response.get_code() < 600:
 
-            for match, _, _, server in self._multi_re.query(response.body):
+            encoding = response.info().encoding
+            for match, _, _, server in self._multi_re.query(response.body.decode(encoding)):
                 match_string = match.group(0)
                 if match_string not in self._already_reported_versions:
                     # Save the info obj
