@@ -130,26 +130,27 @@ class dir_file_bruter(CrawlPlugin):
         :yields: (String with the directory or file name,
                   URL object with the dir or file name)
         """
-        for line in open(file_name):
-            line = line.strip()
+        with open(file_name) as f:
+            for line in f.readlines():
+                line = line.strip()
 
-            # ignore comments and empty lines
-            if not line:
-                continue
+                # ignore comments and empty lines
+                if not line:
+                    continue
 
-            if line.startswith('#'):
-                continue
+                if line.startswith('#'):
+                    continue
 
-            if is_path:
-                line = line + '/'
+                if is_path:
+                    line = line + '/'
 
-            try:
-                new_url = base_path.url_join(line)
-            except ValueError as ve:
-                msg = 'The "%s" line at "%s" generated an invalid URL: %s'
-                om.out.debug(msg % (line, file_name, ve))
-            else:
-                yield line, new_url
+                try:
+                    new_url = base_path.url_join(line)
+                except ValueError as ve:
+                    msg = 'The "%s" line at "%s" generated an invalid URL: %s'
+                    om.out.debug(msg % (line, file_name, ve))
+                else:
+                    yield line, new_url
 
     def _send_and_check(self, base_path, xxx_todo_changeme):
         """

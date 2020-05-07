@@ -29,8 +29,10 @@ import Halberd.clues.analysis as analysis
 def report(scantask):
     """Displays detailed report information to the user.
     """
+    fp = False
     if scantask.out:
         out = open(scantask.out, 'a')
+        fp = True
     else:
         out = sys.stdout
 
@@ -87,5 +89,7 @@ def report(scantask):
             out.write('headers:\n')
             pprint.pprint(clue.headers, out)
 
+    if fp:
+        out.close()
 
 # vim: ts=4 sw=4 et
