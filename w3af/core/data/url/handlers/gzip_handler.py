@@ -36,6 +36,7 @@ class HTTPGzipProcessor(urllib.request.BaseHandler):
     def __init__(self):
         self._decompression_methods = [
             self._gzip_0,
+            self._gzip_1,
             self._zlib_0,
             self._zlib_1
         ]
@@ -62,6 +63,9 @@ class HTTPGzipProcessor(urllib.request.BaseHandler):
 
         return response
 
+    def _gzip_1(self, body):
+        return gzip.decompress(body)
+
     def _gzip_0(self, body):
         return gzip.GzipFile(fileobj=StringIO(body)).read()
 
@@ -72,6 +76,21 @@ class HTTPGzipProcessor(urllib.request.BaseHandler):
     def _zlib_1(self, body):
         # RFC 1951
         return zlib.decompress(body, -zlib.MAX_WBITS)
+
+    def _decompress_body(self, body):
+
+        decompressed_body = None
+        decompression_method = None
+
+        for decompression_method in self._decompression_methods:
+            try:
+                decompressed_body = decompression_method(body)
+            except Exception as ex:
+                continue
+            else:
+                break
+
+        return decompressed_body
 
     def _decompress(self, response):
         """
@@ -98,7 +117,6 @@ class HTTPGzipProcessor(urllib.request.BaseHandler):
             # The decompression method that worked should be moved to the
             # beginning of the list (if not there yet)
             if self._decompression_methods.index(decompression_method) != 0:
-            
                 dm_temp = self._decompression_methods[:]
                 dm_temp.remove(decompression_method)
                 dm_temp.insert(0, decompression_method)
