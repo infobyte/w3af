@@ -53,7 +53,7 @@ class RequestMixIn(object):
         """
         :return: Hash the request (as it would be sent to the wire) and return
         """
-        return hashlib.md5(self.dump(ignore_headers=ignore_headers)).hexdigest()
+        return hashlib.md5(self.dump(ignore_headers=ignore_headers).encode('utf-8')).hexdigest()
 
     def get_request_line(self):
         """
