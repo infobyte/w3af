@@ -566,7 +566,8 @@ class CachedXMLNode(XMLNode):
         filename = self.get_filename()
 
         try:
-            node = lz4.frame.decompress(open(filename, 'rb').read())
+            with open(filename, 'rb') as f:
+                node = lz4.frame.decompress(f.read())
         except (IOError, RuntimeError):
             return None
 
