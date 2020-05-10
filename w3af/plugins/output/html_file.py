@@ -25,6 +25,7 @@ import time
 import datetime
 import functools
 import markdown
+import base64
 
 from jinja2 import StrictUndefined, Environment, FileSystemLoader
 
@@ -241,7 +242,7 @@ class html_file(OutputPlugin):
         report_stream.enable_buffering(5)
 
         for report_section in report_stream:
-            output_fh.write(report_section.encode('utf-8'))
+            output_fh.write(report_section)
 
         return True
 
@@ -314,7 +315,10 @@ def get_severity_icon(template_root, severity):
     fmt = 'data:image/png;base64,%s'
 
     if os.path.exists(icon_file):
-        return fmt % open(icon_file).read().encode('base64')
+        with open(icon_file, mode="rb") as f:
+            data = base64.b64encode(f.read())
+
+        return fmt % data
 
     return fmt
 
