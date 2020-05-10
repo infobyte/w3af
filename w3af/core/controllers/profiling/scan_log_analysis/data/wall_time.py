@@ -4,8 +4,8 @@ from w3af.core.controllers.profiling.scan_log_analysis.utils.utils import epoch_
 from w3af.core.controllers.profiling.scan_log_analysis.utils.output import KeyValueOutput
 from w3af.core.controllers.profiling.scan_log_analysis.utils.output import ListOutput, ListOutputItem
 
-SCAN_TOOK_RE = re.compile('took (\d*\.\d\d)s to run')
-PLUGIN_TOOK_RE = re.compile('\] (.*?)\.(grep|audit|discover)\(.*?\) took (.*?)s to run')
+SCAN_TOOK_RE = re.compile(r'took (\d*\.\d\d)s to run')
+PLUGIN_TOOK_RE = re.compile(r'\] (.*?)\.(grep|audit|discover)\(.*?\) took (.*?)s to run')
 
 
 def show_generic_spent_time(scan, name, must_have):
