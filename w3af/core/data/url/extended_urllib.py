@@ -636,7 +636,7 @@ class ExtendedUrllib(object):
         # stop working!
         #
         uri = mutant.get_uri()
-        data = mutant.data
+        data = mutant.get_data()
         headers = mutant.get_all_headers()
 
         # Also add the cookie header; this is needed by the CookieMutant
