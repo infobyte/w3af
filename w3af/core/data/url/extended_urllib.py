@@ -716,6 +716,9 @@ class ExtendedUrllib(object):
         host = uri.get_domain()
         timeout = self.get_timeout(host) if timeout is None else timeout
 
+        if isinstance(data, str):
+            data = data.encode(headers.encoding)
+
         req = HTTPRequest(uri, cookies=cookies, session=session,
                           cache=cache, data=data,
                           error_handling=error_handling, method='GET',
