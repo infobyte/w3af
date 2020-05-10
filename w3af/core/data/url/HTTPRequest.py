@@ -184,6 +184,21 @@ class HTTPRequest(RequestMixIn, urllib.request.Request):
         return cls(fuzzable_request.get_uri(), data=data, headers=headers,
                    origin_req_host=host)
 
+    @classmethod
+    def convert(cls, data):
+        if isinstance(data, bytes):
+            return data.decode()
+        if isinstance(data, (str, int)):
+            return str(data)
+        if isinstance(data, dict):
+            return dict(map(cls.convert, data.items()))
+        if isinstance(data, tuple):
+            return tuple(map(cls.convert, data))
+        if isinstance(data, list):
+            return list(map(cls.convert, data))
+        if isinstance(data, set):
+            return set(map(cls.convert, data))
+
     @classmethod    
     def from_dict(cls, unserialized_dict):
         """
@@ -194,8 +209,8 @@ class HTTPRequest(RequestMixIn, urllib.request.Request):
         
         :param unserialized_dict: A dict just as returned by to_dict()
         """
-        udict = unserialized_dict
-        
+        udict = cls.convert(unserialized_dict)
+
         method, uri = udict['method'], udict['uri']
         headers, data = udict['headers'], udict['data']
         cookies = udict['cookies']
