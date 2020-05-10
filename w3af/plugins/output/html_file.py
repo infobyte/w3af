@@ -196,10 +196,8 @@ class html_file(OutputPlugin):
                    'known_urls': known_urls}
 
         # The file was verified to exist when setting the plugin configuration
-        template_fh = open(os.path.expanduser(self._template), 'r')
-        output_fh = open(os.path.expanduser(self._output_file_name), 'w')
-
-        self._render_html_file(template_fh, context, output_fh)
+        with open(os.path.expanduser(self._template), 'r') as template_fh, open(os.path.expanduser(self._output_file_name), 'w') as output_fh:
+            self._render_html_file(template_fh, context, output_fh)
 
     def _render_html_file(self, template_fh, context, output_fh):
         """
