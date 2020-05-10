@@ -100,9 +100,14 @@ def contains_source_code(http_response):
                 - re.match object if the file_content matches a source code file
                 - A tuple containing the programming language names
     """
-    body = http_response.get_body()
 
-    for match, _, _, lang in _multi_re.query(body):
+    if isinstance(http_response.get_body(), bytes):
+        encoding = http_response.info().encoding
+        response_body = http_response.get_body().decode(encoding)
+    else:
+        response_body = http_response.get_body()
+
+    for match, _, _, lang in _multi_re.query(response_body):
 
         if is_false_positive(http_response, match, lang):
             continue

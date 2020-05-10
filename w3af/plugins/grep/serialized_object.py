@@ -130,6 +130,9 @@ class serialized_object(GrepPlugin):
         :return: None. We just save the vulnerability to the KB
         """
         try:
+            if isinstance(parameter_value, bytes):
+                parameter_value = parameter_value.decode()
+
             match_object = serialized_object_re.search(parameter_value)
         except Exception as e:
             args = (e, parameter_value)
