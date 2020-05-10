@@ -102,11 +102,11 @@ class request(object):
         while tries != 0:
             s = self.get_connection()
 
-            data = ''
+            data = b''
 
             # Send the "HTTP request" to the socket
             try:
-                s.send(str(self))
+                s.send(str(self).encode('utf-8'))
             except Exception as e:
                 om.out.debug('hmap failed to send data to socket: "%s"' % e)
 
@@ -315,7 +315,8 @@ def get_fingerprint(url, threads):
     pool.join()
     pool.terminate()
 
-    fingerprint['SYNTACTIC']['HEADER_ORDER'] = winnow_ordered_list(fingerprint['SYNTACTIC']['HEADER_ORDER'])
+    if 'HEADER_ORDER' in fingerprint['SYNTACTIC']:
+        fingerprint['SYNTACTIC']['HEADER_ORDER'] = winnow_ordered_list(fingerprint['SYNTACTIC']['HEADER_ORDER'])
     return fingerprint
 
 
@@ -875,7 +876,10 @@ def find_most_similar(known_servers, subject):
         for num in range(105):
             malformed = 'MALFORMED_' + ('000' + str(num))[-3:]
             known_server_mal = server['SEMANTIC'][malformed]
-            subject_server_mal = subject['SEMANTIC'][malformed]
+            if malformed in subject['SEMANTIC']:
+                subject_server_mal = subject['SEMANTIC'][malformed]
+            else:
+                subject_server_mal = ""
 
             if known_server_mal == subject_server_mal:
                 matches += 1
@@ -884,7 +888,10 @@ def find_most_similar(known_servers, subject):
 
         # long ranges
         known_server_long_url = server['SEMANTIC']['LONG_URL_RANGES']
-        subject_server_long_url = subject['SEMANTIC']['LONG_URL_RANGES']
+        if 'LONG_URL_RANGES' in subject['SEMANTIC']:
+            subject_server_long_url = subject['SEMANTIC']['LONG_URL_RANGES']
+        else:
+            subject_server_long_url = []
         if known_server_long_url == subject_server_long_url:
             matches += 1
             #print('LONG_URL_RANGES match', server['LEXICAL']['SERVER_NAME'])
@@ -894,8 +901,10 @@ def find_most_similar(known_servers, subject):
 
         # long default "/" ranges
         known_server_long_default = server['SEMANTIC']['LONG_DEFAULT_RANGES']
-        subject_server_long_default = subject['SEMANTIC'][
-            'LONG_DEFAULT_RANGES']
+        if 'LONG_DEFAULT_RANGES' in subject['SEMANTIC']:
+            subject_server_long_default = subject['SEMANTIC']['LONG_DEFAULT_RANGES']
+        else:
+            subject_server_long_default = []
         if known_server_long_default == subject_server_long_default:
             matches += 1
             #print('LONG_URL_DEFAULT_RANGES match', server['LEXICAL']['SERVER_NAME'])
@@ -1005,32 +1014,33 @@ def testServer(ssl, server, port, matchCount, generateFP, threads):
     if generateFP:
         for i in range(10):
             try:
-                fd = open('hmap-fingerprint-' + server + '-' + str(i), 'w')
+                with open('hmap-fingerprint-' + server + '-' + str(i), 'w') as fd:
+                    import pprint
+                    pp = pprint.PrettyPrinter(indent=4)
+                    pprint.PrettyPrinter(stream=fd).pprint(fp)
+                    fd.close()
+                    break
+
             except Exception as e:
                 raise BaseFrameworkException(
                     'Cannot open fingerprint file. Error:' + str(e))
-            else:
-                import pprint
-                pp = pprint.PrettyPrinter(indent=4)
-                pprint.PrettyPrinter(stream=fd).pprint(fp)
-                fd.close()
-                break
 
     # Compare
     scores = find_most_similar(known_servers, fp)
 
-    def score_cmp(score1, score2):
-        (server1, (matches1, mismatches1, unknowns1)) = score1
-        (server2, (matches2, mismatches2, unknowns2)) = score2
+    maxscore = None
+    for score in scores:
+        if maxscore is None:
+            maxscore = score
 
-        if -((matches1 > matches2) - (matches1 < matches2)) != 0:
-            return -((matches1 > matches2) - (matches1 < matches2))
+        (server1, (matches1, mismatches1, unknowns1)) = score
+        (maxserver1, (maxmatches1, maxmismatches1, maxunknowns1)) = maxscore
 
-        return (server1 > server2) - (server1 < server2)
-    scores.sort(key=score_cmp)
+        if matches1 > maxmatches1:
+            maxscore = score
 
     res = []
-    for (server, (matches, mismatches, unknowns)) in scores[:MATCH_COUNT]:
-        res.append(server['LEXICAL']['SERVER_NAME'])
+    (server, (matches, mismatches, unknowns)) = maxscore
+    res.append(server['LEXICAL']['SERVER_NAME'])
 
     return res
