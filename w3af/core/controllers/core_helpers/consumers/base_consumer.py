@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import sys
 import time
+import binascii
 
 from queue import Empty
 from functools import wraps
@@ -45,7 +46,7 @@ def task_decorator(method):
     
     @wraps(method)
     def _wrapper(self, *args, **kwds):
-        rnd_id = os.urandom(32).encode('hex')
+        rnd_id = binascii.hexlify(os.urandom(32)).decode()
         function_id = '%s_%s' % (method.__name__, rnd_id)
 
         self._add_task(function_id)
