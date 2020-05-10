@@ -363,8 +363,6 @@ class ExceptionData(object):
                      self.function_name,
                      self.lineno)
 
-        print("AAAAAAAAAAAAAAAAAA222222222222222")
-
         return res
 
     def get_exception_class(self):
