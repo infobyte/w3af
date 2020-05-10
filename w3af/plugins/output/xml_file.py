@@ -513,7 +513,8 @@ class FindingsCache(object):
     def save_finding_to_cache(self, uniq_id, node):
         filename = self.get_filename_from_uniq_id(uniq_id)
         node = node.encode('utf-8')
-        open(filename, 'wb').write(lz4.frame.compress(node))
+        with open(filename, 'wb') as f:
+            f.write(lz4.frame.compress(node))
 
     def evict_from_cache(self, uniq_id):
         filename = self.get_filename_from_uniq_id(uniq_id)
@@ -574,7 +575,8 @@ class CachedXMLNode(XMLNode):
     def save_node_to_cache(self, node):
         filename = self.get_filename()
         node = node.encode('utf-8')
-        open(filename, 'wb').write(lz4.frame.compress(node))
+        with open(filename, 'wb') as f:
+            f.write(lz4.frame.compress(node))
 
 
 class HTTPTransaction(CachedXMLNode):
