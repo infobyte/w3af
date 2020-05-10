@@ -72,7 +72,7 @@ class ExceptionHandler(object):
     def handle_exception_data(self, exception_data):
         self.handle(exception_data.status,
                     exception_data.exception,
-                    (_, _, exception_data.traceback),
+                    (None, None, exception_data.traceback),
                     exception_data.enabled_plugins)
 
     def handle(self, current_status, exception, exec_info, enabled_plugins):
@@ -362,6 +362,9 @@ class ExceptionData(object):
                      self.filename,
                      self.function_name,
                      self.lineno)
+
+        print("AAAAAAAAAAAAAAAAAA222222222222222")
+
         return res
 
     def get_exception_class(self):
