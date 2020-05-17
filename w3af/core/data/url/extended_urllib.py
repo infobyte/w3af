@@ -948,7 +948,7 @@ class ExtendedUrllib(object):
 
         # Evasion
         req = self._evasion(req)
-        original_url = req._Request__original
+        original_url = req.url_object.url_string
         original_url_inst = req.url_object
         
         try:
@@ -1118,7 +1118,7 @@ class ExtendedUrllib(object):
         self._handle_worker_pool_size()
 
         # Then retry!
-        req._Request__original = original_url
+        req.original_url = original_url
         return self._retry(req, grep, exception)
     
     def _handle_send_success(self, req, res, grep, original_url,
