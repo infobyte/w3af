@@ -79,7 +79,7 @@ class HistoryItem(object):
     _INDEX_COLUMNS = ('alias',)
 
     _EXTENSION = 'trace'
-    _MSGPACK_CANARY = 'cute-and-yellow'
+    _MSGPACK_CANARY = b'cute-and-yellow'
 
     _TMP_EXTENSION = 'tmp'
 
