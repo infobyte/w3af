@@ -381,6 +381,9 @@ def get_socket_exception_reason(error):
     if not isinstance(error, socket.error):
         return
 
+    if isinstance(error, socket.timeout):
+        return str(error)
+
     if error[0] in KNOWN_SOCKET_ERRORS:
         return str(error)
 
