@@ -141,9 +141,6 @@ def parse_qs(qstr, ignore_exc=True, encoding=DEFAULT_ENCODING):
     qs = QueryString(encoding=encoding)
 
     if qstr:
-        # convert to string if unicode
-        if isinstance(qstr, str):
-            qstr = qstr.encode(encoding, 'ignore')
 
         try:
             odict = OrderedDict()
@@ -158,10 +155,7 @@ def parse_qs(qstr, ignore_exc=True, encoding=DEFAULT_ENCODING):
             if not ignore_exc:
                 raise BaseFrameworkException('Error while parsing "%r"' % qstr)
         else:
-            def decode(item):
-                return (item[0].decode(encoding, 'ignore'),
-                        [e.decode(encoding, 'ignore') for e in item[1]])
-            qs.update((decode(item) for item in list(odict.items())))
+            qs.update(item for item in list(odict.items()))
 
     return qs
 
