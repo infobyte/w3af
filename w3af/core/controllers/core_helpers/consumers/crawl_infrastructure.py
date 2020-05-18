@@ -66,7 +66,7 @@ class CrawlInfrastructure(BaseConsumer):
         # For filtering fuzzable requests found by plugins:
         self._variant_db = VariantDB()
 
-        self._disabled_plugins = set()
+        self._disabled_plugins = list()
         self._running = True
         self._report_max_time = True
         self._reported_found_urls = ScalableBloomFilter()
@@ -138,11 +138,11 @@ class CrawlInfrastructure(BaseConsumer):
         to_teardown = self._consumer_plugins
 
         if plugin is not None:
-            to_teardown = [plugin.get_name()]
+            to_teardown = [plugin]
 
         # When we disable a plugin because it raised a RunOnceException,
         # we call .end(), so no need to call the same method twice
-        to_teardown = set(to_teardown) - self._disabled_plugins
+        to_teardown = [item for item in to_teardown if item not in self._disabled_plugins]
 
         msg = 'Starting CrawlInfra consumer _teardown() with %s plugins'
         om.out.debug(msg % len(to_teardown))
@@ -178,7 +178,8 @@ class CrawlInfrastructure(BaseConsumer):
                 self._log_end_took(msg_fmt, start_time, plugin)
 
             finally:
-                self._disabled_plugins.add(plugin.get_name())
+                if plugin not in self._disabled_plugins:
+                    self._disabled_plugins.append(plugin)
 
         om.out.debug('Finished CrawlInfra consumer _teardown()')
 
@@ -189,7 +190,7 @@ class CrawlInfrastructure(BaseConsumer):
             if not self._running:
                 return
 
-            if plugin.get_name() in self._disabled_plugins:
+            if plugin in self._disabled_plugins:
                 continue
 
             self._run_observers(work_unit)
@@ -235,7 +236,7 @@ class CrawlInfrastructure(BaseConsumer):
             if not self._running:
                 return
 
-            if plugin.get_name() in self._disabled_plugins:
+            if plugin in self._disabled_plugins:
                 continue
 
             # pylint: disable=E1120
@@ -323,7 +324,7 @@ class CrawlInfrastructure(BaseConsumer):
         self._w3af_core.plugins.plugins['crawl'] = []
         self._w3af_core.plugins.plugins['infrastructure'] = []
 
-        self._disabled_plugins = set()
+        self._disabled_plugins = []
         self._consumer_plugins = []
 
         self._variant_db.cleanup()
