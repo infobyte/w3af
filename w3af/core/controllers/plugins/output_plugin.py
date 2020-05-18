@@ -173,6 +173,8 @@ class OutputPlugin(Plugin):
         if string_to_clean is None:
             return ''
 
+        if isinstance(string_to_clean, bytes):
+            string_to_clean = string_to_clean.decode()
         for char, replace in self.STRING_CLEAN:
             string_to_clean = string_to_clean.replace(char, replace)
 
