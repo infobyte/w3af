@@ -124,8 +124,6 @@ class MultiRE(object):
         :param target_str: The target string where the keywords need to be match
         :yield: (match_obj, re_str_N, compiled_regex)
         """
-        if isinstance(target_str, str):
-            target_str = target_str.encode(DEFAULT_ENCODING)
 
         #
         #   Match the regular expressions that have keywords and those
@@ -143,7 +141,11 @@ class MultiRE(object):
             for regex in self._keyword_to_re[match]:
                 compiled_regex = self._re_cache[regex]
 
-                matchobj = compiled_regex.search(target_str)
+                if isinstance(target_str, str):
+                    target_bytes = target_str.encode(DEFAULT_ENCODING)
+                else:
+                    target_bytes = target_str
+                matchobj = compiled_regex.search(target_bytes)
                 if matchobj:
                     yield self._create_output(matchobj, regex, compiled_regex)
 
