@@ -117,12 +117,14 @@ class wordpress_fingerprint(CrawlPlugin):
 
             # md5sum the response body
             m = hashlib.md5()
-            m.update(response.get_body())
+            m.update(response.get_body().encode('utf-8'))
             remote_release_hash = m.hexdigest()
 
             release_db = self._release_db
+            with open(release_db) as f:
+                lines = f.readlines()
 
-            for line in open(release_db):
+            for line in lines:
                 try:
                     line = line.strip()
                     release_db_hash, release_db_name = line.split(',')
@@ -226,7 +228,7 @@ class wordpress_fingerprint(CrawlPlugin):
             
             response = self._uri_opener.GET(test_url, cache=True)
 
-            response_hash = hashlib.md5(response.get_body()).hexdigest()
+            response_hash = hashlib.md5(response.get_body().encode('utf-8')).hexdigest()
 
             if response_hash == wp_fingerprint.hash:
                 version = wp_fingerprint.version
