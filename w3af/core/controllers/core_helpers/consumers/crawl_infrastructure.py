@@ -138,7 +138,7 @@ class CrawlInfrastructure(BaseConsumer):
         to_teardown = self._consumer_plugins
 
         if plugin is not None:
-            to_teardown = [plugin]
+            to_teardown = [plugin.get_name()]
 
         # When we disable a plugin because it raised a RunOnceException,
         # we call .end(), so no need to call the same method twice
@@ -178,7 +178,7 @@ class CrawlInfrastructure(BaseConsumer):
                 self._log_end_took(msg_fmt, start_time, plugin)
 
             finally:
-                self._disabled_plugins.add(plugin)
+                self._disabled_plugins.add(plugin.get_name())
 
         om.out.debug('Finished CrawlInfra consumer _teardown()')
 
@@ -189,7 +189,7 @@ class CrawlInfrastructure(BaseConsumer):
             if not self._running:
                 return
 
-            if plugin in self._disabled_plugins:
+            if plugin.get_name() in self._disabled_plugins:
                 continue
 
             self._run_observers(work_unit)
@@ -235,7 +235,7 @@ class CrawlInfrastructure(BaseConsumer):
             if not self._running:
                 return
 
-            if plugin in self._disabled_plugins:
+            if plugin.get_name() in self._disabled_plugins:
                 continue
 
             # pylint: disable=E1120
