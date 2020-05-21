@@ -48,7 +48,8 @@ class NonRepeatKeyValueContainer(DataContainer, OrderedDict):
     """
     def __init__(self, init_val=(), encoding=UTF8, relaxed_order=False):
         DataContainer.__init__(self, encoding=encoding)
-        OrderedDict.__init__(self, relax=relaxed_order)
+        OrderedDict.__init__(self)
+        self.relax = relaxed_order
 
         if isinstance(init_val, NonRepeatKeyValueContainer):
             self.update(init_val)
@@ -62,7 +63,14 @@ class NonRepeatKeyValueContainer(DataContainer, OrderedDict):
                 except TypeError:
                     raise TypeError(ERR_MSG_NO_REP % init_val)
 
+                #
+                # https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2
+                #
+                # Multiple message-header fields with the same field-name MAY be present in a message if and only if
+                # the entire field-value for that header field is defined as a comma-separated list
+                #
                 if key in self:
+                    self[key] += ", {}".format(val)
                     raise TypeError(ERR_MSG_NO_REP % init_val)
 
                 if not isinstance(val, (str, DataToken)):
@@ -77,7 +85,10 @@ class NonRepeatKeyValueContainer(DataContainer, OrderedDict):
         init_val = [[k, self[k]] for k in self]
         encoding = self.encoding
 
-        token = self.token
+        try:
+            token = self.token
+        except AttributeError:
+            token = None
 
         return self.__class__, (init_val, encoding), {'token': token}
 
