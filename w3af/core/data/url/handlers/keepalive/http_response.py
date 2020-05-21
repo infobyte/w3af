@@ -1,9 +1,5 @@
+import OpenSSL
 import http.client
-
-try:
-    from io import StringIO
-except ImportError:
-    from io import StringIO
 
 from email import parser
 
@@ -118,8 +114,20 @@ class HTTPResponse(http.client.HTTPResponse):
                         s = ""
 
             else:
-                s = self._safe_read(self.length)
-                self.length = 0
+
+                flag = True
+                while flag:
+                    try:
+                        s = self._safe_read(self.length)
+                        self.length = 0
+                        flag = False
+                    except OpenSSL.SSL.WantReadError:
+                        pass
+                    except OpenSSL.SSL.ZeroReturnError:
+                        flag = False
+                        s = ""
+                        self.length = 0
+
             self.close()        # we read everything
             return s
 
@@ -165,7 +173,15 @@ class HTTPResponse(http.client.HTTPResponse):
 
         # read until we get a non-100 response
         while True:
-            version, status, reason = self._read_status()
+
+            flag = True
+            while flag:
+                try:
+                    version, status, reason = self._read_status()
+                    flag = False
+                except OpenSSL.SSL.WantReadError:
+                    pass
+
             if status != http.client.CONTINUE:
                 break
             # skip the header from the 100 response
@@ -327,7 +343,8 @@ class HTTPResponse(http.client.HTTPResponse):
                 self._rbuf = self._rbuf[amt:]
                 return s
         else:
-            s = self._rbuf + self._multiread.decode()
+
+            s = self._rbuf.encode() + self._multiread
             self._rbuf = ''
             return s
 
