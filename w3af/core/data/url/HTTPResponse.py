@@ -195,8 +195,19 @@ class HTTPResponse(DiskItem):
         else:
             # The encoding attribute is only set on CachedResponse instances
             charset = getattr(resp, 'encoding', None)
-        
-        return cls(code, body, hdrs, url_inst, original_url,
+            if not charset:
+                charset = resp.get_charset()
+
+        if isinstance(body, bytes):
+            if charset is not None and charset is not "":
+                body_str = body.decode(charset)
+            else:
+                body_str = body.decode()
+
+        else:
+            body_str = body
+
+        return cls(code, body_str, hdrs, url_inst, original_url,
                    msg, charset=charset, time=httplib_time,
                    binary_response=binary_response)
 
