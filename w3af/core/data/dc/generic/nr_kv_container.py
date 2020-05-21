@@ -71,7 +71,6 @@ class NonRepeatKeyValueContainer(DataContainer, OrderedDict):
                 #
                 if key in self:
                     self[key] += ", {}".format(val)
-                    raise TypeError(ERR_MSG_NO_REP % init_val)
 
                 if not isinstance(val, (str, DataToken)):
                     raise TypeError(ERR_MSG_NO_REP % init_val)
