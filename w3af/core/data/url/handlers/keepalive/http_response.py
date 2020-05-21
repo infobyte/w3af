@@ -100,12 +100,23 @@ class HTTPResponse(http.client.HTTPResponse):
                 return ''
 
         if self.chunked:
-            return self._read_chunked(amt)
+            return self._readall_chunked()
 
         if amt is None:
             # unbounded read
             if self.length is None:
-                s = self.fp.read()
+
+                flag = True
+                while flag:
+                    try:
+                        s = self.fp.read()
+                        flag = False
+                    except OpenSSL.SSL.WantReadError:
+                        pass
+                    except OpenSSL.SSL.ZeroReturnError:
+                        flag = False
+                        s = ""
+
             else:
                 s = self._safe_read(self.length)
                 self.length = 0
@@ -401,3 +412,12 @@ class HTTPResponse(http.client.HTTPResponse):
 
         # otherwise, assume it will close
         return True
+
+    def get_charset(self):
+        content_type = self.headers.get('Content-type', ';')
+        content_type_list = content_type.split(";")
+        for content in content_type_list:
+            if 'charset' in content.lower():
+                return content.split("=")[1]
+
+        return ''
