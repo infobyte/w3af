@@ -48,7 +48,7 @@ CONTENT_TYPE = 'content-type'
 STATUS_LINE = 'HTTP/1.1 %s %s' + CRLF
 
 CHARSET_EXTRACT_RE = re.compile(r'charset=\s*?([\w-]+)')
-CHARSET_META_RE = re.compile(r'<meta.*?content=".*?charset=\s*?([\w-]+)".*?>')
+CHARSET_META_RE = re.compile(rb'<meta.*?content=".*?charset=\s*?([\w-]+)".*?>')
 DEFAULT_WAIT_TIME = 0.2
 
 
@@ -111,10 +111,6 @@ class HTTPResponse(DiskItem):
         if not isinstance(headers, Headers):
             msg = 'Invalid type %s for HTTPResponse ctor param headers.'
             raise TypeError(msg % type(headers))
-        
-        if not isinstance(read, str):
-            raise TypeError('Invalid type %s for HTTPResponse ctor param read.'
-                            % type(read))
 
         self._charset = charset
         self._headers = None
@@ -196,18 +192,13 @@ class HTTPResponse(DiskItem):
             # The encoding attribute is only set on CachedResponse instances
             charset = getattr(resp, 'encoding', None)
             if not charset:
-                charset = resp.get_charset()
+                try:
+                    charset = resp.get_charset()
+                except:
+                    import traceback, sys
+                    traceback.print_exc(file=sys.stdout)
 
-        if isinstance(body, bytes):
-            if charset is not None and charset is not "":
-                body_str = body.decode(charset)
-            else:
-                body_str = body.decode()
-
-        else:
-            body_str = body
-
-        return cls(code, body_str, hdrs, url_inst, original_url,
+        return cls(code, body, hdrs, url_inst, original_url,
                    msg, charset=charset, time=httplib_time,
                    binary_response=binary_response)
 
@@ -704,9 +695,10 @@ class HTTPResponse(DiskItem):
             charset = charset_mo.groups()[0].lower().strip()
         else:
             # Continue with the body's meta tag
-            charset_mo = CHARSET_META_RE.search(raw_body if raw_body else "", re.IGNORECASE)
+            charset_mo = CHARSET_META_RE.search(raw_body if raw_body else b'', re.IGNORECASE)
             if charset_mo:
                 charset = charset_mo.groups()[0].lower().strip()
+                charset = charset.decode()
             else:
                 charset = DEFAULT_CHARSET
 
