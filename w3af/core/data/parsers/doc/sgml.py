@@ -222,7 +222,7 @@ class SGMLParser(BaseParser):
             return
 
         resp_body = resp_body.encode(DEFAULT_ENCODING, errors=errors)
-        body_io = io.StringIO(resp_body)
+        body_io = io.BytesIO(resp_body)
         event_map = {'start': self.start,
                      'end': self.end,
                      'comment': self.comment}
@@ -242,8 +242,7 @@ class SGMLParser(BaseParser):
                                   html=True,
                                   recover=True,
                                   encoding=DEFAULT_ENCODING,
-                                  huge_tree=False,
-                                  resolve_entities=False)
+                                  huge_tree=False)
 
         for event, elem in context:
             try:
