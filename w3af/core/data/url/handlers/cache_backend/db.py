@@ -121,3 +121,12 @@ class SQLCachedResponse(CachedResponse):
         Clear the cache (remove all files and directories associated with it).
         """
         return HistoryItem().clear()
+
+    def get_charset(self):
+        content_type = self.headers().get('Content-type', ';')
+        content_type_list = content_type.split(";")
+        for content in content_type_list:
+            if 'charset' in content.lower():
+                return content.split("=")[1]
+
+        return ''
