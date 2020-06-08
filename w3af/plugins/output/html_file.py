@@ -240,7 +240,10 @@ class html_file(OutputPlugin):
         report_stream.enable_buffering(5)
 
         for report_section in report_stream:
-            output_fh.write(report_section)
+            try:
+                output_fh.write(report_section)
+            except UnicodeError:
+                output_fh.write(report_section.encode('ascii', 'ignore').decode('ascii'))
 
         return True
 
