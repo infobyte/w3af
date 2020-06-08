@@ -73,7 +73,8 @@ class text_file(OutputPlugin):
         
         self._output_file_name = os.path.expanduser(self._output_file_name)
         self._http_file_name = os.path.expanduser(self._http_file_name)
-        
+
+    def __enter__(self):
         try:
             self._log = open(self._output_file_name,  'w')
         except IOError as io:
@@ -101,6 +102,10 @@ class text_file(OutputPlugin):
             msg = 'Can\'t open HTTP report file "%s" for writing, error: %s.'
             args = (os.path.abspath(self._http_file_name), e)
             raise BaseFrameworkException(msg % args)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._http.close()
+        self._log.close()
 
     def _write_to_file(self, msg, flush=False):
         """
