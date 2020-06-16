@@ -88,10 +88,7 @@ class BaseParser(object):
         True
 
         """
-        enc = self._encoding
-
-        if isinstance(url_string, str):
-            url_string = url_string.encode(enc)
+        # enc = self._encoding
 
         dec_url = urllib.parse.unquote(url_string)
         for sch, repl in self.SAFE_CHARS:
@@ -101,11 +98,12 @@ class BaseParser(object):
         # TODO: Any improvement for this? We're certainly losing
         # information by using the 'ignore' error handling
 
-        try:
-            dec_url = dec_url.decode(UTF8)
-        except UnicodeDecodeError:
-            dec_url = dec_url.decode(enc, 'ignore')
+        # try:
+        #    dec_url = dec_url.decode(UTF8)
+        # except UnicodeDecodeError:
+        #    dec_url = dec_url.decode(enc, 'ignore')
         #
+
         # TODO: Lines below will remain commented until we make a
         # decision regarding which is the (right?) way to decode URLs.
         # The tests made on FF and Chrome revealed that if strange
