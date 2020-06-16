@@ -344,6 +344,9 @@ class HTTPResponse(http.client.HTTPResponse):
                 return s
         else:
 
+            if isinstance(self._multiread, str):
+                self._multiread = self._multiread.encode()
+
             s = self._rbuf.encode() + self._multiread
             self._rbuf = ''
             return s
