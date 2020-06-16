@@ -24,8 +24,6 @@ from w3af.core.controllers.dependency_check.pip_dependency import PIPDependency
 CORE = 1
 GUI = 2
 
-
-
 CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      PIPDependency('github', 'PyGithub', '1.21.0'),
                      PIPDependency('git.util', 'GitPython', '3.1.0'),
@@ -42,7 +40,7 @@ CORE_PIP_PACKAGES = [PIPDependency('pyclamd', 'pyClamd', '0.4.0'),
                      # We need 0.1.8 because of mitmproxy
                      PIPDependency('pyasn1', 'pyasn1', '0.4.2'),
 
-                     PIPDependency('lxml', 'lxml', '3.4.4'),
+                     PIPDependency('lxml', 'lxml', '4.5.1'),
                      PIPDependency('scapy.config', 'scapy', '2.4.0'),
                      PIPDependency('guess_language', 'guess-language-spirit', '0.5.3'),
                      PIPDependency('cluster', 'cluster', '1.1.1b3'),
