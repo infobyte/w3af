@@ -27,6 +27,7 @@ from multiprocessing.dummy import Process
 from mitmproxy.proxy.server import ProxyServer
 from mitmproxy.proxy.config import ProxyConfig
 from mitmproxy.exceptions import ServerException
+from mitmproxy import options
 
 import w3af.core.controllers.output_manager as om
 
@@ -116,11 +117,15 @@ class Proxy(Process):
 
         # User configured parameters
         try:
-            self._config = ProxyConfig(cadir=self._ca_certs,
-                                       ssl_version_client='SSLv23',
-                                       ssl_version_server='SSLv23',
-                                       host=ip,
-                                       port=port)
+            opts = options.Options(
+                client_certs=self._ca_certs,
+                ssl_version_client='SSLv2',
+                ssl_version_server='SSLv2',
+                listen_host=ip,
+                listen_port=port,
+            )
+            self._config = ProxyConfig(opts)
+
         except AttributeError as ae:
             if str(ae) == "'module' object has no attribute '_lib'":
                 # This is a rare issue with the OpenSSL setup that some users
